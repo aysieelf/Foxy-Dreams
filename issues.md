@@ -11,7 +11,7 @@ Asset Creation:
 - [x] Design and create cloud sprite (visual: 120x40px, hitbox: 80x30px)
 - [x] Create game icon
 - [x] Design background image
-- [ ] Create bonus sprite (star) (32x32px)
+- [x] Create bonus sprite (star) (32x32px)
 - [x] Design buttons for UI
 - [ ] Create sound effects:
   - [ ] Fox bounce sound

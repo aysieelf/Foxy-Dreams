@@ -33,13 +33,12 @@ def main() -> None:
 
     pygame.init()
     pygame.display.set_icon(pygame.image.load("assets/images/icon.png"))
-    screen = pygame.display.set_mode((c.WINDOW_SIZE, c.WINDOW_SIZE))
-    pygame.display.set_caption("Snake")
+    screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT))
+    pygame.display.set_caption("Sleepy Fox")
     clock = pygame.time.Clock()
 
     try:
         game_state = GameState()
-        game_state.particle_system.screen = screen
         game_loop(screen, game_state, clock)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)

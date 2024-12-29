@@ -121,7 +121,7 @@ python main.py
 - [User Guide](docs/user-guide.md) - Detailed instructions on how to play the game
 
 ## 📚 What I Learned
-...coming soon
+- pygame.image.load() can be used to load images from files - better to be used with convert() for better performance
 
 ## 💡 First Time Achievements
 - I created my first sprites

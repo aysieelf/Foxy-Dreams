@@ -6,18 +6,30 @@ import pygame.sprite
 class Fox(pygame.sprite.Sprite):
     def __init__(self, initial_speed):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("assets/images/fox.png").convert_alpha()
+        self.original_image = pygame.image.load("assets/images/fox.png").convert_alpha()
+        self.image = self.original_image
         self.rect = self.image.get_rect()
         self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
 
         self.velocity = pygame.math.Vector2(1, 1)
         self.velocity.scale_to_length(initial_speed)
+        self.angle = 0
 
     def update(self):
+        self._rotate_image()
+        self._move_fox()
+        return self._check_for_collision()
+
+    def _move_fox(self):
         self.rect.x += self.velocity.x
         self.rect.y += self.velocity.y
 
-        return self._check_for_collision()
+    def _rotate_image(self):
+        self.angle += 0.1
+        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        old_center = self.rect.center
+        self.rect = self.image.get_rect()
+        self.rect.center = old_center
 
     def _check_for_collision(self):
         # Check if fox is out

@@ -129,7 +129,7 @@ python main.py
  - it's better for rendering
 - I can use sprite groups to update and draw all sprites in the group at once
 - Velocity can be used to control the speed and direction of a sprite
-
+- pygame.transform.rotate() can be used to rotate an image
 
 ## 💡 First Time Achievements
 - I created my first sprites

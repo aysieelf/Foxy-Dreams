@@ -22,7 +22,7 @@ Asset Creation:
   - [x] Bonus collection sound
 
 Core Gameplay (640x480 window):
-- [ ] Implement window setup and game loop
+- [x] Implement window setup and game loop
 - [ ] Create Fox class:
   - [ ] Basic sprite rendering
   - [ ] Velocity system

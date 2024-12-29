@@ -1,5 +1,4 @@
 from src.core.game_state import GameState
-from src.utils import constants as c
 from src.utils.screenshot import ScreenshotManager
 
 import pygame

@@ -1,4 +1,3 @@
-from src.utils import constants as c
 
 import pygame
 

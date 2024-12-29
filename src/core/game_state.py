@@ -1,5 +1,3 @@
-from src.effects.particle_system import ParticleSystem
-from src.utils import constants as c
 
 
 class GameState:

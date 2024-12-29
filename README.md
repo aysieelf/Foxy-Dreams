@@ -124,7 +124,8 @@ python main.py
 ...coming soon
 
 ## 💡 First Time Achievements
-...coming soon
+- I created my first sprites
+- First time using sound effects
 
 ## 📸 Screenshots
 ...coming soon

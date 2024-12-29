@@ -5,14 +5,14 @@ Foxy Dreams is my interpretation of the classic Pong game. This is my third game
 ## Current Progress
 [▓░░░░░░░░░] 10%
 
-- [ ] Project setup
-- [ ] Asset creation
-- [ ] Core gameplay
-- [ ] Game logic
-- [ ] User interface development
-- [ ] Testing and debugging
-- [ ] Documentation
-- [ ] Release
+- [ ] Project setup (deadline: 29.12.2024)
+- [ ] Asset creation (deadline: 2.01.2025)
+- [ ] Core gameplay (deadline: 9.01.2025)
+- [ ] Game logic (deadline: 16.01.2025)
+- [ ] User interface development (deadline: 21.01.2025)
+- [ ] Testing and debugging (deadline: 25.01.2025)
+- [ ] Documentation (deadline: 27.01.2025)
+- [ ] Release (deadline: 29.01.2025)
 
 
 ## 📑 Table of Contents

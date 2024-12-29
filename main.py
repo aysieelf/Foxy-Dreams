@@ -33,7 +33,10 @@ def main() -> None:
 
     pygame.init()
     pygame.display.set_icon(pygame.image.load("assets/images/icon.png"))
-    screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT))
+    screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT), pygame.DOUBLEBUF)
+    print("Available display modes:", pygame.display.get_driver())
+    print("Double buff available:", screen.get_flags() & pygame.DOUBLEBUF)
+
     pygame.display.set_caption("Sleepy Fox")
     clock = pygame.time.Clock()
 

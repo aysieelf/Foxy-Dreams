@@ -15,7 +15,7 @@ class Fox(pygame.sprite.Sprite):
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0
 
-    def update(self):
+    def update(self) -> str | None:
         self._rotate_image()
         self._move_fox()
         return self._check_for_collision()
@@ -26,7 +26,7 @@ class Fox(pygame.sprite.Sprite):
 
     def _rotate_image(self):
         self.angle += 0.1
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.image = pygame.transform.rotozoom(self.original_image, self.angle, 1)
         old_center = self.rect.center
         self.rect = self.image.get_rect()
         self.rect.center = old_center

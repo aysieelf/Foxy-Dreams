@@ -13,7 +13,8 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 - [ ] Testing and debugging (deadline: 25.01.2025)
 - [ ] Documentation (deadline: 27.01.2025)
 - [ ] Release (deadline: 29.01.2025)
-
+- pygame.SCALED includes VSynch and is the best option for most games
+ - VSync synchronizes the frame rate with the monitor's refresh rate
 
 ## 📑 Table of Contents
 - [Quick Start (Just Play)](#-quick-start-just-play)

@@ -1,6 +1,7 @@
 from src.core.game_state import GameState
 from src.event_handler import EventHandler
 from src.ui.renderer import Renderer
+from src.utils import constants as c
 
 import pygame
 
@@ -20,7 +21,7 @@ def game_loop(
     renderer = Renderer(screen)
 
     while True:
-        clock.tick(60)
+        clock.tick(c.FPS)
         game_state.update()
         if not event_handler.handle_events():
             break

@@ -11,7 +11,7 @@ class Fox(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
 
-        self.velocity = pygame.math.Vector2(1, 1)
+        self.velocity = pygame.math.Vector2(1, 0)
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0
 

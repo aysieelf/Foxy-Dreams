@@ -1,6 +1,19 @@
-# 🐍 Snake
+# 🦊 Foxy Dreams
 
-A classic Snake game built with PyGame - my second game!
+Foxy Dreams is my interpretation of the classic Pong game. This is my third game ever.
+
+## Current Progress
+[▓░░░░░░░░░] 10%
+
+- [ ] Project setup
+- [ ] Asset creation
+- [ ] Core gameplay
+- [ ] Game logic
+- [ ] User interface development
+- [ ] Testing and debugging
+- [ ] Documentation
+- [ ] Release
+
 
 ## 📑 Table of Contents
 - [Quick Start (Just Play)](#-quick-start-just-play)
@@ -20,7 +33,7 @@ A classic Snake game built with PyGame - my second game!
 
 ## 🎮 Quick Start (Just Play)
 Download the game:
-- **macOS**: Download `Snake.app` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
+- **macOS**: Download `FoxyDreams.app` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
   - After downloading, locate Snake.app in Finder. 
   - When opening for the first time:
     - Right-click (or Control-click) on the app and select Open. 
@@ -72,80 +85,59 @@ python main.py
 ```
 
 ### Controls
-- WASD/Arrow keys - Move snake
-- R - Restart game
-- Q - Quit to main menu / Exit game
-- Space - Start game / Pause/Resume game
+- **Single Player Mode**
+  - Move Cloud: `↑` `↓` or `W` `S` (player choice)
+  - Pause/Resume: `Space`
+  - Return to Menu: `Esc`
+  - Toggle Sound: `M`
+
+- **Two Players Mode**
+  - Player 1 (Left Cloud): `W` `S`
+  - Player 2 (Right Cloud): `↑` `↓`
+  - Pause/Resume: `Space`
+  - Return to Menu: `Esc`
+  - Toggle Sound: `M`
+
+- **Menu Navigation**
+  - Select: `↑` `↓`
+  - Confirm: `Enter`
+  - Back: `Esc`
 
 ## 🎯 Project Goals
-- Create a classic Snake game with smooth controls
-- Master PyGame collision detection
-- Practice game state management
-- Learn grid-based movement systems
+- Create a simple Pong game with a twist
+- Try out sprite animations
+- Try out sound effects
+- Try out basic AI for single-player mode
+- Implement a scoring system
+- Implement a game over screen
+- Implement a main menu screen
+- Implement a pause screen
+- Implement a settings screen
 
 ## 🚀 Features
-- Smooth snake movement with arrow key controls
-- Growing snake mechanics
-- Score system based on food collection
-- Collision detection with walls and self
-- Game over & restart functionality
-- Pause/Resume game option
-- Food spawning system
-- Particle effects when collecting food
-- Bonus food with special effects
+...coming soon
 
 ## 📚 Documentation
 - [User Guide](docs/user-guide.md) - Detailed instructions on how to play the game
 
 ## 📚 What I Learned
-- pygame.time.Clock for frame rate control - `pygame.time.Clock.tick()`
-  - Used to control the game's speed and ensure consistent performance
-- Grid-based movement system implementation
-- Collision detection with walls and self
-- Game state management patterns
-- Pause/Resume game functionality
-- Food spawning system with random positioning
-- Clean code organization in game development
-- Particle system implementation in PyGame
-- State management and proper object resetting
-- Event handling in PyGame
+...coming soon
 
 ## 💡 First Time Achievements
-- First time implementing a grid-based movement system
-- First time using PyGame's `pygame.time.Clock` for frame rate control
-- First time implementing a pause/resume game functionality
-- First time implementing a food spawning system
-- First time implementing a growing snake mechanic
-- First time implementing particles in PyGame for effects
-- First time handling complex game states
+...coming soon
 
 ## 📸 Screenshots
-
-### Start Screen
-![Start Screen](assets/screenshots/start_screen_20241228_230858.png)
-![Hover Button](assets/screenshots/start_screen_20241228_230922.png)
-
-### Gameplay
-![Just Started](assets/screenshots/game_in_progress_moves_0_20241228_231041.png)
-![Bonus Food](assets/screenshots/game_in_progress_moves_4_20241228_231105.png)
-![Particles](assets/screenshots/game_in_progress_score_2_20241228_231622.png)
-![Particles](assets/screenshots/game_in_progress_score_3_20241228_231627.png)
-
-### Game Over States
-![Wall Collision](assets/screenshots/game_over_score_1_20241228_231404.png)
-![Self Collision](assets/screenshots/game_over_score_16_20241228_231354.png)
+...coming soon
 
 ## 🎥 Demo
-![Demo Part 1](assets/demo/snake-demo-beginning.gif)
-![Demo Part 2](assets/demo/snake-demo-ending.gif)
+...coming soon
 
 ## 🛠️ Technical Details
 - Python version: 3.12
 - PyGame version: 2.6.1
 - Development Platform: PyCharm
-- Resolution: 400x400 pixels
+- Resolution: 640x480 pixels
 - Frame Rate: 60 FPS
-- Grid Size: 20x20 cells
 
 ---
 Part of my [Game Development Journey](https://github.com/aysieelf/Game-Dev-Journey) 🎮

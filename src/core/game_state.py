@@ -1,3 +1,6 @@
+import pygame
+
+from src.core.fox import Fox
 
 
 class GameState:
@@ -6,4 +9,7 @@ class GameState:
     """
 
     def __init__(self):
-        pass
+        self.fox = Fox()
+
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.fox)

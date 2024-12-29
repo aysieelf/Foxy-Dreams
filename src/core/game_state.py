@@ -1,5 +1,3 @@
-
-
 class GameState:
     """
     Class to hold the game state

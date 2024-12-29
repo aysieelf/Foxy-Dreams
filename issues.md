@@ -12,7 +12,7 @@ Asset Creation:
 - [x] Create game icon
 - [x] Design background image
 - [ ] Create bonus sprite (star) (32x32px)
-- [ ] Design buttons for UI
+- [x] Design buttons for UI
 - [ ] Create sound effects:
   - [ ] Fox bounce sound
   - [ ] Point scoring sound

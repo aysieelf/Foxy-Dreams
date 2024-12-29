@@ -33,7 +33,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 
 ## 🎮 Quick Start (Just Play)
 Download the game:
-- **macOS**: Download `FoxyDreams.app` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
+- **macOS**: Download `SleepyFox.app` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
   - After downloading, locate Snake.app in Finder. 
   - When opening for the first time:
     - Right-click (or Control-click) on the app and select Open. 

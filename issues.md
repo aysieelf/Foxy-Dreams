@@ -9,8 +9,8 @@ Project Setup:
 Asset Creation:
 - [x] Design and create fox sprite (64x64px)
 - [x] Design and create cloud sprite (visual: 120x40px, hitbox: 80x30px)
-- [ ] Create game icon
-- [ ] Design background image
+- [x] Create game icon
+- [x] Design background image
 - [ ] Create bonus sprite (star) (32x32px)
 - [ ] Design buttons for UI
 - [ ] Create sound effects:

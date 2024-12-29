@@ -1,9 +1,9 @@
 from random import choice
 
-import pygame
-
 from src.core.fox import Fox
 from src.utils import constants as c
+
+import pygame
 
 
 class GameState:
@@ -48,7 +48,7 @@ class GameState:
             self._play_again()
 
     def _play_again(self):
-        self.fox.rect.center = (c.WIDTH//2, c.HEIGHT//2)
+        self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
         direction_x = choice([-1, 1])
         direction_y = choice([1, -1])
         print(f"Direction x: {direction_x}, Direction y: {direction_y}")

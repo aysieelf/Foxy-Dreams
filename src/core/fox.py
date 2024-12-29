@@ -1,5 +1,6 @@
-import pygame.sprite
 from src.utils import constants as c
+
+import pygame.sprite
 
 
 class Fox(pygame.sprite.Sprite):
@@ -7,11 +8,10 @@ class Fox(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("assets/images/fox.png").convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.center = (c.WIDTH//2, c.HEIGHT//2)
+        self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
 
         self.velocity = pygame.math.Vector2(1, 1)
         self.velocity.scale_to_length(initial_speed)
-
 
     def update(self):
         self.rect.x += self.velocity.x

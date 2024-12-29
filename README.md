@@ -124,6 +124,10 @@ python main.py
 - pygame.image.load() can be used to load images from files - better to be used with convert() for better performance
 - convert_alpha() can be used to load images with transparency
 - when I want to create a sprite, I inherit pygame.sprite.Sprite and use the constructor to set the image and rect attributes
+- using a sprite group to manage multiple sprites is more efficient than managing them individually
+ - it's better for collision detection
+ - it's better for rendering
+
 
 ## 💡 First Time Achievements
 - I created my first sprites

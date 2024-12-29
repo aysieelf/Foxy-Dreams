@@ -24,7 +24,7 @@ Asset Creation:
 Core Gameplay (640x480 window):
 - [x] Implement window setup and game loop
 - [ ] Create Fox class:
-  - [ ] Basic sprite rendering
+  - [x] Basic sprite rendering
   - [ ] Velocity system
   - [ ] Bounce physics
 - [ ] Create Player Cloud class:

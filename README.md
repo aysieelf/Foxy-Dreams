@@ -122,10 +122,20 @@ python main.py
 
 ## 📚 What I Learned
 - pygame.image.load() can be used to load images from files - better to be used with convert() for better performance
+- convert_alpha() can be used to load images with transparency
+- when I want to create a sprite, I inherit pygame.sprite.Sprite and use the constructor to set the image and rect attributes
+- using a sprite group to manage multiple sprites is more efficient than managing them individually
+ - it's better for collision detection
+ - it's better for rendering
+- I can use sprite groups to update and draw all sprites in the group at once
+- Velocity can be used to control the speed and direction of a sprite
+
 
 ## 💡 First Time Achievements
 - I created my first sprites
 - First time using sound effects
+- First time using sprite groups
+- First time using velocity for sprite movement
 
 ## 📸 Screenshots
 ...coming soon

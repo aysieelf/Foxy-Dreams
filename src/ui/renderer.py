@@ -25,4 +25,7 @@ class Renderer:
             game_state (GameState): The current game state
         """
         self.screen.blit(self.background_image, (0, 0))
+
+        game_state.all_sprites.draw(self.screen)
+
         pygame.display.flip()

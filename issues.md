@@ -14,12 +14,12 @@ Asset Creation:
 - [x] Create bonus sprite (star) (32x32px)
 - [x] Design buttons for UI
 - [ ] Create sound effects:
-  - [ ] Fox bounce sound
-  - [ ] Point scoring sound
-  - [ ] Game over sound
-  - [ ] Background music (relaxing/sleepy theme)
-  - [ ] Menu selection sounds
-  - [ ] Bonus collection sound
+  - [x] Fox bounce sound
+  - [x] Point scoring sound
+  - [x] Game over sound
+  - [x] Background music (relaxing/sleepy theme)
+  - [x] Menu selection sounds
+  - [x] Bonus collection sound
 
 Core Gameplay (640x480 window):
 - [ ] Implement window setup and game loop

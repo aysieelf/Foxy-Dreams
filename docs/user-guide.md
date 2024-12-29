@@ -1,7 +1,7 @@
-# 🦊 Foxy Dreams User Guide
+# 🦊 Sleepy Fox User Guide
 
 ## Game Overview
-Foxy Dreams is a classic Pong game with a twist.
+Sleepy Fox is a classic Pong game with a twist.
 
 Pong is a two-player sports game that simulates table tennis. 
 Players control paddles on opposite sides of the screen, hitting a ball back and forth. 

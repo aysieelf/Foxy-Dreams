@@ -1,6 +1,6 @@
-# 🦊 Foxy Dreams
+# 🦊 Sleepy Fox
 
-Foxy Dreams is my interpretation of the classic Pong game. This is my third game ever.
+Sleepy Fox is my interpretation of the classic Pong game. This is my third game ever.
 
 ## Current Progress
 [▓░░░░░░░░░] 10%

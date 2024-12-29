@@ -127,11 +127,15 @@ python main.py
 - using a sprite group to manage multiple sprites is more efficient than managing them individually
  - it's better for collision detection
  - it's better for rendering
+- I can use sprite groups to update and draw all sprites in the group at once
+- Velocity can be used to control the speed and direction of a sprite
 
 
 ## 💡 First Time Achievements
 - I created my first sprites
 - First time using sound effects
+- First time using sprite groups
+- First time using velocity for sprite movement
 
 ## 📸 Screenshots
 ...coming soon

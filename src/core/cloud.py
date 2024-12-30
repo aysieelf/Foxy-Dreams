@@ -16,7 +16,7 @@ class Cloud(pygame.sprite.Sprite):
         Initialize the cloud
         """
         pygame.sprite.Sprite.__init__(self)
-
+        self.player = player
         self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
 
         if player == "player1":
@@ -34,6 +34,10 @@ class Cloud(pygame.sprite.Sprite):
         box.width = self.rect.width - c.CLOUD_HITBOX_WIDTH
         box.height = self.rect.height - c.CLOUD_HITBOX_HEIGHT
         box.center = self.rect.center
+        if self.player == "player1":
+            box.left = self.rect.left
+        elif self.player == "player2":
+            box.right = self.rect.right
         return box
 
     def update(self) -> None:

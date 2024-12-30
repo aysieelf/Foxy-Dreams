@@ -29,7 +29,7 @@ class Renderer:
         game_state.all_sprites.draw(self.screen)
 
         # TODO - debugging square
-        pygame.draw.rect(self.screen, (255, 0, 0), game_state.cloud_player1.rect, 1)
+        pygame.draw.rect(self.screen, (255, 0, 0), game_state.cloud_player1.hitbox, 1)
         pygame.draw.rect(self.screen, (0, 255, 0), game_state.cloud_player2.hitbox, 1)
 
 

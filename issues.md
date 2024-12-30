@@ -31,14 +31,14 @@ Core Gameplay (640x480 window):
   - [x] Sprite rendering with larger visual size than hitbox
   - [x] Movement controls (both arrow keys and WASD)
   - [x] Collision detection
-- [ ] Create AI Cloud class:
+- [x] Create AI Cloud class:
   - [x] Basic movement logic
   - [x] Difficulty scaling
-  - [ ] AI prediction behavior
-- [ ] Implement game modes:
-  - [ ] Single player mode
-  - [ ] Two players mode
-  - [ ] Mode switching logic
+  - [x] AI prediction behavior
+- [x] Implement game modes:
+  - [x] Single player mode
+  - [x] Two players mode
+  - [x] Mode switching logic
 - [ ] Implement physics system:
   - [ ] Velocity management
   - [ ] Cloud-fox collision detection

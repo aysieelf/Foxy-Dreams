@@ -44,10 +44,20 @@ class Cloud(pygame.sprite.Sprite):
         """
         Update the cloud
         """
-        self.rect.x -= 1
-        if self.rect.right < 0:
-            self.rect.left = 800
-            self.rect.y = 100
+        keys = pygame.key.get_pressed()
+        # Player 1 (WASD)
+        if self.player == "player1":
+            if keys[pygame.K_w]:
+                self.move("up")
+            if keys[pygame.K_s]:
+                self.move("down")
+
+        # Player 2 (arrows)
+        elif self.player == "player2":
+            if keys[pygame.K_UP]:
+                self.move("up")
+            if keys[pygame.K_DOWN]:
+                self.move("down")
 
     def _set_position(self, player) -> None:
         """

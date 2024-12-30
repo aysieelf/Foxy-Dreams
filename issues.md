@@ -27,10 +27,10 @@ Core Gameplay (640x480 window):
   - [x] Basic sprite rendering
   - [x] Velocity system
   - [x] Bounce physics
-- [ ] Create Player Cloud class:
-  - [ ] Sprite rendering with larger visual size than hitbox
-  - [ ] Movement controls (both arrow keys and WASD)
-  - [ ] Collision detection
+- [x] Create Player Cloud class:
+  - [x] Sprite rendering with larger visual size than hitbox
+  - [x] Movement controls (both arrow keys and WASD)
+  - [x] Collision detection
 - [ ] Create AI Cloud class:
   - [ ] Basic movement logic
   - [ ] Difficulty scaling

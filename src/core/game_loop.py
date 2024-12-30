@@ -23,6 +23,8 @@ def game_loop(
     while True:
         clock.tick(c.FPS)
         game_state.update()
+        game_state.cloud_player1.update()
+        game_state.cloud_player2.update()
         if not event_handler.handle_events():
             break
 

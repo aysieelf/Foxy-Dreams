@@ -131,12 +131,15 @@ python main.py
 - I can use sprite groups to update and draw all sprites in the group at once
 - Velocity can be used to control the speed and direction of a sprite
 - pygame.transform.rotate() can be used to rotate an image
+- pygame.key.get_pressed() can be used to check if a key is being held down
 
 ## 💡 First Time Achievements
-- I created my first sprites
+- First time drawing my own sprites
 - First time using sound effects
 - First time using sprite groups
 - First time using velocity for sprite movement
+- First time using sprite rotation
+- First time using a hitbox for collision detection
 
 ## 📸 Screenshots
 ...coming soon

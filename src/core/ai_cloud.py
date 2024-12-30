@@ -27,7 +27,7 @@ class AICloud(Cloud):
                 self._move_with_speed(direction, speed_factor)
 
     def _move_with_speed(self, direction, speed_factor):
-        if direction == "up":
+        if direction == "up" and self.hitbox.top > 0 - 4:
             self.rect.y -= self.speed * speed_factor
-        elif direction == "down":
+        elif direction == "down" and self.hitbox.bottom < c.HEIGHT + 4:
             self.rect.y += self.speed * speed_factor

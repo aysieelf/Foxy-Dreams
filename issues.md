@@ -32,8 +32,8 @@ Core Gameplay (640x480 window):
   - [x] Movement controls (both arrow keys and WASD)
   - [x] Collision detection
 - [ ] Create AI Cloud class:
-  - [ ] Basic movement logic
-  - [ ] Difficulty scaling
+  - [x] Basic movement logic
+  - [x] Difficulty scaling
   - [ ] AI prediction behavior
 - [ ] Implement game modes:
   - [ ] Single player mode

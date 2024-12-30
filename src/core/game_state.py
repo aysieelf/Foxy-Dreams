@@ -70,10 +70,14 @@ class GameState:
 
     def _check_for_fox_cloud_collision(self):
         if self.fox.hitbox.colliderect(self.cloud_player1.hitbox):
-            overlap_x = min(self.fox.hitbox.right - self.cloud_player1.hitbox.left,
-                            self.cloud_player1.hitbox.right - self.fox.hitbox.left)
-            overlap_y = min(self.fox.hitbox.bottom - self.cloud_player1.hitbox.top,
-                            self.cloud_player1.hitbox.bottom - self.fox.hitbox.top)
+            overlap_x = min(
+                self.fox.hitbox.right - self.cloud_player1.hitbox.left,
+                self.cloud_player1.hitbox.right - self.fox.hitbox.left,
+            )
+            overlap_y = min(
+                self.fox.hitbox.bottom - self.cloud_player1.hitbox.top,
+                self.cloud_player1.hitbox.bottom - self.fox.hitbox.top,
+            )
 
             if overlap_x < overlap_y:
                 if self.fox.hitbox.centerx > self.cloud_player1.hitbox.centerx:
@@ -82,10 +86,14 @@ class GameState:
                 self.fox.velocity.y *= -1
 
         if self.fox.hitbox.colliderect(self.cloud_player2.hitbox):
-            overlap_x = min(self.fox.hitbox.right - self.cloud_player2.hitbox.left,
-                            self.cloud_player2.hitbox.right - self.fox.hitbox.left)
-            overlap_y = min(self.fox.hitbox.bottom - self.cloud_player2.hitbox.top,
-                            self.cloud_player2.hitbox.bottom - self.fox.hitbox.top)
+            overlap_x = min(
+                self.fox.hitbox.right - self.cloud_player2.hitbox.left,
+                self.cloud_player2.hitbox.right - self.fox.hitbox.left,
+            )
+            overlap_y = min(
+                self.fox.hitbox.bottom - self.cloud_player2.hitbox.top,
+                self.cloud_player2.hitbox.bottom - self.fox.hitbox.top,
+            )
 
             if overlap_x < overlap_y:
                 if self.fox.hitbox.centerx < self.cloud_player2.hitbox.centerx:

@@ -1,5 +1,6 @@
 from random import choice
 
+from src.core.ai_cloud import AICloud
 from src.core.cloud import Cloud
 from src.core.fox import Fox
 from src.utils import constants as c
@@ -18,17 +19,19 @@ class GameState:
         self.max_speed = c.MAX_SPEED
         self.player1_score = 0
         self.player2_score = 0
+        self.multiplayer = False
 
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
-        self.cloud_player2 = Cloud("player2")
+        self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
     def update(self):
         winner = self.fox.update()
-        # self.all_sprites.update()
+        self.cloud_player1.update(self.fox)
+        self.cloud_player2.update(self.fox)
         self._check_for_winner(winner)
         self._check_for_fox_cloud_collision()
 

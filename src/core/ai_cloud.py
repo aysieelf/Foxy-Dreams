@@ -1,17 +1,32 @@
 from src.core.cloud import Cloud
+from src.utils import constants as c
 
 
 class AICloud(Cloud):
     def __init__(self):
         super().__init__("player2")
+        self.dead_zone = 10
+        self.reaction_delay = 2
+        self.delay_counter = 0
 
     def update(self, fox):
         self._handle_ai_movement(fox)
 
     def _handle_ai_movement(self, fox):
-        if self.rect.centery < fox.rect.centery:
-            # fox is below the cloud
-            self.move("down")
-        elif self.rect.centery > fox.rect.centery:
-            # fox is above the cloud
-            self.move("up")
+        self.delay_counter += 1
+
+        if self.delay_counter >= self.reaction_delay:
+            self.delay_counter = 0
+            distance = fox.rect.centery - self.rect.centery
+
+            if abs(distance) > self.dead_zone:
+                direction = "down" if distance > 0 else "up"
+
+                speed_factor = min(abs(distance) / 100, 1.0)
+                self._move_with_speed(direction, speed_factor)
+
+    def _move_with_speed(self, direction, speed_factor):
+        if direction == "up":
+            self.rect.y -= c.CLOUD_SPEED * speed_factor
+        elif direction == "down":
+            self.rect.y += c.CLOUD_SPEED * speed_factor

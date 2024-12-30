@@ -22,6 +22,7 @@ class GameState:
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
         self.cloud_player2 = Cloud("player2")
+
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
@@ -29,6 +30,7 @@ class GameState:
         winner = self.fox.update()
         # self.all_sprites.update()
         self._check_for_winner(winner)
+        self._check_for_fox_cloud_collision()
 
     def _check_for_winner(self, winner):
         if winner is not None:
@@ -57,3 +59,10 @@ class GameState:
         self.fox.velocity.scale_to_length(self.current_speed)
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y
+
+    def _check_for_fox_cloud_collision(self):
+        if pygame.sprite.collide_rect(self.fox, self.cloud_player1):
+            self.fox.velocity.x *= -1
+
+        if pygame.sprite.collide_rect(self.fox, self.cloud_player2):
+            self.fox.velocity.x *= -1

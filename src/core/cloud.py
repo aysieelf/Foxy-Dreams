@@ -36,10 +36,12 @@ class Cloud(pygame.sprite.Sprite):
         Set the position of the cloud
         """
         if player == "player1":
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
+            self.rect = self.image.get_rect()
             self.rect.x = c.CLOUD_PLAYER1_X
             self.rect.y = c.CLOUD_Y
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
         elif player == "player2":
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)
+            self.rect = self.image.get_rect()
             self.rect.x = c.CLOUD_PLAYER2_X
             self.rect.y = c.CLOUD_Y
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)

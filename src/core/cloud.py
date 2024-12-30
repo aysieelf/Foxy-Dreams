@@ -59,3 +59,9 @@ class Cloud(pygame.sprite.Sprite):
         elif player == "player2":
             self.rect.x = c.CLOUD_PLAYER2_X
             self.rect.y = c.CLOUD_Y
+
+    def move(self, direction):
+        if direction == "up":
+            self.rect.y -= c.CLOUD_SPEED
+        elif direction == "down":
+            self.rect.y += c.CLOUD_SPEED

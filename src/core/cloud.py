@@ -18,9 +18,23 @@ class Cloud(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
-        self.rect: pygame.Rect = self.image.get_rect()
-        self.hitbox = self.rect.inflate(c.CLOUD_HITBOX_WIDTH, c.CLOUD_HITBOX_HEIGHT)
+
+        if player == "player1":
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
+        elif player == "player2":
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)
+
+        self.rect = self.image.get_rect()
+
         self._set_position(player)
+
+    @property
+    def hitbox(self):
+        box = self.rect.copy()
+        box.width = self.rect.width - c.CLOUD_HITBOX_WIDTH
+        box.height = self.rect.height - c.CLOUD_HITBOX_HEIGHT
+        box.center = self.rect.center
+        return box
 
     def update(self) -> None:
         """
@@ -36,12 +50,8 @@ class Cloud(pygame.sprite.Sprite):
         Set the position of the cloud
         """
         if player == "player1":
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
-            self.rect = self.image.get_rect()
             self.rect.x = c.CLOUD_PLAYER1_X
             self.rect.y = c.CLOUD_Y
         elif player == "player2":
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)
-            self.rect = self.image.get_rect()
             self.rect.x = c.CLOUD_PLAYER2_X
             self.rect.y = c.CLOUD_Y

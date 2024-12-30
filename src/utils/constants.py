@@ -19,8 +19,8 @@ CLOUD_PLAYER2_X = WIDTH - 48
 CLOUD_PLAYER2_ROTATION = 90
 
 CLOUD_Y = HEIGHT // 2
-CLOUD_HITBOX_WIDTH = 120
-CLOUD_HITBOX_HEIGHT = 50
+CLOUD_HITBOX_WIDTH = 17
+CLOUD_HITBOX_HEIGHT = 7
 
 
 # COLORS -----------------------------------------------------------------------

@@ -5,6 +5,7 @@ from src.utils import constants as c
 class AICloud(Cloud):
     def __init__(self):
         super().__init__("player2")
+        self.speed = c.BASE_SPEED * 0.8
         self.dead_zone = 10
         self.reaction_delay = 2
         self.delay_counter = 0
@@ -27,6 +28,6 @@ class AICloud(Cloud):
 
     def _move_with_speed(self, direction, speed_factor):
         if direction == "up":
-            self.rect.y -= c.CLOUD_SPEED * speed_factor
+            self.rect.y -= self.speed * speed_factor
         elif direction == "down":
-            self.rect.y += c.CLOUD_SPEED * speed_factor
+            self.rect.y += self.speed * speed_factor

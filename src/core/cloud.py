@@ -18,6 +18,7 @@ class Cloud(pygame.sprite.Sprite):
         """
         pygame.sprite.Sprite.__init__(self)
         self.player = player
+        self.speed = c.BASE_SPEED * 0.35
         self.image: pygame.Surface = pygame.image.load(
             "assets/images/cloud.png"
         ).convert_alpha()
@@ -78,7 +79,8 @@ class Cloud(pygame.sprite.Sprite):
             self.rect.y = c.CLOUD_Y
 
     def move(self, direction):
+        print(self.speed)
         if direction == "up":
-            self.rect.y -= c.CLOUD_SPEED
+            self.rect.y -= self.speed
         elif direction == "down":
-            self.rect.y += c.CLOUD_SPEED
+            self.rect.y += self.speed

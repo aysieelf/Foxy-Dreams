@@ -43,14 +43,19 @@ class GameState:
             elif winner == "player2":
                 self.player2_score += 1
 
-            self._fox_speed_update()
+            self._game_speed_update()
             self._play_again()
 
-    def _fox_speed_update(self):
+    def _game_speed_update(self):
         player_score = max(self.player1_score, self.player2_score)
         if player_score > 0:
-            new_speed = self.base_speed + (player_score / 30)
+            new_speed = self.base_speed + (player_score / 5)
             self.current_speed = min(new_speed, self.max_speed)
+            self.cloud_player1.speed = self.current_speed * 0.35
+            if isinstance(self.cloud_player2, AICloud):
+                self.cloud_player2.speed = self.current_speed * 0.8
+            else:
+                self.cloud_player2.speed = self.current_speed * 0.35
         else:
             self.current_speed = self.base_speed
 

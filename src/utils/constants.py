@@ -10,9 +10,16 @@ BASE_SPEED = 2
 MAX_SPEED = 10
 
 # CLOUD -----------------------------------------------------------------------
-CLOUD_PLAYER1_X = 50
-CLOUD_PLAYER2_X = WIDTH - 50
+# PLAYER1
+CLOUD_PLAYER1_X = 5
+CLOUD_PLAYER1_ROTATION = 270
+
+# PLAYER2
+CLOUD_PLAYER2_X = WIDTH - 48
+CLOUD_PLAYER2_ROTATION = 90
+
 CLOUD_Y = HEIGHT // 2
+
 
 # COLORS -----------------------------------------------------------------------
 PASTEL_GREEN = (167, 217, 172)  # for snake

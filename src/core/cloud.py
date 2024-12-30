@@ -37,8 +37,8 @@ class Cloud(pygame.sprite.Sprite):
         if player == "player1":
             self.rect.x = c.CLOUD_PLAYER1_X
             self.rect.y = c.CLOUD_Y
-            self.image = pygame.transform.rotozoom(self.image, 90, 1)
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
         elif player == "player2":
             self.rect.x = c.CLOUD_PLAYER2_X
             self.rect.y = c.CLOUD_Y
-            self.image = pygame.transform.rotozoom(self.image, 270, 1)
+            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)

@@ -46,7 +46,7 @@ class GameState:
     def _fox_speed_update(self):
         player_score = max(self.player1_score, self.player2_score)
         if player_score > 0:
-            new_speed = self.base_speed + (player_score / 10)
+            new_speed = self.base_speed + (player_score / 30)
             self.current_speed = min(new_speed, self.max_speed)
         else:
             self.current_speed = self.base_speed

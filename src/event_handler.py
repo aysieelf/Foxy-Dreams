@@ -33,4 +33,3 @@ class EventHandler:
             if event.type == pygame.QUIT:
                 return False
         return True
-

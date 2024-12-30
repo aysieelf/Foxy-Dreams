@@ -12,7 +12,6 @@ class Fox(pygame.sprite.Sprite):
         self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
         self.radius = (self.rect.width - c.FOX_HITBOX_DIFF) // 2
 
-
         self.velocity = pygame.math.Vector2(1, 0)
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0

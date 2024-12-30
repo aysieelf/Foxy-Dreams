@@ -1,5 +1,6 @@
-import pygame.sprite
 from src.utils import constants as c
+
+import pygame.sprite
 
 
 class Cloud(pygame.sprite.Sprite):
@@ -17,12 +18,18 @@ class Cloud(pygame.sprite.Sprite):
         """
         pygame.sprite.Sprite.__init__(self)
         self.player = player
-        self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
+        self.image: pygame.Surface = pygame.image.load(
+            "assets/images/cloud.png"
+        ).convert_alpha()
 
         if player == "player1":
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER1_ROTATION, 1)
+            self.image = pygame.transform.rotozoom(
+                self.image, c.CLOUD_PLAYER1_ROTATION, 1
+            )
         elif player == "player2":
-            self.image = pygame.transform.rotozoom(self.image, c.CLOUD_PLAYER2_ROTATION, 1)
+            self.image = pygame.transform.rotozoom(
+                self.image, c.CLOUD_PLAYER2_ROTATION, 1
+            )
 
         self.rect = self.image.get_rect()
 

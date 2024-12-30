@@ -12,7 +12,7 @@ class Fox(pygame.sprite.Sprite):
         self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
         self.radius = (self.rect.width - c.FOX_HITBOX_DIFF) // 2
 
-        self.velocity = pygame.math.Vector2(1, 0)
+        self.velocity = pygame.math.Vector2(1, 0.5)
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0
 
@@ -47,6 +47,6 @@ class Fox(pygame.sprite.Sprite):
             return "player2"
 
         # Check if fox should change direction
-        if self.rect.top <= 0 or self.rect.bottom >= c.HEIGHT:
+        if self.hitbox.top <= 0 or self.hitbox.bottom >= c.HEIGHT:
             self.velocity.y *= -1
             return

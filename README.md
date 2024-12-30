@@ -3,7 +3,7 @@
 Sleepy Fox is my interpretation of the classic Pong game. This is my third game ever.
 
 ## Current Progress
-[▓▓░░░░░░░░] 20%
+[▓▓▓░░░░░░░] 30%
 
 - [x] Project setup (deadline: 29.12.2024) - _completed on 29.12.2024_
 - [x] Asset creation (deadline: 2.01.2025) - _completed on 29.12.2024_
@@ -140,6 +140,7 @@ python main.py
 - First time using velocity for sprite movement
 - First time using sprite rotation
 - First time using a hitbox for collision detection
+- First time using an AI for a game
 
 ## 📸 Screenshots
 ...coming soon

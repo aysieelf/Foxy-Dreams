@@ -19,6 +19,7 @@ class Cloud(pygame.sprite.Sprite):
 
         self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
         self.rect: pygame.Rect = self.image.get_rect()
+        self.hitbox = self.rect.inflate(c.CLOUD_HITBOX_WIDTH, c.CLOUD_HITBOX_HEIGHT)
         self._set_position(player)
 
     def update(self) -> None:

@@ -47,7 +47,7 @@ class Cloud(pygame.sprite.Sprite):
             box.right = self.rect.right
         return box
 
-    def update(self) -> None:
+    def update(self, fox) -> None:
         """
         Update the cloud
         """

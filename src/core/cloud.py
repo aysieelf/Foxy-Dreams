@@ -1,4 +1,5 @@
 import pygame.sprite
+from src.utils import constants as c
 
 
 class Cloud(pygame.sprite.Sprite):
@@ -10,7 +11,7 @@ class Cloud(pygame.sprite.Sprite):
         rect (pygame.Rect): The rectangle of the cloud
     """
 
-    def __init__(self, x, y) -> None:
+    def __init__(self, player) -> None:
         """
         Initialize the cloud
         """
@@ -18,7 +19,7 @@ class Cloud(pygame.sprite.Sprite):
 
         self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
         self.rect: pygame.Rect = self.image.get_rect()
-        self.rect.center = (x, y)
+        self._set_position(player)
 
     def update(self) -> None:
         """
@@ -28,3 +29,16 @@ class Cloud(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.rect.left = 800
             self.rect.y = 100
+
+    def _set_position(self, player) -> None:
+        """
+        Set the position of the cloud
+        """
+        if player == "player1":
+            self.rect.x = c.CLOUD_PLAYER1_X
+            self.rect.y = c.CLOUD_Y
+            self.image = pygame.transform.rotozoom(self.image, 90, 1)
+        elif player == "player2":
+            self.rect.x = c.CLOUD_PLAYER2_X
+            self.rect.y = c.CLOUD_Y
+            self.image = pygame.transform.rotozoom(self.image, 270, 1)

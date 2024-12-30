@@ -20,8 +20,8 @@ class GameState:
         self.player2_score = 0
 
         self.fox = Fox(self.base_speed)
-        self.cloud_player1 = Cloud(c.CLOUD_PLAYER1_X, c.CLOUD_Y)
-        self.cloud_player2 = Cloud(c.CLOUD_PLAYER2_X, c.CLOUD_Y)
+        self.cloud_player1 = Cloud("player1")
+        self.cloud_player2 = Cloud("player2")
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 

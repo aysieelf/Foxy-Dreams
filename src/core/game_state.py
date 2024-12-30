@@ -1,5 +1,6 @@
 from random import choice
 
+from src.core.cloud import Cloud
 from src.core.fox import Fox
 from src.utils import constants as c
 
@@ -19,8 +20,10 @@ class GameState:
         self.player2_score = 0
 
         self.fox = Fox(self.base_speed)
+        self.cloud_player1 = Cloud(c.CLOUD_PLAYER1_X, c.CLOUD_Y)
+        self.cloud_player2 = Cloud(c.CLOUD_PLAYER2_X, c.CLOUD_Y)
         self.all_sprites = pygame.sprite.Group()
-        self.all_sprites.add(self.fox)
+        self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
     def update(self):
         winner = self.fox.update()

@@ -10,7 +10,7 @@ class Cloud(pygame.sprite.Sprite):
         rect (pygame.Rect): The rectangle of the cloud
     """
 
-    def __init__(self) -> None:
+    def __init__(self, x, y) -> None:
         """
         Initialize the cloud
         """
@@ -18,6 +18,7 @@ class Cloud(pygame.sprite.Sprite):
 
         self.image: pygame.Surface = pygame.image.load("assets/images/cloud.png").convert_alpha()
         self.rect: pygame.Rect = self.image.get_rect()
+        self.rect.center = (x, y)
 
     def update(self) -> None:
         """

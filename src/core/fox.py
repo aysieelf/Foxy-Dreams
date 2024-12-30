@@ -10,10 +10,19 @@ class Fox(pygame.sprite.Sprite):
         self.image = self.original_image
         self.rect = self.image.get_rect()
         self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
+        self.radius = (self.rect.width - c.FOX_HITBOX_DIFF) // 2
+
 
         self.velocity = pygame.math.Vector2(1, 0)
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0
+
+    @property
+    def hitbox(self):
+        diameter = self.rect.width - c.FOX_HITBOX_DIFF
+        box = pygame.Rect(0, 0, diameter, diameter)
+        box.center = self.rect.center
+        return box
 
     def update(self) -> str | None:
         self._rotate_image()

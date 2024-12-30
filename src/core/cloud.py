@@ -31,8 +31,8 @@ class Cloud(pygame.sprite.Sprite):
     @property
     def hitbox(self):
         box = self.rect.copy()
-        box.width = self.rect.width - c.CLOUD_HITBOX_WIDTH
-        box.height = self.rect.height - c.CLOUD_HITBOX_HEIGHT
+        box.width = self.rect.width - c.CLOUD_HITBOX_WIDTH_DIFF
+        box.height = self.rect.height - c.CLOUD_HITBOX_HEIGHT_DIFF
         box.center = self.rect.center
         if self.player == "player1":
             box.left = self.rect.left

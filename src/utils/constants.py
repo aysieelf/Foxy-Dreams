@@ -8,6 +8,7 @@ HEIGHT = 480
 # FOX -------------------------------------------------------------------------
 BASE_SPEED = 2
 MAX_SPEED = 10
+FOX_HITBOX_DIFF = 30
 
 # CLOUD -----------------------------------------------------------------------
 # PLAYER1
@@ -19,8 +20,8 @@ CLOUD_PLAYER2_X = WIDTH - 48
 CLOUD_PLAYER2_ROTATION = 90
 
 CLOUD_Y = HEIGHT // 2
-CLOUD_HITBOX_WIDTH = 26
-CLOUD_HITBOX_HEIGHT = 7
+CLOUD_HITBOX_WIDTH_DIFF = 26
+CLOUD_HITBOX_HEIGHT_DIFF = 7
 
 
 # COLORS -----------------------------------------------------------------------

@@ -61,8 +61,8 @@ class GameState:
         self.fox.rect.y += self.fox.velocity.y
 
     def _check_for_fox_cloud_collision(self):
-        if pygame.sprite.collide_rect(self.fox, self.cloud_player1):
+        if self.fox.hitbox.colliderect(self.cloud_player1.hitbox):
             self.fox.velocity.x *= -1
 
-        if pygame.sprite.collide_rect(self.fox, self.cloud_player2):
+        if self.fox.hitbox.colliderect(self.cloud_player2.hitbox):
             self.fox.velocity.x *= -1

@@ -146,6 +146,7 @@ python main.py
 - First time using an AI for a game
 - Finally, I found how fix my choppy animations: just use SCALED with vsync=1
 - First time using collision resolution
+- First time using velocity management system
 
 ## 📸 Screenshots
 ...coming soon

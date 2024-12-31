@@ -41,9 +41,9 @@ Core Gameplay (640x480 window):
   - [x] Mode switching logic
 - [ ] Implement physics system:
   - [ ] Velocity management
-  - [ ] Cloud-fox collision detection
-  - [ ] Wall collision handling
-  - [ ] Realistic bounce angles
+  - [x] Cloud-fox collision detection
+  - [x] Wall collision handling
+  - [x] Realistic bounce angles
 - [ ] Create bonus system:
   - [ ] Bonus points spawn logic
   - [ ] Collection detection

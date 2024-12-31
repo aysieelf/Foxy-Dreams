@@ -123,8 +123,8 @@ python main.py
 ## 📚 What I Learned
 - pygame.image.load() can be used to load images from files - better to be used with convert() for better performance
 - convert_alpha() can be used to load images with transparency
-- when I want to create a sprite, I inherit pygame.sprite.Sprite and use the constructor to set the image and rect attributes
-- using a sprite group to manage multiple sprites is more efficient than managing them individually
+- When I want to create a sprite, I inherit pygame.sprite.Sprite and use the constructor to set the image and rect attributes
+- Using a sprite group to manage multiple sprites is more efficient than managing them individually
   - it's better for collision detection
   - it's better for rendering
   - I can use sprite groups to update and draw all sprites in the group at once
@@ -134,6 +134,7 @@ python main.py
 - VSync synchronizes the frame rate with the monitor's refresh rate
    - When using Vsync, set clock.tick() to 0 to avoid conflicts
    - Vsync in included in the SCALED flag, just set it to vsync=1
+- Collision resolution can be done by checking if two rectangles overlap
 
 ## 💡 First Time Achievements
 - First time drawing my own sprites
@@ -144,6 +145,7 @@ python main.py
 - First time using a hitbox for collision detection
 - First time using an AI for a game
 - Finally, I found how fix my choppy animations: just use SCALED with vsync=1
+- First time using collision resolution
 
 ## 📸 Screenshots
 ...coming soon

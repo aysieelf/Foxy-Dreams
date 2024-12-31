@@ -1,7 +1,6 @@
 from src.core.game_state import GameState
 from src.event_handler import EventHandler
 from src.ui.renderer import Renderer
-from src.utils import constants as c
 
 import pygame
 

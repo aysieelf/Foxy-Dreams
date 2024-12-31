@@ -84,13 +84,9 @@ class Cloud(pygame.sprite.Sprite):
         elif direction == "down" and self.hitbox.bottom < c.HEIGHT + 4:
             self.rect.y += self.speed
 
+
     def handle_fox_collision(self, fox):
         if fox.hitbox.colliderect(self.hitbox):
-            print(f"Collision detected!")
-            print(f"Fox centery: {fox.hitbox.centery}")
-            print(f"Cloud centery: {self.hitbox.centery}")
-            print(f"Fox velocity before: {fox.velocity}")
-
             overlap_x = min(
                 fox.hitbox.right - self.hitbox.left,
                 self.hitbox.right - fox.hitbox.left,
@@ -100,18 +96,35 @@ class Cloud(pygame.sprite.Sprite):
                 self.hitbox.bottom - fox.hitbox.top,
             )
 
-            print(f"Overlap x: {overlap_x}, y: {overlap_y}")
             if overlap_x < overlap_y:
-                if self.player == "player1":
-                    if fox.hitbox.centerx > self.hitbox.centerx:
-                        fox.velocity.x = abs(fox.velocity.x)
-                elif self.player == "player2":
-                    if fox.hitbox.centerx < self.hitbox.centerx:
-                        fox.velocity.x = -abs(fox.velocity.x)
+                valid_side_hit = (
+                        (self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx) or
+                        (self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx)
+                )
 
+                if valid_side_hit:
+                    relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (self.hitbox.height / 2)
+                    min_vertical_component = 0.3
+                    vertical_bounce = relative_hit_point * c.BASE_SPEED
+                    if abs(vertical_bounce) < min_vertical_component * c.BASE_SPEED:
+                        vertical_bounce = min_vertical_component * c.BASE_SPEED * (1 if vertical_bounce >= 0 else -1)
+
+                    if self.player == "player1":
+                        fox.velocity.x = abs(fox.velocity.x)
+                    else:  # player2
+                        fox.velocity.x = -abs(fox.velocity.x)
+                    fox.velocity.y = vertical_bounce
+
+                    current_speed = fox.velocity.length()
+                    fox.velocity.scale_to_length(current_speed)
+                else:
+                    if self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx:
+                        fox.velocity.x = abs(fox.velocity.x)
+                    elif self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx:
+                        fox.velocity.x = -abs(fox.velocity.x)
             else:
                 if fox.hitbox.centery < self.hitbox.centery:
-                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF * 0.75
+                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF
                 else:
-                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
+                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF
                 fox.velocity.y *= -1

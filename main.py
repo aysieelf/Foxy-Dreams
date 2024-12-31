@@ -33,7 +33,7 @@ def main() -> None:
 
     pygame.init()
     pygame.display.set_icon(pygame.image.load("assets/images/icon.png"))
-    screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT), pygame.SCALED)
+    screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT), pygame.SCALED, vsync=1)
     pygame.display.set_caption("Sleepy Fox")
     clock = pygame.time.Clock()
 

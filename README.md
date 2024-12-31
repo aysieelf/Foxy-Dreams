@@ -13,8 +13,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 - [ ] Testing and debugging (deadline: 25.01.2025)
 - [ ] Documentation (deadline: 27.01.2025)
 - [ ] Release (deadline: 29.01.2025)
-- pygame.SCALED includes VSynch and is the best option for most games
- - VSync synchronizes the frame rate with the monitor's refresh rate
+
 
 ## 📑 Table of Contents
 - [Quick Start (Just Play)](#-quick-start-just-play)
@@ -126,12 +125,15 @@ python main.py
 - convert_alpha() can be used to load images with transparency
 - when I want to create a sprite, I inherit pygame.sprite.Sprite and use the constructor to set the image and rect attributes
 - using a sprite group to manage multiple sprites is more efficient than managing them individually
- - it's better for collision detection
- - it's better for rendering
-- I can use sprite groups to update and draw all sprites in the group at once
+  - it's better for collision detection
+  - it's better for rendering
+  - I can use sprite groups to update and draw all sprites in the group at once
 - Velocity can be used to control the speed and direction of a sprite
 - pygame.transform.rotate() can be used to rotate an image
 - pygame.key.get_pressed() can be used to check if a key is being held down
+- VSync synchronizes the frame rate with the monitor's refresh rate
+   - When using Vsync, set clock.tick() to 0 to avoid conflicts
+   - Vsync in included in the SCALED flag, just set it to vsync=1
 
 ## 💡 First Time Achievements
 - First time drawing my own sprites
@@ -141,6 +143,7 @@ python main.py
 - First time using sprite rotation
 - First time using a hitbox for collision detection
 - First time using an AI for a game
+- Finally, I found how fix my choppy animations: just use SCALED with vsync=1
 
 ## 📸 Screenshots
 ...coming soon

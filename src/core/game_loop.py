@@ -21,7 +21,7 @@ def game_loop(
     renderer = Renderer(screen)
 
     while True:
-        clock.tick(c.FPS)
+        clock.tick(0)
         game_state.update()
         game_state.cloud_player1.update(game_state.fox)
         game_state.cloud_player2.update(game_state.fox)

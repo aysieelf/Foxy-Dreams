@@ -86,6 +86,11 @@ class Cloud(pygame.sprite.Sprite):
 
     def handle_fox_collision(self, fox):
         if fox.hitbox.colliderect(self.hitbox):
+            print(f"Collision detected!")
+            print(f"Fox centery: {fox.hitbox.centery}")
+            print(f"Cloud centery: {self.hitbox.centery}")
+            print(f"Fox velocity before: {fox.velocity}")
+
             overlap_x = min(
                 fox.hitbox.right - self.hitbox.left,
                 self.hitbox.right - fox.hitbox.left,
@@ -95,6 +100,7 @@ class Cloud(pygame.sprite.Sprite):
                 self.hitbox.bottom - fox.hitbox.top,
             )
 
+            print(f"Overlap x: {overlap_x}, y: {overlap_y}")
             if overlap_x < overlap_y:
                 if self.player == "player1":
                     if fox.hitbox.centerx > self.hitbox.centerx:
@@ -105,8 +111,8 @@ class Cloud(pygame.sprite.Sprite):
 
             else:
                 if fox.hitbox.centery < self.hitbox.centery:
-                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF / 2
+                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF * 0.75
                 else:
-                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF / 2
+                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
                 fox.velocity.y *= -1
 

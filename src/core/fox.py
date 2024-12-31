@@ -26,7 +26,8 @@ class Fox(pygame.sprite.Sprite):
     def update(self) -> str | None:
         self._rotate_image()
         self._move_fox()
-        self.velocity = self.velocity.clamp_magnitude(c.BASE_SPEED, c.MAX_SPEED)
+        max_allowed_speed = self.velocity.length() + 4
+        self.velocity = self.velocity.clamp_magnitude(c.BASE_SPEED, max_allowed_speed)
         return self._check_for_collision()
 
     def _move_fox(self):
@@ -48,7 +49,7 @@ class Fox(pygame.sprite.Sprite):
             return "player2"
 
         # Check if fox should change direction
-        if self.hitbox.top <= 0 or self.hitbox.bottom >= c.HEIGHT:
+        if self.hitbox.top <= -2 or self.hitbox.bottom >= c.HEIGHT:
             if self.rect.top <= 0:
                 self.rect.top = 0
             else:

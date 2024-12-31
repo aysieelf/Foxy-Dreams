@@ -69,6 +69,7 @@ class GameState:
         direction_y = choice([1, -1])
         self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
         self.fox.velocity.scale_to_length(self.current_speed)
+        self.fox.velocity = self.fox.velocity.clamp_magnitude(c.BASE_SPEED, c.MAX_SPEED)
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y
 

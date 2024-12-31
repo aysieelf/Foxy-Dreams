@@ -26,6 +26,7 @@ class Fox(pygame.sprite.Sprite):
     def update(self) -> str | None:
         self._rotate_image()
         self._move_fox()
+        self.velocity = self.velocity.clamp_magnitude(c.BASE_SPEED, c.MAX_SPEED)
         return self._check_for_collision()
 
     def _move_fox(self):

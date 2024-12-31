@@ -115,4 +115,3 @@ class Cloud(pygame.sprite.Sprite):
                 else:
                     fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
                 fox.velocity.y *= -1
-

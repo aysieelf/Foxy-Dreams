@@ -48,5 +48,9 @@ class Fox(pygame.sprite.Sprite):
 
         # Check if fox should change direction
         if self.hitbox.top <= 0 or self.hitbox.bottom >= c.HEIGHT:
+            if self.rect.top <= 0:
+                self.rect.top = 0
+            else:
+                self.rect.bottom = c.HEIGHT
             self.velocity.y *= -1
             return

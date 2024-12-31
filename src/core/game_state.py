@@ -61,7 +61,7 @@ class GameState:
         else:
             self.current_speed = self.base_speed
 
-        return floor(self.current_speed) - 5 # base speed is 6 while level starts at 1
+        return floor(self.current_speed) - 5  # base speed is 6 while level starts at 1
 
     def _play_again(self):
         self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)

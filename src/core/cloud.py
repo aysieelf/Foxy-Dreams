@@ -37,8 +37,6 @@ class Cloud(pygame.sprite.Sprite):
 
         self._set_position(player)
 
-
-
     @property
     def hitbox(self):
         box = self.rect.copy()
@@ -92,7 +90,6 @@ class Cloud(pygame.sprite.Sprite):
         elif direction == "down" and self.hitbox.bottom < c.HEIGHT + 4:
             self.rect.y += self.speed
 
-
     def handle_fox_collision(self, fox):
         if fox.hitbox.colliderect(self.hitbox):
             overlap_x = min(
@@ -106,16 +103,25 @@ class Cloud(pygame.sprite.Sprite):
 
             if overlap_x < overlap_y:
                 valid_side_hit = (
-                        (self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx) or
-                        (self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx)
+                    self.player == "player1"
+                    and fox.hitbox.centerx > self.hitbox.centerx
+                ) or (
+                    self.player == "player2"
+                    and fox.hitbox.centerx < self.hitbox.centerx
                 )
 
                 if valid_side_hit:
-                    relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (self.hitbox.height / 2)
+                    relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (
+                        self.hitbox.height / 2
+                    )
                     min_vertical_component = 0.3
                     vertical_bounce = relative_hit_point * c.BASE_SPEED
                     if abs(vertical_bounce) < min_vertical_component * c.BASE_SPEED:
-                        vertical_bounce = min_vertical_component * c.BASE_SPEED * (1 if vertical_bounce >= 0 else -1)
+                        vertical_bounce = (
+                            min_vertical_component
+                            * c.BASE_SPEED
+                            * (1 if vertical_bounce >= 0 else -1)
+                        )
 
                     if self.player == "player1":
                         fox.velocity.x = abs(fox.velocity.x)
@@ -126,9 +132,15 @@ class Cloud(pygame.sprite.Sprite):
                     current_speed = fox.velocity.length()
                     fox.velocity.scale_to_length(current_speed)
                 else:
-                    if self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx:
+                    if (
+                        self.player == "player1"
+                        and fox.hitbox.centerx > self.hitbox.centerx
+                    ):
                         fox.velocity.x = abs(fox.velocity.x)
-                    elif self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx:
+                    elif (
+                        self.player == "player2"
+                        and fox.hitbox.centerx < self.hitbox.centerx
+                    ):
                         fox.velocity.x = -abs(fox.velocity.x)
             else:
                 if fox.hitbox.centery < self.hitbox.centery:

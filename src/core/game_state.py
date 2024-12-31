@@ -1,3 +1,4 @@
+from math import floor
 from random import choice
 
 from src.core.ai_cloud import AICloud
@@ -20,6 +21,7 @@ class GameState:
         self.player1_score = 0
         self.player2_score = 0
         self.multiplayer = False
+        self.level = 1
 
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
@@ -43,10 +45,10 @@ class GameState:
             elif winner == "player2":
                 self.player2_score += 1
 
-            self._game_speed_update()
+            self.level = self._game_difficulty_update()
             self._play_again()
 
-    def _game_speed_update(self):
+    def _game_difficulty_update(self):
         player_score = max(self.player1_score, self.player2_score)
         if player_score > 0:
             new_speed = self.base_speed + (player_score / 5)
@@ -58,6 +60,8 @@ class GameState:
                 self.cloud_player2.speed = self.current_speed * 0.35
         else:
             self.current_speed = self.base_speed
+
+        return floor(self.current_speed) - 5 # base speed is 6 while level starts at 1
 
     def _play_again(self):
         self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)

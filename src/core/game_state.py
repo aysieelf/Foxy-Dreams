@@ -17,7 +17,6 @@ class GameState:
     def __init__(self):
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
-        self.max_speed = c.MAX_SPEED
         self.player1_score = 0
         self.player2_score = 0
         self.multiplayer = False
@@ -52,7 +51,7 @@ class GameState:
         player_score = max(self.player1_score, self.player2_score)
         if player_score > 0:
             new_speed = self.base_speed + (player_score / 5)
-            self.current_speed = min(new_speed, self.max_speed)
+            self.current_speed = min(new_speed, c.MAX_SPEED)
             self.cloud_player1.speed = self.current_speed * 0.35
             if isinstance(self.cloud_player2, AICloud):
                 self.cloud_player2.speed = self.current_speed * 0.8
@@ -69,7 +68,6 @@ class GameState:
         direction_y = choice([1, -1])
         self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
         self.fox.velocity.scale_to_length(self.current_speed)
-        self.fox.velocity = self.fox.velocity.clamp_magnitude(c.BASE_SPEED, c.MAX_SPEED)
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y
 

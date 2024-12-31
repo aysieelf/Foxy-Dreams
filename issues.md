@@ -39,8 +39,8 @@ Core Gameplay (640x480 window):
   - [x] Single player mode
   - [x] Two players mode
   - [x] Mode switching logic
-- [ ] Implement physics system:
-  - [ ] Velocity management
+- [x] Implement physics system:
+  - [x] Velocity management
   - [x] Cloud-fox collision detection
   - [x] Wall collision handling
   - [x] Realistic bounce angles

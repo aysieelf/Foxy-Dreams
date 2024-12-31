@@ -19,6 +19,7 @@ class Cloud(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.player = player
         self.speed = c.BASE_SPEED * 0.35
+        self.collision_cooldown = 0
         self.image: pygame.Surface = pygame.image.load(
             "assets/images/cloud.png"
         ).convert_alpha()
@@ -35,6 +36,8 @@ class Cloud(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self._set_position(player)
+
+
 
     @property
     def hitbox(self):
@@ -79,6 +82,11 @@ class Cloud(pygame.sprite.Sprite):
             self.rect.y = c.CLOUD_Y
 
     def move(self, direction):
+        current_speed = self.speed
+        if self.collision_cooldown > 0:
+            current_speed *= 0.5
+            self.collision_cooldown -= 1
+
         if direction == "up" and self.hitbox.top > 0 - 4:
             self.rect.y -= self.speed
         elif direction == "down" and self.hitbox.bottom < c.HEIGHT + 4:
@@ -124,7 +132,8 @@ class Cloud(pygame.sprite.Sprite):
                         fox.velocity.x = -abs(fox.velocity.x)
             else:
                 if fox.hitbox.centery < self.hitbox.centery:
-                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF
+                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF * 0.75
                 else:
-                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF
+                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
                 fox.velocity.y *= -1
+                self.collision_cooldown = 3

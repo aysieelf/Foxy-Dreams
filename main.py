@@ -36,6 +36,7 @@ def main() -> None:
     screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT), pygame.SCALED, vsync=1)
     pygame.display.set_caption("Sleepy Fox")
     clock = pygame.time.Clock()
+    pygame.time.set_timer(c.BONUS_SPAWN_EVENT, c.BONUS_SPAWN_INTERVAL)
 
     try:
         game_state = GameState()

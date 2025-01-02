@@ -1,5 +1,6 @@
 from src.core.game_state import GameState
 from src.utils.screenshot import ScreenshotManager
+from src.utils import constants as c
 
 import pygame
 
@@ -32,4 +33,8 @@ class EventHandler:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
+            elif event.type == c.BONUS_SPAWN_EVENT:
+                self.game_state.bonus_star.spawn()
+            elif event.type == c.BONUS_DE_SPAWN_EVENT:
+                self.game_state.bonus_star.despawn()
         return True

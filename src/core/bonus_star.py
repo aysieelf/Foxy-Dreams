@@ -1,4 +1,6 @@
 import pygame.sprite
+
+from src.effects.particle_system import ParticleSystem
 from src.utils import constants as c
 from src.utils.helpers import get_random_position
 
@@ -9,6 +11,7 @@ class BonusStar(pygame.sprite.Sprite):
         self._active = False
         self.sprite_group = sprite_group
         self.collision_cooldown = 0
+        self.particle_system = ParticleSystem()
 
         self.image = pygame.image.load("assets/images/star-bonus.png").convert_alpha()
         self.rect = self.image.get_rect()
@@ -46,6 +49,7 @@ class BonusStar(pygame.sprite.Sprite):
             return 0
 
         if fox.hitbox.colliderect(self.hitbox):
+            self.particle_system.spawn_particles(*self.rect.center, c.STAR_PARTICLES)
             self.collision_cooldown = 5
             self.despawn()
             return c.BONUS_POINTS

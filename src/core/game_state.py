@@ -43,14 +43,11 @@ class GameState:
         if winner is not None:
             if winner == "player1":
                 self.player1_score += 1
-                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
 
             elif winner == "player2":
                 self.player2_score += 1
-                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
 
             self.level = self._game_difficulty_update()
-            print(f"Level: {self.level}")
             self._play_again()
 
     def _game_difficulty_update(self):
@@ -88,7 +85,5 @@ class GameState:
         if bonus_points > 0:
             if self._last_player == self.player1_score:
                 self.player1_score += bonus_points
-                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
             else:
                 self.player2_score += bonus_points
-                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")

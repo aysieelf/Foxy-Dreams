@@ -27,5 +27,7 @@ class Renderer:
         self.screen.blit(self.background_image, (0, 0))
 
         game_state.all_sprites.draw(self.screen)
+        game_state.bonus_star.particle_system.update()
+        game_state.bonus_star.particle_system.draw(self.screen)
 
         pygame.display.flip()

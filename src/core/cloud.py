@@ -149,3 +149,5 @@ class Cloud(pygame.sprite.Sprite):
                     fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
                 fox.velocity.y *= -1
                 self.collision_cooldown = 3
+            return True
+        return False

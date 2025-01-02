@@ -20,6 +20,7 @@ class GameState:
         self.current_speed = self.base_speed
         self.player1_score = 0
         self.player2_score = 0
+        self._last_player = 0
         self.multiplayer = False
         self.level = 1
 
@@ -36,14 +37,17 @@ class GameState:
         self.cloud_player2.update(self.fox)
         self._check_for_winner(winner)
         self._check_for_fox_cloud_collision()
+        self._check_for_bonus_star_fox_collision()
 
     def _check_for_winner(self, winner):
         if winner is not None:
             if winner == "player1":
                 self.player1_score += 1
+                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
 
             elif winner == "player2":
                 self.player2_score += 1
+                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
 
             self.level = self._game_difficulty_update()
             print(f"Level: {self.level}")
@@ -74,5 +78,17 @@ class GameState:
         self.fox.rect.y += self.fox.velocity.y
 
     def _check_for_fox_cloud_collision(self):
-        self.cloud_player1.handle_fox_collision(self.fox)
-        self.cloud_player2.handle_fox_collision(self.fox)
+        if self.cloud_player1.handle_fox_collision(self.fox):
+            self._last_player = self.player1_score
+        elif self.cloud_player2.handle_fox_collision(self.fox):
+            self._last_player = self.player2_score
+
+    def _check_for_bonus_star_fox_collision(self):
+        bonus_points = self.bonus_star.handle_fox_collision(self.fox)
+        if bonus_points > 0:
+            if self._last_player == self.player1_score:
+                self.player1_score += bonus_points
+                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")
+            else:
+                self.player2_score += bonus_points
+                print(f"Player 1 score: {self.player1_score} | Player 2 score: {self.player2_score}")

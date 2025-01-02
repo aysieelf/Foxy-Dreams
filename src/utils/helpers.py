@@ -9,4 +9,4 @@ def get_random_position() -> list[int]:
     Returns:
         list[int]: A list with two integers representing the x and y coordinates
     """
-    return [random.randint(10, c.WIDTH - 50), random.randint(10, c.HEIGHT - 50)]
+    return [random.randint(50, c.WIDTH - 50), random.randint(50, c.HEIGHT - 50)]

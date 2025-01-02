@@ -8,8 +8,7 @@ class ParticleSystem:
     A simple particle system class that manages a collection of particles.
     """
 
-    def __init__(self, screen: pygame.Surface):
-        self.screen = screen
+    def __init__(self):
         self.particles: list = []
         self.num_particles: int = 10
 
@@ -32,13 +31,13 @@ class ParticleSystem:
         """
         self.particles = [particle for particle in self.particles if particle.update()]
 
-    def draw(self) -> None:
+    def draw(self, screen) -> None:
         """
         Draw the particles on the screen.
         """
         for particle in self.particles:
             pygame.draw.circle(
-                self.screen,
+                screen,
                 particle.color,
                 (int(particle.x), int(particle.y)),
                 particle.size,

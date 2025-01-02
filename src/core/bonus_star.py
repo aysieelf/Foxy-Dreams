@@ -4,33 +4,28 @@ from src.utils.helpers import get_random_position
 
 
 class BonusStar(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, sprite_group):
         pygame.sprite.Sprite.__init__(self)
-        self._spawn_duration_timer = 0
-        self._between_spawns_timer = 0
         self._active = False
+        self.sprite_group = sprite_group
 
         self.image = pygame.image.load("assets/images/star-bonus.png").convert_alpha()
         self.rect = self.image.get_rect()
 
 
-    def update(self):
-        if not self._active:
-            if self._between_spawns_timer <= 1:
-                self._active = True
-                self._set_pos()
-                self._spawn_duration_timer = c.BONUS_SPAWN_DURATION
-            self._between_spawns_timer = 0
+    def spawn(self):
+        self._active = True
+        self._set_pos()
+        self.sprite_group.add(self)
+        print("Spawned")
+        pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, c.BONUS_LIFETIME)
 
-        else:
-            if self._spawn_duration_timer <= 1:
-                self._active = False
-
-                self._between_spawns_timer = c.BONUS_BETWEEN_SPAWNS_TIMER
-            self._spawn_duration_timer -= 1
+    def despawn(self):
+        self._active = False
+        print("Despawned")
+        self.sprite_group.remove(self)
+        pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, 0)
 
     def _set_pos(self):
         self.rect = get_random_position()
         return self.rect
-
-

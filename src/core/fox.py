@@ -44,9 +44,9 @@ class Fox(pygame.sprite.Sprite):
     def _check_for_collision(self):
         # Check if fox is out
         if self.rect.right < 0:
-            return "player1"
-        if self.rect.left > c.WIDTH:
             return "player2"
+        if self.rect.left > c.WIDTH:
+            return "player1"
 
         # Check if fox should change direction
         if self.hitbox.top <= -2 or self.hitbox.bottom >= c.HEIGHT:

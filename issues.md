@@ -44,11 +44,11 @@ Core Gameplay (640x480 window):
   - [x] Cloud-fox collision detection
   - [x] Wall collision handling
   - [x] Realistic bounce angles
-- [ ] Create bonus system:
+- [x] Create bonus system:
   - [x] Bonus points spawn logic
   - [x] Collection detection
-  - [ ] Visual effects for collection
-- [ ] Implement speed progression system
+  - [x] Visual effects for collection
+- [x] Implement speed progression system
 - [ ] Create sound system:
   - [ ] Sound effect manager
   - [ ] Background music handler

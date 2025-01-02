@@ -2,6 +2,7 @@ from math import floor
 from random import choice
 
 from src.core.ai_cloud import AICloud
+from src.core.bonus_star import BonusStar
 from src.core.cloud import Cloud
 from src.core.fox import Fox
 from src.utils import constants as c
@@ -25,6 +26,7 @@ class GameState:
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
         self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
+        self.bonus_star = BonusStar()
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
@@ -35,6 +37,7 @@ class GameState:
         self.cloud_player2.update(self.fox)
         self._check_for_winner(winner)
         self._check_for_fox_cloud_collision()
+        self.bonus_star.update()
 
     def _check_for_winner(self, winner):
         if winner is not None:

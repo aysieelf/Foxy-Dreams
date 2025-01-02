@@ -45,8 +45,8 @@ Core Gameplay (640x480 window):
   - [x] Wall collision handling
   - [x] Realistic bounce angles
 - [ ] Create bonus system:
-  - [ ] Bonus points spawn logic
-  - [ ] Collection detection
+  - [x] Bonus points spawn logic
+  - [x] Collection detection
   - [ ] Visual effects for collection
 - [ ] Implement speed progression system
 - [ ] Create sound system:

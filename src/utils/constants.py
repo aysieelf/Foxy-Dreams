@@ -35,47 +35,33 @@ BONUS_POINTS = 2
 BONUS_HITBOX_DIFF = 5
 
 # COLORS -----------------------------------------------------------------------
-PASTEL_GREEN = (167, 217, 172)  # for snake
-DARKER_PASTEL_GREEN = (126, 168, 130)  # for head of snake
-PASTEL_PINK = (255, 198, 214)  # for food
-PASTEL_BLUE = (173, 216, 230)  # for special effects
-PASTEL_YELLOW = (253, 253, 150)  # for special effects
-
-SOFT_LAVENDER = (230, 230, 250)  # for obstacles
-MINT_GREEN = (152, 255, 152)  # for bonus food
-PEACH = (255, 218, 185)  # for obstacles
-BABY_BLUE = (137, 207, 240)  # for borders
-
-TEXT_COLOR = (105, 105, 105)  # for text
-SCORE_COLOR = (147, 112, 219)  # for score
-GAME_OVER_COLOR = (255, 182, 193)  # for game over
-
-GRID_COLOR = (240, 240, 240)  # for grid
-BACKGROUND = (253, 245, 230)  # for background
+STAR_PARTICLES_COLOR = (249, 182, 154)  # for particles
+WARM_GREY = (155, 155, 155)
+WHITE = (255, 255, 255)
 
 # START SCREEN -----------------------------------------------------------------
 # Title
 TITLE_FONT = "impact"
 TITLE_FONT_SIZE = 50
 TITLE_TEXT = "SNAKE"
-TITLE_COLOR = TEXT_COLOR
+TITLE_COLOR = WARM_GREY
 TITLE_Y_POS = 80
 
 # Start Button
 START_BUTTON_TEXT = "start game"
 START_BUTTON_WIDTH = 180
 START_BUTTON_HEIGHT = 50
-START_BUTTON_TITLE_COLOR = TEXT_COLOR
-START_BUTTON_TITLE_HOVER_COLOR = TEXT_COLOR
-START_BUTTON_COLOR = SOFT_LAVENDER
-START_BUTTON_HOVER_COLOR = PEACH
+START_BUTTON_TITLE_COLOR = WARM_GREY
+START_BUTTON_TITLE_HOVER_COLOR = WHITE
+START_BUTTON_COLOR = WARM_GREY
+START_BUTTON_HOVER_COLOR = WHITE
 START_BUTTON_FONT_SIZE = 35
 
 # GAME OVER SCREEN -------------------------------------------------------------
 GAME_OVER_FONT_SIZE = 48
 GAME_OVER_FONT = "impact"
 GAME_OVER_TEXT = "GAME OVER"
-GAME_OVER_TEXT_COLOR = TEXT_COLOR
+GAME_OVER_TEXT_COLOR = WARM_GREY
 GAME_OVER_TEXT_POS = 100
 OVERLAY_ALPHA = 100
 
@@ -92,7 +78,7 @@ INSTRUCTIONS_TEXT_2 = "Press Q to quit the game"  # only in the game over screen
 INSTRUCTIONS_TEXT_3 = "Press R to restart"  # only in the game over screen
 INSTRUCTIONS_TEXT_4 = "Press Q to quit to main menu"  # only in the game over screen
 INSTRUCTIONS_TEXT_5 = "Press Q again to quit the game"  # only in the start screen
-INSTRUCTIONS_TEXT_COLOR = TEXT_COLOR
+INSTRUCTIONS_TEXT_COLOR = WARM_GREY
 INSTRUCTIONS = [
     INSTRUCTIONS_TEXT_0,
     INSTRUCTIONS_TEXT_1,

@@ -49,7 +49,7 @@ class BonusStar(pygame.sprite.Sprite):
             return 0
 
         if fox.hitbox.colliderect(self.hitbox):
-            self.particle_system.spawn_particles(*self.rect.center, c.STAR_PARTICLES)
+            self.particle_system.spawn_particles(*self.rect.center, c.STAR_PARTICLES_COLOR)
             self.collision_cooldown = 5
             self.despawn()
             return c.BONUS_POINTS

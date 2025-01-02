@@ -27,8 +27,10 @@ CLOUD_HITBOX_HEIGHT_DIFF = 0
 
 # BONUS STAR ------------------------------------------------------------------
 # We set something like IDs for the events
-BONUS_SPAWN_EVENT = pygame.USEREVENT + 1 # (32769) - a special event type with number 32768
-BONUS_DE_SPAWN_EVENT = pygame.USEREVENT + 2 # (32770)
+BONUS_SPAWN_EVENT = (
+    pygame.USEREVENT + 1
+)  # (32769) - a special event type with number 32768
+BONUS_DE_SPAWN_EVENT = pygame.USEREVENT + 2  # (32770)
 BONUS_SPAWN_INTERVAL = 20 * 1000  # 20 * 1000 milliseconds
 BONUS_LIFETIME = 5 * 1000  # 5 * 1000 milliseconds
 BONUS_POINTS = 2

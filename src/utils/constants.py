@@ -23,6 +23,10 @@ CLOUD_Y = HEIGHT // 2
 CLOUD_HITBOX_WIDTH_DIFF = 26
 CLOUD_HITBOX_HEIGHT_DIFF = 0
 
+# BONUS STAR ------------------------------------------------------------------
+BONUS_SPAWN_DURATION = 2 * 1000 # 20 seconds
+BONUS_BETWEEN_SPAWNS_TIMER = 5 * 1000 # 5 seconds
+
 # COLORS -----------------------------------------------------------------------
 PASTEL_GREEN = (167, 217, 172)  # for snake
 DARKER_PASTEL_GREEN = (126, 168, 130)  # for head of snake

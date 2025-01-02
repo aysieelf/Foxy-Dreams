@@ -31,6 +31,8 @@ BONUS_SPAWN_EVENT = pygame.USEREVENT + 1 # (32769) - a special event type with n
 BONUS_DE_SPAWN_EVENT = pygame.USEREVENT + 2 # (32770)
 BONUS_SPAWN_INTERVAL = 20 * 1000  # 20 * 1000 milliseconds
 BONUS_LIFETIME = 5 * 1000  # 5 * 1000 milliseconds
+BONUS_POINTS = 2
+BONUS_HITBOX_DIFF = 5
 
 # COLORS -----------------------------------------------------------------------
 PASTEL_GREEN = (167, 217, 172)  # for snake

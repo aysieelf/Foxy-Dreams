@@ -1,4 +1,6 @@
 # GAME LOOP --------------------------------------------------------------------
+import pygame
+
 FPS = 60
 
 # WINDOW -----------------------------------------------------------------------
@@ -24,8 +26,11 @@ CLOUD_HITBOX_WIDTH_DIFF = 26
 CLOUD_HITBOX_HEIGHT_DIFF = 0
 
 # BONUS STAR ------------------------------------------------------------------
-BONUS_SPAWN_DURATION = 2 * 1000 # 20 seconds
-BONUS_BETWEEN_SPAWNS_TIMER = 5 * 1000 # 5 seconds
+# We set something like IDs for the events
+BONUS_SPAWN_EVENT = pygame.USEREVENT + 1 # (32769) - a special event type with number 32768
+BONUS_DE_SPAWN_EVENT = pygame.USEREVENT + 2 # (32770)
+BONUS_SPAWN_INTERVAL = 20 * 1000  # 20 * 1000 milliseconds
+BONUS_LIFETIME = 5 * 1000  # 5 * 1000 milliseconds
 
 # COLORS -----------------------------------------------------------------------
 PASTEL_GREEN = (167, 217, 172)  # for snake

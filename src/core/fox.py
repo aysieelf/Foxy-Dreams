@@ -23,12 +23,12 @@ class Fox(pygame.sprite.Sprite):
         box.center = self.rect.center
         return box
 
-    def update(self) -> str | None:
+    def update(self, sound_manager) -> str | None:
         self._rotate_image()
         self._move_fox()
         max_allowed_speed = self.velocity.length() + 4
         self.velocity = self.velocity.clamp_magnitude(c.BASE_SPEED, max_allowed_speed)
-        return self._check_for_collision()
+        return self._check_for_collision(sound_manager)
 
     def _move_fox(self):
         self.rect.x += self.velocity.x
@@ -41,12 +41,17 @@ class Fox(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = old_center
 
-    def _check_for_collision(self):
-        # Check if fox is out
-        if self.rect.right < 0:
-            return "player2"
-        if self.rect.left > c.WIDTH:
-            return "player1"
+    def _check_for_collision(self, sound_manager):
+        margin = 50
+        if self.rect.right < margin:
+            sound_manager.play_sound("fox-fly-away")
+            if self.rect.right < 0:
+                return "player2"
+
+        if self.rect.left > c.WIDTH - margin:
+            sound_manager.play_sound("fox-fly-away")
+            if self.rect.left > c.WIDTH:
+                return "player1"
 
         # Check if fox should change direction
         if self.hitbox.top <= -2 or self.hitbox.bottom >= c.HEIGHT:

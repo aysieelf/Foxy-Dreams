@@ -36,7 +36,7 @@ class GameState:
         self.sound_manager.start_music()
 
     def update(self):
-        winner = self.fox.update()
+        winner = self.fox.update(self.sound_manager)
         self.cloud_player1.update(self.fox)
         self.cloud_player2.update(self.fox)
         self._check_for_winner(winner)
@@ -47,6 +47,7 @@ class GameState:
         if winner is not None:
             if winner == "player1":
                 self.player1_score += 1
+
 
             elif winner == "player2":
                 self.player2_score += 1
@@ -81,12 +82,15 @@ class GameState:
     def _check_for_fox_cloud_collision(self):
         if self.cloud_player1.handle_fox_collision(self.fox):
             self._last_player = self.player1_score
+            self.sound_manager.play_sound("fox-bounce")
         elif self.cloud_player2.handle_fox_collision(self.fox):
             self._last_player = self.player2_score
+            self.sound_manager.play_sound("fox-bounce")
 
     def _check_for_bonus_star_fox_collision(self):
         bonus_points = self.bonus_star.handle_fox_collision(self.fox)
         if bonus_points > 0:
+            self.sound_manager.play_sound("bonus-collect")
             if self._last_player == self.player1_score:
                 self.player1_score += bonus_points
             else:

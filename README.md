@@ -3,11 +3,11 @@
 Sleepy Fox is my interpretation of the classic Pong game. This is my third game ever.
 
 ## Current Progress
-[▓▓▓░░░░░░░] 30%
+[▓▓▓▓░░░░░░] 30%
 
 - [x] Project setup (deadline: 29.12.2024) - _completed on 29.12.2024_
 - [x] Asset creation (deadline: 2.01.2025) - _completed on 29.12.2024_
-- [ ] Core gameplay (deadline: 9.01.2025)
+- [x] Core gameplay (deadline: 9.01.2025) - _completed on 3.01.2024_
 - [ ] Game logic (deadline: 16.01.2025)
 - [ ] User interface development (deadline: 21.01.2025)
 - [ ] Testing and debugging (deadline: 25.01.2025)

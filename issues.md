@@ -49,10 +49,10 @@ Core Gameplay (640x480 window):
   - [x] Collection detection
   - [x] Visual effects for collection
 - [x] Implement speed progression system
-- [ ] Create sound system:
+- [x] Create sound system:
   - [x] Sound effect manager
-  - [ ] Background music handler
-  - [ ] Volume control functionality
+  - [x] Background music handler
+  - [x] Volume control functionality
 
 Game Logic:
 - [ ] Implement score system

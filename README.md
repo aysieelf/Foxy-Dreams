@@ -135,6 +135,9 @@ python main.py
    - When using Vsync, set clock.tick() to 0 to avoid conflicts
    - Vsync in included in the SCALED flag, just set it to vsync=1
 - Collision resolution can be done by checking if two rectangles overlap
+- pygame.mixer.Sound() is used for sounds (better in wav)
+- pygame.mixer.music.load() is used for background music (better in mp3)
+  - pygame.mixer.music.play(-1) loops indefinitely
 
 ## 💡 First Time Achievements
 - First time drawing my own sprites
@@ -147,6 +150,7 @@ python main.py
 - Finally, I found how fix my choppy animations: just use SCALED with vsync=1
 - First time using collision resolution
 - First time using velocity management system
+- First time using sound manager system
 
 ## 📸 Screenshots
 ...coming soon

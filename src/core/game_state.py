@@ -48,7 +48,6 @@ class GameState:
             if winner == "player1":
                 self.player1_score += 1
 
-
             elif winner == "player2":
                 self.player2_score += 1
 

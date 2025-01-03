@@ -5,6 +5,7 @@ from src.core.ai_cloud import AICloud
 from src.core.bonus_star import BonusStar
 from src.core.cloud import Cloud
 from src.core.fox import Fox
+from src.core.sound_manager import SoundManager
 from src.utils import constants as c
 
 import pygame
@@ -30,6 +31,9 @@ class GameState:
         self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
         self.bonus_star = BonusStar(self.all_sprites)
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
+
+        self.sound_manager = SoundManager()
+        self.sound_manager.start_music()
 
     def update(self):
         winner = self.fox.update()

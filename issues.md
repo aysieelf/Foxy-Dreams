@@ -50,7 +50,7 @@ Core Gameplay (640x480 window):
   - [x] Visual effects for collection
 - [x] Implement speed progression system
 - [ ] Create sound system:
-  - [ ] Sound effect manager
+  - [x] Sound effect manager
   - [ ] Background music handler
   - [ ] Volume control functionality
 

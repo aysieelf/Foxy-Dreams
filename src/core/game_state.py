@@ -78,6 +78,7 @@ class GameState:
         self.fox.velocity.scale_to_length(self.current_speed)
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y
+        self.bonus_star.despawn()
 
     def _check_for_fox_cloud_collision(self):
         if self.cloud_player1.handle_fox_collision(self.fox):

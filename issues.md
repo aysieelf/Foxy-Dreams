@@ -54,6 +54,10 @@ Core Gameplay (640x480 window):
   - [x] Background music handler
   - [x] Volume control functionality
 
+TODO:
+- smaller difference in speed change in one level depending on velocity
+- [x] bonus star should be despawned when "play again" function is called
+
 Game Logic:
 - [ ] Implement score system
 - [ ] Create game state manager:

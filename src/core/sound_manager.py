@@ -1,5 +1,6 @@
 import pygame.mixer
 
+
 class SoundManager:
     def __init__(self):
         self.sounds = {}
@@ -10,17 +11,23 @@ class SoundManager:
             "fox-bounce": 150,
             "fox-fly-away": 1000,
             "score": 0,
-            "bonus": 0
+            "bonus": 0,
         }
         self._load_sounds()
         self._setup_music()
 
     def _load_sounds(self):
         self.sounds = {
-            "bonus-collect": pygame.mixer.Sound("assets/sounds/bonus-collect-normalized.wav"),
+            "bonus-collect": pygame.mixer.Sound(
+                "assets/sounds/bonus-collect-normalized.wav"
+            ),
             "fox-bounce": pygame.mixer.Sound("assets/sounds/fox-bounce-normalized.wav"),
-            "fox-fly-away": pygame.mixer.Sound("assets/sounds/fox-fly-away-normalized.wav"),
-            "mouse-click": pygame.mixer.Sound("assets/sounds/mouse-click-normalized.wav"),
+            "fox-fly-away": pygame.mixer.Sound(
+                "assets/sounds/fox-fly-away-normalized.wav"
+            ),
+            "mouse-click": pygame.mixer.Sound(
+                "assets/sounds/mouse-click-normalized.wav"
+            ),
         }
 
         for sound in self.sounds.values():
@@ -37,7 +44,7 @@ class SoundManager:
             return
 
         if sound_name in self.sound_cooldowns:
-            print(f"It's in cooldown!")
+            print("It's in cooldown!")
             last_played = self.sound_cooldowns[sound_name]
             cooldown = self.cooldown_times.get(sound_name, 0)
             print(cooldown)

@@ -65,16 +65,12 @@ Game Logic:
   - [x] Playing state
   - [x] Paused state
   - [x] Game over state
-  - [ ] Game mode state handling
-  - [ ] Different control schemes per mode
-- [ ] Add pause/resume functionality
-- [ ] Implement game over conditions
+  - [x] Game mode state handling
+  - [x] Different control schemes per mode
+- [x] Add pause/resume functionality
+- [x] Implement game over conditions
 - [ ] Create settings system:
-  - [ ] Control configurations (Arrow keys/WASD)
   - [ ] Sound settings (Music & SFX toggles)
-  - [ ] Volume controls
-  - [ ] Difficulty settings
-  - [ ] Save/Load settings functionality
 
 UI Development:
 - [ ] Create start screen:

@@ -10,6 +10,8 @@ from src.utils import constants as c
 
 import pygame
 
+from src.utils.constants import GameStates
+
 
 class GameState:
     """
@@ -17,6 +19,7 @@ class GameState:
     """
 
     def __init__(self):
+        self.current_state = GameStates.START
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
         self.player1_score = 0
@@ -42,6 +45,10 @@ class GameState:
         self._check_for_winner(winner)
         self._check_for_fox_cloud_collision()
         self._check_for_bonus_star_fox_collision()
+
+    def set_state(self, state: GameStates):
+        self.current_state = state
+
 
     def _check_for_winner(self, winner):
         if winner is not None:

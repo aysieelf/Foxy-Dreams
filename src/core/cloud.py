@@ -151,3 +151,7 @@ class Cloud(pygame.sprite.Sprite):
                 self.collision_cooldown = 3
             return True
         return False
+
+    def reset(self):
+        self._set_position(self.player)
+        self.collision_cooldown = 0

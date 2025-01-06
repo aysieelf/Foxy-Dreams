@@ -18,7 +18,7 @@ class GameState:
     """
 
     def __init__(self):
-        self.current_state = GameStates.START
+        self._current_state = GameStates.START
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
         self.player1_score = 0
@@ -31,13 +31,20 @@ class GameState:
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
         self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
-        self.bonus_star = BonusStar(self.all_sprites)
+        self.bonus_star = BonusStar(self.all_sprites, self)
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
         self.sound_manager = SoundManager()
         self.sound_manager.start_music()
 
+    @property
+    def current_state(self):
+        return self._current_state
+
     def update(self):
+        if self.current_state != c.GameStates.PLAYING:
+            return
+
         winner = self.fox.update(self.sound_manager)
         self.cloud_player1.update(self.fox)
         self.cloud_player2.update(self.fox)
@@ -46,7 +53,7 @@ class GameState:
         self._check_for_bonus_star_fox_collision()
 
     def set_state(self, state: GameStates):
-        self.current_state = state
+        self._current_state = state
 
     def _check_for_winner(self, winner):
         if winner is not None:
@@ -74,16 +81,6 @@ class GameState:
 
         return floor(self.current_speed) - 5  # base speed is 6 while level starts at 1
 
-    def _play_again(self):
-        self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
-        direction_x = choice([-1, 1])
-        direction_y = choice([1, -1])
-        self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
-        self.fox.velocity.scale_to_length(self.current_speed)
-        self.fox.rect.x += self.fox.velocity.x
-        self.fox.rect.y += self.fox.velocity.y
-        self.bonus_star.despawn()
-
     def _check_for_fox_cloud_collision(self):
         if self.cloud_player1.handle_fox_collision(self.fox):
             self._last_player = self.player1_score
@@ -100,3 +97,28 @@ class GameState:
                 self.player1_score += bonus_points
             else:
                 self.player2_score += bonus_points
+
+    def _reset_fox_position(self):
+        self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
+        direction_x = choice([-1, 1])
+        direction_y = choice([1, -1])
+        self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
+        self.fox.velocity.scale_to_length(self.current_speed)
+        self.fox.rect.x += self.fox.velocity.x
+        self.fox.rect.y += self.fox.velocity.y
+
+    def _play_again(self):
+        self._reset_fox_position()
+        self.bonus_star.despawn()
+
+    def reset(self):
+        self.player1_score = 0
+        self.player2_score = 0
+        self.level = 1
+        self.current_speed = self.base_speed
+        self._reset_fox_position()
+        self.bonus_star.despawn()
+        self.set_state(c.GameStates.START)
+        self.sound_manager.start_music()
+        self.cloud_player1.reset()
+        self.cloud_player2.reset()

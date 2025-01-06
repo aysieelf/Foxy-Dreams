@@ -37,4 +37,26 @@ class EventHandler:
                 self.game_state.bonus_star.spawn()
             elif event.type == c.BONUS_DE_SPAWN_EVENT:
                 self.game_state.bonus_star.despawn()
+            elif event.type == pygame.KEYDOWN:
+                return self._handle_keydown(event)
+        return True
+
+    def _handle_keydown(self, event: pygame.event.Event) -> bool:
+        if event.key == pygame.K_ESCAPE:
+            if self.game_state.current_state == c.GameStates.START:
+                return False
+            elif self.game_state.current_state == c.GameStates.PLAYING:
+                self.game_state.set_state(c.GameStates.PAUSED)
+            elif self.game_state.current_state == c.GameStates.PAUSED:
+                self.game_state.set_state(c.GameStates.PLAYING)
+            elif self.game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
+                self.game_state.set_state(c.GameStates.START)
+                self.game_state.reset()
+
+        elif event.key == pygame.K_SPACE:
+            if self.game_state.current_state == c.GameStates.PLAYING:
+                self.game_state.set_state(c.GameStates.PAUSED)
+            elif self.game_state.current_state == c.GameStates.PAUSED:
+                self.game_state.set_state(c.GameStates.PLAYING)
+
         return True

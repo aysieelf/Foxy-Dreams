@@ -1,7 +1,6 @@
-# GAME LOOP --------------------------------------------------------------------
-import pygame
+from enum import Enum
 
-FPS = 60
+import pygame
 
 # WINDOW -----------------------------------------------------------------------
 WIDTH = 640
@@ -40,6 +39,13 @@ BONUS_HITBOX_DIFF = 5
 STAR_PARTICLES_COLOR = (249, 182, 154)  # for particles
 WARM_GREY = (155, 155, 155)
 WHITE = (255, 255, 255)
+
+# GAME STATES ------------------------------------------------------------------
+class GameStates(Enum):
+    START = "start"
+    PLAYING = "playing"
+    PAUSED = "paused"
+    GAME_OVER_LEADERBOARD = "game over leaderboard"
 
 # START SCREEN -----------------------------------------------------------------
 # Title

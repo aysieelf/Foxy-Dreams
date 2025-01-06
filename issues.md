@@ -55,11 +55,11 @@ Core Gameplay (640x480 window):
   - [x] Volume control functionality
 
 TODO:
-- smaller difference in speed change in one level depending on velocity
+- [ ] smaller difference in speed change in one level depending on velocity
 - [x] bonus star should be despawned when "play again" function is called
 
 Game Logic:
-- [ ] Implement score system
+- [x] Implement score system
 - [ ] Create game state manager:
   - [ ] Start state
   - [ ] Playing state
@@ -104,7 +104,7 @@ UI Development:
   - [ ] Return to menu button
 - [ ] Implement animations:
   - [ ] Fox-cloud impact effect
-  - [ ] Bonus collection animation
+  - [x] Bonus collection animation
   - [ ] Screen transitions
   - [ ] Cloud movement smoothing
 
@@ -131,5 +131,6 @@ Documentation:
 Release:
 - [ ] Perform final testing
 - [ ] Package game for distribution
-- [ ] Create v1.0 release
+- [ ] Create v1.0.0 release for MacOS
+- [ ] Create v1.0.0 release for Windows
 - [ ] Update repository documentation

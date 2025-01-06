@@ -4,7 +4,7 @@ import pygame.sprite
 
 
 class Fox(pygame.sprite.Sprite):
-    def __init__(self, initial_speed):
+    def __init__(self, initial_speed) -> None:
         pygame.sprite.Sprite.__init__(self)
         self.original_image = pygame.image.load("assets/images/fox.png").convert_alpha()
         self.image = self.original_image

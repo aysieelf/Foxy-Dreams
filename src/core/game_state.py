@@ -32,7 +32,7 @@ class GameState:
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1")
         self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
-        self.bonus_star = BonusStar(self.all_sprites)
+        self.bonus_star = BonusStar(self.all_sprites, self)
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
         self.sound_manager = SoundManager()
@@ -43,6 +43,9 @@ class GameState:
         return self._current_state
 
     def update(self):
+        if self.current_state != c.GameStates.PLAYING:
+            return
+
         winner = self.fox.update(self.sound_manager)
         self.cloud_player1.update(self.fox)
         self.cloud_player2.update(self.fox)
@@ -51,7 +54,7 @@ class GameState:
         self._check_for_bonus_star_fox_collision()
 
     def set_state(self, state: GameStates):
-        self.current_state = state
+        self._current_state = state
 
     def _check_for_winner(self, winner):
         if winner is not None:

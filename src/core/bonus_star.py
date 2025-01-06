@@ -6,8 +6,9 @@ import pygame.sprite
 
 
 class BonusStar(pygame.sprite.Sprite):
-    def __init__(self, sprite_group):
+    def __init__(self, sprite_group, game_state) -> None:
         pygame.sprite.Sprite.__init__(self)
+        self.game_state = game_state
         self._active = False
         self.sprite_group = sprite_group
         self.collision_cooldown = 0
@@ -25,12 +26,18 @@ class BonusStar(pygame.sprite.Sprite):
         return box
 
     def spawn(self):
+        if self.game_state.current_state != c.GameStates.PLAYING:
+            return
+
         self._active = True
         self._set_pos()
         self.sprite_group.add(self)
         pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, c.BONUS_LIFETIME)
 
     def despawn(self):
+        if self.game_state.current_state != c.GameStates.PLAYING:
+            return
+
         self._active = False
         self.sprite_group.remove(self)
         self.collision_cooldown = 0
@@ -41,7 +48,6 @@ class BonusStar(pygame.sprite.Sprite):
         return self.rect
 
     def handle_fox_collision(self, fox):
-        # TODO: Add particles
         if not self._active:
             return 0
 

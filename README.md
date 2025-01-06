@@ -3,12 +3,12 @@
 Sleepy Fox is my interpretation of the classic Pong game. This is my third game ever.
 
 ## Current Progress
-[▓▓▓▓░░░░░░] 30%
+[▓▓▓▓▓░░░░░] 50%
 
 - [x] Project setup (deadline: 29.12.2024) - _completed on 29.12.2024_
 - [x] Asset creation (deadline: 2.01.2025) - _completed on 29.12.2024_
 - [x] Core gameplay (deadline: 9.01.2025) - _completed on 3.01.2024_
-- [ ] Game logic (deadline: 16.01.2025)
+- [x] Game logic (deadline: 16.01.2025) - _completed on 6.01.2025_
 - [ ] User interface development (deadline: 21.01.2025)
 - [ ] Testing and debugging (deadline: 25.01.2025)
 - [ ] Documentation (deadline: 27.01.2025)
@@ -33,7 +33,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 
 ## 🎮 Quick Start (Just Play)
 Download the game:
-- **macOS**: Download `SleepyFox.app` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
+- **macOS**: Download `SleepyFox.zip` from [Releases](https://github.com/aysieelf/Snake/releases/tag/1.0.0)
   - After downloading, locate Snake.app in Finder. 
   - When opening for the first time:
     - Right-click (or Control-click) on the app and select Open. 
@@ -85,18 +85,10 @@ python main.py
 ```
 
 ### Controls
-- **Single Player Mode**
-  - Move Cloud: `↑` `↓` or `W` `S` (player choice)
-  - Pause/Resume: `Space`
-  - Return to Menu: `Esc`
-  - Toggle Sound: `M`
-
-- **Two Players Mode**
   - Player 1 (Left Cloud): `W` `S`
   - Player 2 (Right Cloud): `↑` `↓`
   - Pause/Resume: `Space`
   - Return to Menu: `Esc`
-  - Toggle Sound: `M`
 
 - **Menu Navigation**
   - Select: `↑` `↓`
@@ -138,6 +130,7 @@ python main.py
 - pygame.mixer.Sound() is used for sounds (better in wav)
 - pygame.mixer.music.load() is used for background music (better in mp3)
   - pygame.mixer.music.play(-1) loops indefinitely
+- It's a good idea to use Enum class for game states
 
 ## 💡 First Time Achievements
 - First time drawing my own sprites
@@ -163,7 +156,6 @@ python main.py
 - PyGame version: 2.6.1
 - Development Platform: PyCharm
 - Resolution: 640x480 pixels
-- Frame Rate: 60 FPS
 
 ---
 Part of my [Game Development Journey](https://github.com/aysieelf/Game-Dev-Journey) 🎮

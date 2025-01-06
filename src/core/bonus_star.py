@@ -7,7 +7,7 @@ import pygame.sprite
 
 class BonusStar(pygame.sprite.Sprite):
     def __init__(self, sprite_group, game_state) -> None:
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.game_state = game_state
         self._active = False
         self.sprite_group = sprite_group

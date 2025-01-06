@@ -16,7 +16,7 @@ class Cloud(pygame.sprite.Sprite):
         """
         Initialize the cloud
         """
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.player = player
         self.speed = c.BASE_SPEED * 0.35
         self.collision_cooldown = 0

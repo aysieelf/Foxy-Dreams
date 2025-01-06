@@ -7,10 +7,9 @@ from src.core.cloud import Cloud
 from src.core.fox import Fox
 from src.core.sound_manager import SoundManager
 from src.utils import constants as c
+from src.utils.constants import GameStates
 
 import pygame
-
-from src.utils.constants import GameStates
 
 
 class GameState:
@@ -48,7 +47,6 @@ class GameState:
 
     def set_state(self, state: GameStates):
         self.current_state = state
-
 
     def _check_for_winner(self, winner):
         if winner is not None:

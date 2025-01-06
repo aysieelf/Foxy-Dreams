@@ -69,8 +69,8 @@ Game Logic:
   - [x] Different control schemes per mode
 - [x] Add pause/resume functionality
 - [x] Implement game over conditions
-- [ ] Create settings system:
-  - [ ] Sound settings (Music & SFX toggles)
+- [x] Create settings system:
+  - [x] Sound settings (Music & SFX toggles)
 
 UI Development:
 - [ ] Create start screen:

@@ -51,4 +51,3 @@ class Renderer:
 
     def _render_game_over_leaderboard_screen(self, game_state: GameState) -> None:
         pass
-

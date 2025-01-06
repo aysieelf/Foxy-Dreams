@@ -76,16 +76,6 @@ class GameState:
 
         return floor(self.current_speed) - 5  # base speed is 6 while level starts at 1
 
-    def _play_again(self):
-        self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
-        direction_x = choice([-1, 1])
-        direction_y = choice([1, -1])
-        self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
-        self.fox.velocity.scale_to_length(self.current_speed)
-        self.fox.rect.x += self.fox.velocity.x
-        self.fox.rect.y += self.fox.velocity.y
-        self.bonus_star.despawn()
-
     def _check_for_fox_cloud_collision(self):
         if self.cloud_player1.handle_fox_collision(self.fox):
             self._last_player = self.player1_score
@@ -102,3 +92,28 @@ class GameState:
                 self.player1_score += bonus_points
             else:
                 self.player2_score += bonus_points
+
+    def _reset_fox_position(self):
+        self.fox.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
+        direction_x = choice([-1, 1])
+        direction_y = choice([1, -1])
+        self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
+        self.fox.velocity.scale_to_length(self.current_speed)
+        self.fox.rect.x += self.fox.velocity.x
+        self.fox.rect.y += self.fox.velocity.y
+
+    def _play_again(self):
+        self._reset_fox_position()
+        self.bonus_star.despawn()
+
+    def reset(self):
+        self.player1_score = 0
+        self.player2_score = 0
+        self.level = 1
+        self.current_speed = self.base_speed
+        self._reset_fox_position()
+        self.bonus_star.despawn()
+        self.set_state(c.GameStates.START)
+        self.sound_manager.start_music()
+        self.cloud_player1.reset()
+        self.cloud_player2.reset()

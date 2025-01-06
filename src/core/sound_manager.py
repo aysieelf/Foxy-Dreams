@@ -16,6 +16,14 @@ class SoundManager:
         self._load_sounds()
         self._setup_music()
 
+    @property
+    def sound_muted(self):
+        return self.sound_volume == 0.0
+
+    @property
+    def music_muted(self):
+        return self.music_volume == 0.0
+
     def _load_sounds(self):
         self.sounds = {
             "bonus-collect": pygame.mixer.Sound(
@@ -68,3 +76,15 @@ class SoundManager:
     def set_music_volume(self, volume: float):
         self.music_volume = max(0.0, min(1.0, volume))
         pygame.mixer.music.set_volume(self.music_volume)
+
+    def toggle_sound(self):
+        if self.sound_muted:
+            self.set_sound_volume(0.3)
+        else:
+            self.set_sound_volume(0.0)
+
+    def toggle_music(self):
+        if self.music_muted:
+            self.set_music_volume(0.1)
+        else:
+            self.set_music_volume(0.0)

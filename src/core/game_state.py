@@ -19,7 +19,7 @@ class GameState:
     """
 
     def __init__(self):
-        self.current_state = GameStates.START
+        self._current_state = GameStates.START
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
         self.player1_score = 0
@@ -38,6 +38,10 @@ class GameState:
         self.sound_manager = SoundManager()
         self.sound_manager.start_music()
 
+    @property
+    def current_state(self):
+        return self._current_state
+
     def update(self):
         winner = self.fox.update(self.sound_manager)
         self.cloud_player1.update(self.fox)
@@ -48,7 +52,6 @@ class GameState:
 
     def set_state(self, state: GameStates):
         self.current_state = state
-
 
     def _check_for_winner(self, winner):
         if winner is not None:

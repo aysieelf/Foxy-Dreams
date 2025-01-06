@@ -61,10 +61,10 @@ TODO:
 Game Logic:
 - [x] Implement score system
 - [ ] Create game state manager:
-  - [ ] Start state
-  - [ ] Playing state
-  - [ ] Paused state
-  - [ ] Game over state
+  - [x] Start state
+  - [x] Playing state
+  - [x] Paused state
+  - [x] Game over state
   - [ ] Game mode state handling
   - [ ] Different control schemes per mode
 - [ ] Add pause/resume functionality

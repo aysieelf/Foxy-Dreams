@@ -18,13 +18,13 @@ class GameState:
     """
 
     def __init__(self):
-        self._current_state = GameStates.START
+        self._current_state = GameStates.PLAYING
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
         self.player1_score = 0
         self.player2_score = 0
         self._last_player = 0
-        self.multiplayer = False
+        self.multiplayer = True
         self.level = 1
 
         self.all_sprites = pygame.sprite.Group()

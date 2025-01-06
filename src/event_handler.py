@@ -48,7 +48,7 @@ class EventHandler:
             elif self.game_state.current_state == c.GameStates.PLAYING:
                 self.game_state.set_state(c.GameStates.PAUSED)
             elif self.game_state.current_state == c.GameStates.PAUSED:
-                self.game_state.set_state(c.GameStates.PLAYING)
+                self.game_state.set_state(c.GameStates.GAME_OVER_LEADERBOARD)
             elif self.game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
                 self.game_state.set_state(c.GameStates.START)
                 self.game_state.reset()

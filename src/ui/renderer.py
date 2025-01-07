@@ -130,7 +130,7 @@ class Renderer:
     def _render_playing_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.background_image, (0, 0))
         self._render_score_board(game_state)
-        # self._render_current_level(game_state)
+        self._render_current_level(game_state)
         game_state.all_sprites.draw(self.screen)
         game_state.bonus_star.particle_system.update()
         game_state.bonus_star.particle_system.draw(self.screen)
@@ -151,6 +151,15 @@ class Renderer:
             c.SCORE_TEXT_COLOR,
         )
         self.screen.blit(text, c.SCORE_POS_PLAYER2)
+
+    def _render_current_level(self, game_state: GameState) -> None:
+        font = pygame.font.SysFont(c.LEVEL_FONT, c.LEVEL_FONT_SIZE)
+        text = font.render(
+            f"{c.LEVEL_TEXT} {game_state.level}",
+            True,
+            c.SCORE_TEXT_COLOR,
+        )
+        self.screen.blit(text, c.LEVEL_POS)
 
     def _render_pause_screen(self) -> None:
         self.screen.blit(self.background_image, (0, 0))

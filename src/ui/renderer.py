@@ -1,4 +1,5 @@
 from src.core.game_state import GameState
+from src.ui.button import Button
 from src.utils import constants as c
 
 import pygame
@@ -24,6 +25,43 @@ class Renderer:
             "assets/images/button.png"
         ).convert_alpha()
 
+        # Създаваме бутоните
+        self.start_button = Button(
+            self.button_template.copy(),
+            c.START_BUTTON_POS,
+            c.START_BUTTON_TEXT,
+            c.START_BUTTON_FONT,
+            c.START_BUTTON_FONT_SIZE,
+            c.START_BUTTON_TEXT_COLOR
+        )
+
+        self.multiplayer_button = Button(
+            self.button_template.copy(),
+            c.MULTIPLAYER_TOGGLE_BUTTON_POS,
+            c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF,
+            c.MULTIPLAYER_TOGGLE_BUTTON_FONT,
+            c.MULTIPLAYER_TOGGLE_BUTTON_FONT_SIZE,
+            c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_COLOR
+        )
+
+        self.sound_button = Button(
+            self.button_template.copy(),
+            c.SOUND_TOGGLE_BUTTON_POS,
+            c.SOUND_TOGGLE_BUTTON_TEXT_ON,
+            c.SOUND_TOGGLE_BUTTON_FONT,
+            c.SOUND_TOGGLE_BUTTON_FONT_SIZE,
+            c.SOUND_TOGGLE_BUTTON_TEXT_COLOR
+        )
+
+        self.music_button = Button(
+            self.button_template.copy(),
+            c.MUSIC_TOGGLE_BUTTON_POS,
+            c.MUSIC_TOGGLE_BUTTON_TEXT_ON,
+            c.MUSIC_TOGGLE_BUTTON_FONT,
+            c.MUSIC_TOGGLE_BUTTON_FONT_SIZE,
+            c.MUSIC_TOGGLE_BUTTON_TEXT_COLOR
+        )
+
     def render(self, game_state: GameState) -> None:
         """
         Render the game state on the screen
@@ -45,62 +83,31 @@ class Renderer:
 
     def _render_start_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.start_screen_image, (0, 0))
-        self._render_start_button(game_state)
+        self._render_start_button()
         self._render_multiplayer_toggle_button(game_state)
         self._render_sound_toggle_button(game_state)
         self._render_music_toggle_button(game_state)
-        self._render_controls_info(game_state)
+        self._render_controls_info()
 
-    def _render_start_button(self, game_state: GameState) -> None:
-        button = self.button_template.copy()
-        button_rect = button.get_rect()
-        button_rect.center = c.START_BUTTON_POS
-        button_font = pygame.font.SysFont(c.START_BUTTON_FONT, c.START_BUTTON_FONT_SIZE)
-        button_surface = button_font.render(c.START_BUTTON_TEXT, True, c.START_BUTTON_TEXT_COLOR)
-        text_rect = button_surface.get_rect(center=button_rect.center)
-        self.screen.blit(button, button_rect)
-        self.screen.blit(button_surface, text_rect)
+    def _render_start_button(self) -> None:
+        self.start_button.draw(self.screen)
 
     def _render_multiplayer_toggle_button(self, game_state: GameState) -> None:
-        button = self.button_template.copy()
-        button_rect = button.get_rect()
-        button_rect.center = c.MULTIPLAYER_TOGGLE_BUTTON_POS
-        button_font = pygame.font.SysFont(c.MULTIPLAYER_TOGGLE_BUTTON_FONT, c.MULTIPLAYER_TOGGLE_BUTTON_FONT_SIZE)
-        if game_state.multiplayer:
-            button_surface = button_font.render(c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_ON, True, c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_COLOR)
-        else:
-            button_surface = button_font.render(c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF, True, c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_COLOR)
-        text_rect = button_surface.get_rect(center=button_rect.center)
-        self.screen.blit(button, button_rect)
-        self.screen.blit(button_surface, text_rect)
+        text = c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_ON if game_state.multiplayer else c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF
+        self.multiplayer_button.set_text(text)
+        self.multiplayer_button.draw(self.screen)
 
     def _render_sound_toggle_button(self, game_state: GameState) -> None:
-        button = self.button_template.copy()
-        button_rect = button.get_rect()
-        button_rect.center = c.SOUND_TOGGLE_BUTTON_POS
-        button_font = pygame.font.SysFont(c.SOUND_TOGGLE_BUTTON_FONT, c.SOUND_TOGGLE_BUTTON_FONT_SIZE)
-        if not game_state.sound_manager.sound_muted:
-            button_surface = button_font.render(c.SOUND_TOGGLE_BUTTON_TEXT_ON, True, c.SOUND_TOGGLE_BUTTON_TEXT_COLOR)
-        else:
-            button_surface = button_font.render(c.SOUND_TOGGLE_BUTTON_TEXT_OFF, True, c.SOUND_TOGGLE_BUTTON_TEXT_COLOR)
-        text_rect = button_surface.get_rect(center=button_rect.center)
-        self.screen.blit(button, button_rect)
-        self.screen.blit(button_surface, text_rect)
+        text = c.SOUND_TOGGLE_BUTTON_TEXT_ON if not game_state.sound_manager.sound_muted else c.SOUND_TOGGLE_BUTTON_TEXT_OFF
+        self.sound_button.set_text(text)
+        self.sound_button.draw(self.screen)
 
     def _render_music_toggle_button(self, game_state: GameState) -> None:
-        button = self.button_template.copy()
-        button_rect = button.get_rect()
-        button_rect.center = c.MUSIC_TOGGLE_BUTTON_POS
-        button_font = pygame.font.SysFont(c.MUSIC_TOGGLE_BUTTON_FONT, c.MUSIC_TOGGLE_BUTTON_FONT_SIZE)
-        if not game_state.sound_manager.music_muted:
-            button_surface = button_font.render(c.MUSIC_TOGGLE_BUTTON_TEXT_ON, True, c.MUSIC_TOGGLE_BUTTON_TEXT_COLOR)
-        else:
-            button_surface = button_font.render(c.MUSIC_TOGGLE_BUTTON_TEXT_OFF, True, c.MUSIC_TOGGLE_BUTTON_TEXT_COLOR)
-        text_rect = button_surface.get_rect(center=button_rect.center)
-        self.screen.blit(button, button_rect)
-        self.screen.blit(button_surface, text_rect)
+        text = c.MUSIC_TOGGLE_BUTTON_TEXT_ON if not game_state.sound_manager.music_muted else c.MUSIC_TOGGLE_BUTTON_TEXT_OFF
+        self.music_button.set_text(text)
+        self.music_button.draw(self.screen)
 
-    def _render_controls_info(self, game_state: GameState) -> None:
+    def _render_controls_info(self) -> None:
         font = pygame.font.SysFont(c.CONTROLS_INFO_FONT, c.CONTROLS_INFO_FONT_SIZE)
 
         instruction_surface = font.render(c.CONTROLS_INFO_TEXT, True, c.CONTROLS_INFO_TEXT_COLOR)

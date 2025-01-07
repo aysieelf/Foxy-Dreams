@@ -1,6 +1,7 @@
 from src.core.game_state import GameState
 from src.ui.renderer import Renderer
 from src.utils import constants as c
+from src.utils.helpers import save_current_score
 from src.utils.screenshot import ScreenshotManager
 
 import pygame
@@ -83,6 +84,10 @@ class EventHandler:
                 self.game_state.set_state(c.GameStates.PAUSED)
             elif self.game_state.current_state == c.GameStates.PAUSED:
                 self.game_state.set_state(c.GameStates.GAME_OVER_LEADERBOARD)
+                scores = [self.game_state.player1_score]
+                if self.game_state.multiplayer:
+                    scores.append(self.game_state.player2_score)
+                save_current_score(scores)
             elif self.game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
                 self.game_state.set_state(c.GameStates.START)
                 self.game_state.reset()

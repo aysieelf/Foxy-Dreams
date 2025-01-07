@@ -84,7 +84,7 @@ MUSIC_TOGGLE_BUTTON_POS = (WIDTH // 2 + 100, HEIGHT // 2 + 150)
 # CONTROLS INFO
 CONTROLS_INFO_FONT_SIZE = 14
 CONTROLS_INFO_TEXT = (
-    "Player 1: W/s || Player 2: UP/DOWN || Pause/Resume: SPACE || Exit/Settings: ESC"
+    "Player 1: W/S || Player 2: UP/DOWN || Pause/Resume: SPACE || Exit/Settings: ESC"
 )
 CONTROLS_INFO_FONT = "arial"
 CONTROLS_INFO_TEXT_COLOR = STAR_PARTICLES_COLOR

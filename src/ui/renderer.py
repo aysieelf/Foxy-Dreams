@@ -185,9 +185,5 @@ class Renderer:
         text_rect = text.get_rect(center=c.PAUSE_SUBTEXT_POS)
         self.screen.blit(text, text_rect)
 
-
-
     def _render_game_over_leaderboard_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.background_image, (0, 0))
-
-

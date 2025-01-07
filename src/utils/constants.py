@@ -91,7 +91,6 @@ CONTROLS_INFO_TEXT_COLOR = STAR_PARTICLES_COLOR
 CONTROLS_INFO_POS = (WIDTH // 2, HEIGHT - 50)
 
 
-
 # PLAYING SCREEN ---------------------------------------------------------------
 # SCORE BOARD
 SCORE_FONT_SIZE = 20

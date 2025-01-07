@@ -144,7 +144,6 @@ class Renderer:
         )
         self.screen.blit(text, c.SCORE_POS_PLAYER1)
 
-
         text = font.render(
             f"Player 2: {game_state.player2_score}",
             True,

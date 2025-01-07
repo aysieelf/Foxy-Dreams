@@ -129,9 +129,28 @@ class Renderer:
 
     def _render_playing_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.background_image, (0, 0))
+        self._render_score_board(game_state)
+        # self._render_current_level(game_state)
         game_state.all_sprites.draw(self.screen)
         game_state.bonus_star.particle_system.update()
         game_state.bonus_star.particle_system.draw(self.screen)
+
+    def _render_score_board(self, game_state: GameState) -> None:
+        font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
+        text = font.render(
+            f"PLAYER 1: {game_state.player1_score}",
+            True,
+            c.SCORE_TEXT_COLOR,
+        )
+        self.screen.blit(text, c.SCORE_POS_PLAYER1)
+
+
+        text = font.render(
+            f"Player 2: {game_state.player2_score}",
+            True,
+            c.SCORE_TEXT_COLOR,
+        )
+        self.screen.blit(text, c.SCORE_POS_PLAYER2)
 
     def _render_pause_screen(self) -> None:
         self.screen.blit(self.background_image, (0, 0))

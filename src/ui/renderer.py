@@ -84,8 +84,8 @@ class Renderer:
         self.screen.blit(self.start_screen_image, (0, 0))
         self._render_start_button()
         self._render_multiplayer_toggle_button(game_state)
-        self._render_sound_toggle_button(game_state)
-        self._render_music_toggle_button(game_state)
+        self._render_sound_toggle_button(game_state, c.SOUND_TOGGLE_BUTTON_POS)
+        self._render_music_toggle_button(game_state, c.MUSIC_TOGGLE_BUTTON_POS)
         self._render_controls_info()
 
     def _render_start_button(self) -> None:
@@ -172,7 +172,6 @@ class Renderer:
         self._render_music_toggle_button(game_state, c.PAUSE_MUSIC_TOGGLE_BUTTON_POS)
         self._render_pause_title()
         self._render_pause_info()
-        print("printing")
 
     def _render_pause_title(self):
         font = pygame.font.SysFont(c.PAUSE_FONT, c.PAUSE_FONT_SIZE)

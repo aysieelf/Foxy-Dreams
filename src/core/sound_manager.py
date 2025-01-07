@@ -52,10 +52,8 @@ class SoundManager:
             return
 
         if sound_name in self.sound_cooldowns:
-            print("It's in cooldown!")
             last_played = self.sound_cooldowns[sound_name]
             cooldown = self.cooldown_times.get(sound_name, 0)
-            print(cooldown)
             if current_time - last_played < cooldown:
                 return
 

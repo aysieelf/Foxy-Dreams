@@ -25,7 +25,6 @@ class Renderer:
             "assets/images/button.png"
         ).convert_alpha()
 
-        # Създаваме бутоните
         self.start_button = Button(
             self.button_template.copy(),
             c.START_BUTTON_POS,

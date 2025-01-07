@@ -70,7 +70,7 @@ class SoundManager:
 
     def set_sound_volume(self, volume: float):
         self.sound_volume = max(0.0, min(1.0, volume))
-        for sound in self.sounds:
+        for sound in self.sounds.values():
             sound.set_volume(self.sound_volume)
 
     def set_music_volume(self, volume: float):

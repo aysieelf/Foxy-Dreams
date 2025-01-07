@@ -16,8 +16,9 @@ def game_loop(
         game_state (GameState): The current game state
         clock (pygame.time.Clock): The game clock
     """
-    event_handler = EventHandler(game_state)
     renderer = Renderer(screen)
+    event_handler = EventHandler(game_state, renderer)
+
 
     while True:
         clock.tick(0)

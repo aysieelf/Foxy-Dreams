@@ -46,7 +46,7 @@ class GameStates(Enum):
     START = "start"
     PLAYING = "playing"
     PAUSED = "paused"
-    GAME_OVER_LEADERBOARD = "game over leaderboard"
+    GAME_OVER_LEADERBOARD = "game over data"
 
 
 # START SCREEN -----------------------------------------------------------------
@@ -125,3 +125,20 @@ PAUSE_SUBTEXT_POS = (WIDTH // 2, HEIGHT // 4 + 20)
 # BUTTON POSITIONS
 PAUSE_SOUND_TOGGLE_BUTTON_POS = (WIDTH // 2, HEIGHT // 2)
 PAUSE_MUSIC_TOGGLE_BUTTON_POS = (WIDTH // 2, HEIGHT // 2 + 50)
+
+# GAME OVER SCREEN ------------------------------------------------------------
+GAME_OVER_TITLE = "GAME OVER"
+GAME_OVER_FONT_SIZE = 50
+GAME_OVER_FONT = "courier new"
+GAME_OVER_TEXT_COLOR = STAR_PARTICLES_COLOR
+GAME_OVER_POS = (WIDTH // 2, HEIGHT // 4 - 30)
+
+# GAME OVER SUBTEXT
+GAME_OVER_SUBTEXT = "Press ESC to quit to START screen"
+GAME_OVER_SUBTEXT_FONT_SIZE = 20
+GAME_OVER_SUBTEXT_FONT = "arial"
+GAME_OVER_SUBTEXT_COLOR = STAR_PARTICLES_COLOR
+GAME_OVER_SUBTEXT_POS = (WIDTH // 2, HEIGHT // 4 + 20)
+
+# PATHS -----------------------------------------------------------------------
+SCORES_FILE = "assets/data/scores.pkl"

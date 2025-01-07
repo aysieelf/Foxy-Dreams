@@ -4,6 +4,8 @@ from src.utils import constants as c
 
 import pygame
 
+from src.utils.helpers import get_top_five_scores
+
 
 class Renderer:
     """
@@ -187,3 +189,54 @@ class Renderer:
 
     def _render_game_over_leaderboard_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.background_image, (0, 0))
+        self._render_text()
+        self._current_score(game_state)
+        self._top_scores(game_state)
+
+    def _render_text(self):
+        font = pygame.font.SysFont(c.GAME_OVER_FONT, c.GAME_OVER_FONT_SIZE)
+        text = font.render(c.GAME_OVER_TITLE, True, c.GAME_OVER_TEXT_COLOR)
+        text_rect = text.get_rect(center=c.GAME_OVER_POS)
+        self.screen.blit(text, text_rect)
+
+        font = pygame.font.SysFont(c.GAME_OVER_SUBTEXT_FONT, c.GAME_OVER_SUBTEXT_FONT_SIZE)
+        text = font.render(c.GAME_OVER_SUBTEXT, True, c.GAME_OVER_SUBTEXT_COLOR)
+        text_rect = text.get_rect(center=c.GAME_OVER_SUBTEXT_POS)
+        self.screen.blit(text, text_rect)
+
+    def _current_score(self, game_state: GameState):
+        font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
+        text = font.render(
+            f"Your score: {game_state.player1_score}",
+            True,
+            c.SCORE_TEXT_COLOR,
+        )
+        self.screen.blit(text, c.SCORE_POS_PLAYER1)
+
+        if game_state.multiplayer:
+            text = font.render(
+                f"Player 2 score: {game_state.player2_score}",
+                True,
+                c.SCORE_TEXT_COLOR,
+            )
+            self.screen.blit(text, c.SCORE_POS_PLAYER2)
+
+    def _top_scores(self, game_state: GameState):
+        font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
+        text = font.render(
+            "Top scores",
+            True,
+            c.SCORE_TEXT_COLOR,
+        )
+        text_rect = text.get_rect(center=(c.WIDTH // 2, c.HEIGHT // 2 - 50))
+        self.screen.blit(text, text_rect)
+
+        top_scores = get_top_five_scores()
+        for i, score in enumerate(top_scores):
+            text = font.render(
+                f"{i + 1}: {score}",
+                True,
+                c.SCORE_TEXT_COLOR,
+            )
+            text_rect = text.get_rect(center=(c.WIDTH // 2, c.HEIGHT // 2 + i * 30))
+            self.screen.blit(text, text_rect)

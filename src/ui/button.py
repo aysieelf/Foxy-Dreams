@@ -14,6 +14,10 @@ class Button:
     def is_clicked(self, mouse_pos):
         return self.rect.collidepoint(mouse_pos)
 
+    def set_position(self, new_position):
+        self.rect = self.image.get_rect(center=new_position)
+        self.text_rect = self.text_surface.get_rect(center=self.rect.center)
+
     def draw(self, screen):
         screen.blit(self.image, self.rect)
         screen.blit(self.text_surface, self.text_rect)

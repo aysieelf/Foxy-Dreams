@@ -74,7 +74,7 @@ class Renderer:
         elif game_state.current_state == c.GameStates.PLAYING:
             self._render_playing_screen(game_state)
         elif game_state.current_state == c.GameStates.PAUSED:
-            self._render_pause_screen()
+            self._render_pause_screen(game_state)
         elif game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
             self._render_game_over_leaderboard_screen(game_state)
 
@@ -100,7 +100,10 @@ class Renderer:
         self.multiplayer_button.set_text(text)
         self.multiplayer_button.draw(self.screen)
 
-    def _render_sound_toggle_button(self, game_state: GameState) -> None:
+    def _render_sound_toggle_button(self, game_state: GameState, new_pos=None) -> None:
+        if new_pos:
+            self.sound_button.set_position(new_pos)
+
         text = (
             c.SOUND_TOGGLE_BUTTON_TEXT_ON
             if not game_state.sound_manager.sound_muted
@@ -109,7 +112,10 @@ class Renderer:
         self.sound_button.set_text(text)
         self.sound_button.draw(self.screen)
 
-    def _render_music_toggle_button(self, game_state: GameState) -> None:
+    def _render_music_toggle_button(self, game_state: GameState, new_pos=None) -> None:
+        if new_pos:
+            self.music_button.set_position(new_pos)
+
         text = (
             c.MUSIC_TOGGLE_BUTTON_TEXT_ON
             if not game_state.sound_manager.music_muted
@@ -160,8 +166,29 @@ class Renderer:
         )
         self.screen.blit(text, c.LEVEL_POS)
 
-    def _render_pause_screen(self) -> None:
+    def _render_pause_screen(self, game_state) -> None:
         self.screen.blit(self.background_image, (0, 0))
+        self._render_sound_toggle_button(game_state, c.PAUSE_SOUND_TOGGLE_BUTTON_POS)
+        self._render_music_toggle_button(game_state, c.PAUSE_MUSIC_TOGGLE_BUTTON_POS)
+        self._render_pause_title()
+        self._render_pause_info()
+        print("printing")
+
+    def _render_pause_title(self):
+        font = pygame.font.SysFont(c.PAUSE_FONT, c.PAUSE_FONT_SIZE)
+        text = font.render(c.PAUSE_TEXT, True, c.PAUSE_TEXT_COLOR)
+        text_rect = text.get_rect(center=c.PAUSE_TEXT_POS)
+        self.screen.blit(text, text_rect)
+
+    def _render_pause_info(self):
+        font = pygame.font.SysFont(c.PAUSE_SUBTEXT_FONT, c.PAUSE_SUBTEXT_FONT_SIZE)
+        text = font.render(c.PAUSE_SUBTEXT, True, c.PAUSE_SUBTEXT_COLOR)
+        text_rect = text.get_rect(center=c.PAUSE_SUBTEXT_POS)
+        self.screen.blit(text, text_rect)
+
+
 
     def _render_game_over_leaderboard_screen(self, game_state: GameState) -> None:
         self.screen.blit(self.background_image, (0, 0))
+
+

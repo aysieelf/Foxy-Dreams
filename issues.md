@@ -82,9 +82,8 @@ UI Development:
   - [x] Score display
   - [x] Current level
 - [ ] Create pause screen:
-  - [ ] Resume button
-  - [ ] Return to menu button
-  - [ ] Settings access
+  - [ ] Return to menu with ESC instruction
+  - [ ] Sound and Music Toggles
 - [ ] Design settings screen:
   - [ ] Sound toggles
   - [ ] Volume sliders

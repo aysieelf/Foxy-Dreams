@@ -78,9 +78,9 @@ UI Development:
   - [x] Settings button
   - [x] Game mode selection buttons
   - [x] Controls info per mode
-- [ ] Design game screen:
-  - [ ] Score display
-  - [ ] Current level
+- [x] Design game screen:
+  - [x] Score display
+  - [x] Current level
 - [ ] Create pause screen:
   - [ ] Resume button
   - [ ] Return to menu button

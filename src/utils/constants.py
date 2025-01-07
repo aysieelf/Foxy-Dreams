@@ -91,40 +91,12 @@ CONTROLS_INFO_TEXT_COLOR = STAR_PARTICLES_COLOR
 CONTROLS_INFO_POS = (WIDTH // 2, HEIGHT - 50)
 
 
-# GAME OVER SCREEN -------------------------------------------------------------
-GAME_OVER_FONT_SIZE = 36
-GAME_OVER_FONT = "impact"
-GAME_OVER_TEXT = "GAME OVER"
-GAME_OVER_TEXT_COLOR = WARM_GREY
-GAME_OVER_TEXT_POS = 100
-OVERLAY_ALPHA = 100
 
-# INSTRUCTIONS -----------------------------------------------------------------
-INSTRUCTIONS_FONT_SIZE = 14
-INSTRUCTIONS_FONT = "arial"
-INSTRUCTIONS_TEXT_0 = (
-    "Use the arrow keys or WASD to move the snake"  # only in the start screen
-)
-INSTRUCTIONS_TEXT_1 = (
-    "Press SPACE to start or pause/resume the game"  # only in the start screen
-)
-INSTRUCTIONS_TEXT_2 = "Press Q to quit the game"  # only in the game over screen
-INSTRUCTIONS_TEXT_3 = "Press R to restart"  # only in the game over screen
-INSTRUCTIONS_TEXT_4 = "Press Q to quit to main menu"  # only in the game over screen
-INSTRUCTIONS_TEXT_5 = "Press Q again to quit the game"  # only in the start screen
-INSTRUCTIONS_TEXT_COLOR = WARM_GREY
-INSTRUCTIONS = [
-    INSTRUCTIONS_TEXT_0,
-    INSTRUCTIONS_TEXT_1,
-    INSTRUCTIONS_TEXT_2,
-    INSTRUCTIONS_TEXT_3,
-    INSTRUCTIONS_TEXT_4,
-    INSTRUCTIONS_TEXT_5,
-]
-INSTRUCTIONS_POS = 170
-
-# SCOREBOARD -------------------------------------------------------------------
+# PLAYING SCREEN ---------------------------------------------------------------
+# SCORE BOARD
 SCORE_FONT_SIZE = 20
-SCORE_FONT = "arial bold"
-SCORE_TEXT = "SCORE: "
-SCORE_PADDING = 5
+SCORE_FONT = "courier new"
+SCORE_TEXT = "SCORE:"
+SCORE_TEXT_COLOR = STAR_PARTICLES_COLOR
+SCORE_POS_PLAYER1 = (WIDTH // 2 - 150, 20)
+SCORE_POS_PLAYER2 = (WIDTH // 2 + 20, 20)

@@ -73,17 +73,14 @@ Game Logic:
   - [x] Sound settings (Music & SFX toggles)
 
 UI Development:
-- [ ] Create start screen:
-  - [ ] Title design
-  - [ ] Start button
-  - [ ] Settings button
-  - [ ] Game mode selection buttons
-  - [ ] Controls info per mode
-  - [ ] Exit button
+- [x] Create start screen:
+  - [x] Start button
+  - [x] Settings button
+  - [x] Game mode selection buttons
+  - [x] Controls info per mode
 - [ ] Design game screen:
   - [ ] Score display
-  - [ ] Current speed indicator
-  - [ ] Pause button
+  - [ ] Current level
 - [ ] Create pause screen:
   - [ ] Resume button
   - [ ] Return to menu button

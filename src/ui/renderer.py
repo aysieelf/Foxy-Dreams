@@ -31,7 +31,7 @@ class Renderer:
             c.START_BUTTON_TEXT,
             c.START_BUTTON_FONT,
             c.START_BUTTON_FONT_SIZE,
-            c.START_BUTTON_TEXT_COLOR
+            c.START_BUTTON_TEXT_COLOR,
         )
 
         self.multiplayer_button = Button(
@@ -40,7 +40,7 @@ class Renderer:
             c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF,
             c.MULTIPLAYER_TOGGLE_BUTTON_FONT,
             c.MULTIPLAYER_TOGGLE_BUTTON_FONT_SIZE,
-            c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_COLOR
+            c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_COLOR,
         )
 
         self.sound_button = Button(
@@ -49,7 +49,7 @@ class Renderer:
             c.SOUND_TOGGLE_BUTTON_TEXT_ON,
             c.SOUND_TOGGLE_BUTTON_FONT,
             c.SOUND_TOGGLE_BUTTON_FONT_SIZE,
-            c.SOUND_TOGGLE_BUTTON_TEXT_COLOR
+            c.SOUND_TOGGLE_BUTTON_TEXT_COLOR,
         )
 
         self.music_button = Button(
@@ -58,7 +58,7 @@ class Renderer:
             c.MUSIC_TOGGLE_BUTTON_TEXT_ON,
             c.MUSIC_TOGGLE_BUTTON_FONT,
             c.MUSIC_TOGGLE_BUTTON_FONT_SIZE,
-            c.MUSIC_TOGGLE_BUTTON_TEXT_COLOR
+            c.MUSIC_TOGGLE_BUTTON_TEXT_COLOR,
         )
 
     def render(self, game_state: GameState) -> None:
@@ -92,24 +92,38 @@ class Renderer:
         self.start_button.draw(self.screen)
 
     def _render_multiplayer_toggle_button(self, game_state: GameState) -> None:
-        text = c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_ON if game_state.multiplayer else c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF
+        text = (
+            c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_ON
+            if game_state.multiplayer
+            else c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_OFF
+        )
         self.multiplayer_button.set_text(text)
         self.multiplayer_button.draw(self.screen)
 
     def _render_sound_toggle_button(self, game_state: GameState) -> None:
-        text = c.SOUND_TOGGLE_BUTTON_TEXT_ON if not game_state.sound_manager.sound_muted else c.SOUND_TOGGLE_BUTTON_TEXT_OFF
+        text = (
+            c.SOUND_TOGGLE_BUTTON_TEXT_ON
+            if not game_state.sound_manager.sound_muted
+            else c.SOUND_TOGGLE_BUTTON_TEXT_OFF
+        )
         self.sound_button.set_text(text)
         self.sound_button.draw(self.screen)
 
     def _render_music_toggle_button(self, game_state: GameState) -> None:
-        text = c.MUSIC_TOGGLE_BUTTON_TEXT_ON if not game_state.sound_manager.music_muted else c.MUSIC_TOGGLE_BUTTON_TEXT_OFF
+        text = (
+            c.MUSIC_TOGGLE_BUTTON_TEXT_ON
+            if not game_state.sound_manager.music_muted
+            else c.MUSIC_TOGGLE_BUTTON_TEXT_OFF
+        )
         self.music_button.set_text(text)
         self.music_button.draw(self.screen)
 
     def _render_controls_info(self) -> None:
         font = pygame.font.SysFont(c.CONTROLS_INFO_FONT, c.CONTROLS_INFO_FONT_SIZE)
 
-        instruction_surface = font.render(c.CONTROLS_INFO_TEXT, True, c.CONTROLS_INFO_TEXT_COLOR)
+        instruction_surface = font.render(
+            c.CONTROLS_INFO_TEXT, True, c.CONTROLS_INFO_TEXT_COLOR
+        )
         instruction_rect = instruction_surface.get_rect(center=c.CONTROLS_INFO_POS)
         self.screen.blit(instruction_surface, instruction_rect)
 

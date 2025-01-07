@@ -113,7 +113,7 @@ class GameState:
 
     def toggle_multiplayer(self):
         self.multiplayer = not self.multiplayer
-        if hasattr(self, 'cloud_player2'):
+        if hasattr(self, "cloud_player2"):
             self.all_sprites.remove(self.cloud_player2)
             self.cloud_player2 = Cloud("player2") if self.multiplayer else AICloud()
             self.all_sprites.add(self.cloud_player2)

@@ -19,7 +19,6 @@ def game_loop(
     renderer = Renderer(screen)
     event_handler = EventHandler(game_state, renderer)
 
-
     while True:
         clock.tick(0)
         game_state.update()

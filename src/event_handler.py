@@ -35,7 +35,9 @@ class EventHandler:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:  # Left click
+            elif (
+                event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
+            ):  # Left click
                 mouse_pos = pygame.mouse.get_pos()
                 if self.game_state.current_state == c.GameStates.START:
                     self._handle_start_screen_click(mouse_pos)

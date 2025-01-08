@@ -110,7 +110,7 @@ class GameState:
         direction_x = choice([-1, 1])
         direction_y = choice([1, -1])
         self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
-        self.fox.velocity.scale_to_length(min(c.BASE_SPEED*1.5, self.current_speed))
+        self.fox.velocity.scale_to_length(min(c.BASE_SPEED * 1.5, self.current_speed))
         self.is_first_throw = False
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y

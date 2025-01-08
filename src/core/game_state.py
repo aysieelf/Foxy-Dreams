@@ -126,6 +126,5 @@ class GameState:
         self._reset_fox_position()
         self.bonus_star.despawn()
         self.set_state(c.GameStates.START)
-        self.sound_manager.start_music()
         self.cloud_player1.reset()
         self.cloud_player2.reset()

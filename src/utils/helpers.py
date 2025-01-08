@@ -1,4 +1,5 @@
 from datetime import datetime
+from dataclasses import dataclass
 import os
 import random
 import pickle
@@ -14,9 +15,6 @@ def get_random_position() -> list[int]:
         list[int]: A list with two integers representing the x and y coordinates
     """
     return [random.randint(50, c.WIDTH - 50), random.randint(50, c.HEIGHT - 50)]
-
-
-from dataclasses import dataclass
 
 @dataclass
 class Score:

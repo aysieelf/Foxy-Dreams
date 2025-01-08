@@ -81,19 +81,12 @@ UI Development:
 - [x] Design game screen:
   - [x] Score display
   - [x] Current level
-- [ ] Create pause screen:
-  - [ ] Return to menu with ESC instruction
-  - [ ] Sound and Music Toggles
-- [ ] Design settings screen:
-  - [ ] Sound toggles
-  - [ ] Volume sliders
-  - [ ] Control selection
-  - [ ] Save/Cancel buttons
+- [x] Create pause screen:
+  - [x] Return to menu with ESC instruction
+  - [x] Sound and Music Toggles
 - [ ] Create game over screen:
   - [ ] Final score display
   - [ ] High score update
-  - [ ] Restart button
-  - [ ] Return to menu button
 - [ ] Implement animations:
   - [ ] Fox-cloud impact effect
   - [x] Bonus collection animation

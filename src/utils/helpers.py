@@ -1,7 +1,7 @@
+from datetime import datetime
 import os
 import random
 import pickle
-from datetime import datetime
 
 from src.utils import constants as c
 

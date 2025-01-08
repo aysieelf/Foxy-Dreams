@@ -22,7 +22,7 @@ CLOUD_PLAYER2_ROTATION = 90
 
 CLOUD_Y = HEIGHT // 2
 CLOUD_HITBOX_WIDTH_DIFF = 26
-CLOUD_HITBOX_HEIGHT_DIFF = 0
+CLOUD_HITBOX_HEIGHT_DIFF = 10
 
 # BONUS STAR ------------------------------------------------------------------
 # We set something like IDs for the events

@@ -84,9 +84,9 @@ UI Development:
 - [x] Create pause screen:
   - [x] Return to menu with ESC instruction
   - [x] Sound and Music Toggles
-- [ ] Create game over screen:
-  - [ ] Final score display
-  - [ ] High score update
+- [x] Create game over screen:
+  - [x] Final score display
+  - [x] High score update
 - [ ] Implement animations:
   - [ ] Fox-cloud impact effect
   - [x] Bonus collection animation

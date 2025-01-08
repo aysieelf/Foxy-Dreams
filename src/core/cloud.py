@@ -42,7 +42,6 @@ class Cloud(pygame.sprite.Sprite):
         box = self.rect.copy()
         box.width = self.rect.width - c.CLOUD_HITBOX_WIDTH_DIFF
         box.height = self.rect.height + c.CLOUD_HITBOX_HEIGHT_DIFF
-        print(box.height)
         box.center = self.rect.center
         if self.player == "player1":
             box.left = self.rect.left

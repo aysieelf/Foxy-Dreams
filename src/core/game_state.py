@@ -19,6 +19,7 @@ class GameState:
 
     def __init__(self):
         self._current_state = GameStates.START
+        self.is_first_throw = True
         self.base_speed = c.BASE_SPEED
         self.current_speed = self.base_speed
         self.player1_score = 0
@@ -85,9 +86,15 @@ class GameState:
         if self.cloud_player1.handle_fox_collision(self.fox):
             self._last_player = self.player1_score
             self.sound_manager.play_sound("fox-bounce")
+            if not self.is_first_throw:
+                self.fox.velocity.scale_to_length(self.current_speed)
+                self.is_first_throw = True
         elif self.cloud_player2.handle_fox_collision(self.fox):
             self._last_player = self.player2_score
             self.sound_manager.play_sound("fox-bounce")
+            if not self.is_first_throw:
+                self.fox.velocity.scale_to_length(self.current_speed)
+                self.is_first_throw = True
 
     def _check_for_bonus_star_fox_collision(self):
         bonus_points = self.bonus_star.handle_fox_collision(self.fox)
@@ -103,7 +110,8 @@ class GameState:
         direction_x = choice([-1, 1])
         direction_y = choice([1, -1])
         self.fox.velocity = pygame.math.Vector2(direction_x, direction_y)
-        self.fox.velocity.scale_to_length(self.current_speed)
+        self.fox.velocity.scale_to_length(min(c.BASE_SPEED*1.5, self.current_speed))
+        self.is_first_throw = False
         self.fox.rect.x += self.fox.velocity.x
         self.fox.rect.y += self.fox.velocity.y
 

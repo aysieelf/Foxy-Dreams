@@ -1,10 +1,9 @@
 from src.core.game_state import GameState
 from src.ui.button import Button
 from src.utils import constants as c
+from src.utils.helpers import get_top_five_scores
 
 import pygame
-
-from src.utils.helpers import get_top_five_scores
 
 
 class Renderer:
@@ -203,13 +202,17 @@ class Renderer:
         text_rect = text.get_rect(center=c.GAME_OVER_POS)
         self.screen.blit(text, text_rect)
 
-        font = pygame.font.SysFont(c.GAME_OVER_SUBTEXT_FONT, c.GAME_OVER_SUBTEXT_FONT_SIZE)
+        font = pygame.font.SysFont(
+            c.GAME_OVER_SUBTEXT_FONT, c.GAME_OVER_SUBTEXT_FONT_SIZE
+        )
         text = font.render(c.GAME_OVER_SUBTEXT, True, c.GAME_OVER_SUBTEXT_COLOR)
         text_rect = text.get_rect(center=c.GAME_OVER_SUBTEXT_POS)
         self.screen.blit(text, text_rect)
 
     def _current_score(self, game_state: GameState):
-        font = pygame.font.SysFont(c.GAME_OVER_CURRENT_SCORE_FONT, c.GAME_OVER_CURRENT_SCORE_FONT_SIZE)
+        font = pygame.font.SysFont(
+            c.GAME_OVER_CURRENT_SCORE_FONT, c.GAME_OVER_CURRENT_SCORE_FONT_SIZE
+        )
         text = font.render(
             f"Player 1: {game_state.player1_score}",
             True,

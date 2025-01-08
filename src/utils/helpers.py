@@ -1,8 +1,8 @@
-from datetime import datetime
 from dataclasses import dataclass
+from datetime import datetime
 import os
-import random
 import pickle
+import random
 
 from src.utils import constants as c
 
@@ -15,6 +15,7 @@ def get_random_position() -> list[int]:
         list[int]: A list with two integers representing the x and y coordinates
     """
     return [random.randint(50, c.WIDTH - 50), random.randint(50, c.HEIGHT - 50)]
+
 
 @dataclass
 class Score:
@@ -31,7 +32,7 @@ def get_top_five_scores() -> list[Score]:
     """
     try:
         if os.path.isfile(c.SCORES_FILE):
-            with open(c.SCORES_FILE, 'rb') as file:
+            with open(c.SCORES_FILE, "rb") as file:
                 scores = pickle.load(file)
                 # Sort scores by score value in descending order and take top 5
                 return sorted(scores, key=lambda x: x.score, reverse=True)[:5]
@@ -50,12 +51,12 @@ def save_current_score(scores: list):
     existing_scores = []
     try:
         if os.path.isfile(c.SCORES_FILE):
-            with open(c.SCORES_FILE, 'rb') as file:
+            with open(c.SCORES_FILE, "rb") as file:
                 existing_scores = pickle.load(file)
     except EOFError:
         existing_scores = []
 
     all_scores = existing_scores + new_score_objects
 
-    with open(c.SCORES_FILE, 'wb') as file:
+    with open(c.SCORES_FILE, "wb") as file:
         pickle.dump(all_scores, file)

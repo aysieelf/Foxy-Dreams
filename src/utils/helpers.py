@@ -24,12 +24,12 @@ class Score:
     score: int
 
 
-def get_top_five_scores() -> list[int]:
+def get_top_five_scores() -> list[Score]:
     """
     Get the top five scores from the scores file
 
     Returns:
-        list[int]: A list with the top five scores
+        list[Score]: A list with the top five Score objects
     """
     try:
         if os.path.isfile(c.SCORES_FILE):
@@ -41,6 +41,7 @@ def get_top_five_scores() -> list[int]:
         return []
 
     return []
+
 
 def save_current_score(scores: list):
     """

@@ -48,10 +48,7 @@ class BonusStar(pygame.sprite.Sprite):
         return self.rect
 
     def handle_fox_collision(self, fox):
-        if not self._active:
-            return 0
-
-        if self.collision_cooldown > 0:
+        if not self._active or self.collision_cooldown > 0:
             return 0
 
         if fox.hitbox.colliderect(self.hitbox):

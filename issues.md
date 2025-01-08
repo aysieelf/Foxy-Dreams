@@ -90,8 +90,6 @@ UI Development:
 - [ ] Implement animations:
   - [ ] Fox-cloud impact effect
   - [x] Bonus collection animation
-  - [ ] Screen transitions
-  - [ ] Cloud movement smoothing
 
 Testing & Debugging:
 - [ ] Create unit tests

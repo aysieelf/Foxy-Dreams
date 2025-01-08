@@ -1,3 +1,5 @@
+import random
+
 from src.utils import constants as c
 
 import pygame.sprite
@@ -35,6 +37,11 @@ class Cloud(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
+        self.shake_duration = 20
+        self.shake_intensity = 2
+        self.is_shaking = False
+        self.shake_start = 0
+        self.original_pos = None
         self._set_position(player)
 
     @property
@@ -53,7 +60,9 @@ class Cloud(pygame.sprite.Sprite):
         """
         Update the cloud
         """
+        self.update_shake()
         keys = pygame.key.get_pressed()
+
         # Player 1 (WASD)
         if self.player == "player1":
             if keys[pygame.K_w]:
@@ -92,6 +101,10 @@ class Cloud(pygame.sprite.Sprite):
 
     def handle_fox_collision(self, fox):
         if fox.hitbox.colliderect(self.hitbox):
+            self.is_shaking = True
+            self.shake_start = pygame.time.get_ticks()
+            self.original_pos = self.rect.copy()
+
             overlap_x = min(
                 fox.hitbox.right - self.hitbox.left,
                 self.hitbox.right - fox.hitbox.left,
@@ -155,3 +168,21 @@ class Cloud(pygame.sprite.Sprite):
     def reset(self):
         self._set_position(self.player)
         self.collision_cooldown = 0
+
+    def update_shake(self):
+        if not self.is_shaking:
+            return
+
+        current_time = pygame.time.get_ticks()
+        elapsed = current_time - self.shake_start
+
+        if elapsed > self.shake_duration:
+            self.is_shaking = False
+            self.rect.center = self.original_pos.center
+            return
+
+        offset_x = random.randint(-self.shake_intensity, self.shake_intensity)
+        offset_y = random.randint(-self.shake_intensity, self.shake_intensity)
+
+        self.rect.centerx = self.original_pos.centerx + offset_x
+        self.rect.centery = self.original_pos.centery + offset_y

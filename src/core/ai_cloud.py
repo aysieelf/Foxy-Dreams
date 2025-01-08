@@ -11,6 +11,7 @@ class AICloud(Cloud):
         self.delay_counter = 0
 
     def update(self, fox):
+        super().update(fox)
         self._handle_ai_movement(fox)
 
     def _handle_ai_movement(self, fox):

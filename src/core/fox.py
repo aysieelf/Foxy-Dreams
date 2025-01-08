@@ -6,12 +6,7 @@ import pygame.sprite
 class Fox(pygame.sprite.Sprite):
     def __init__(self, initial_speed) -> None:
         super().__init__()
-        self.original_image = pygame.image.load("assets/images/fox.png").convert_alpha()
-        self.image = self.original_image
-        self.rect = self.image.get_rect()
-        self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
-        self.radius = (self.rect.width - c.FOX_HITBOX_DIFF) // 2
-
+        self._load_image()
         self.velocity = pygame.math.Vector2(1, 0.5)
         self.velocity.scale_to_length(initial_speed)
         self.angle = 0
@@ -22,6 +17,13 @@ class Fox(pygame.sprite.Sprite):
         box = pygame.Rect(0, 0, diameter, diameter)
         box.center = self.rect.center
         return box
+
+    def _load_image(self):
+        self.original_image = pygame.image.load("assets/images/fox.png").convert_alpha()
+        self.image = self.original_image
+        self.rect = self.image.get_rect()
+        self.rect.center = (c.WIDTH // 2, c.HEIGHT // 2)
+        self.radius = (self.rect.width - c.FOX_HITBOX_DIFF) // 2
 
     def update(self, sound_manager) -> str | None:
         self._rotate_image()

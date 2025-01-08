@@ -38,7 +38,7 @@ class Cloud(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.shake_duration = 20
-        self.shake_intensity = 2
+        self.shake_intensity = 1
         self.is_shaking = False
         self.shake_start = 0
         self.original_pos = None
@@ -100,70 +100,94 @@ class Cloud(pygame.sprite.Sprite):
             self.rect.y += self.speed
 
     def handle_fox_collision(self, fox):
-        if fox.hitbox.colliderect(self.hitbox):
-            self.is_shaking = True
-            self.shake_start = pygame.time.get_ticks()
-            self.original_pos = self.rect.copy()
+        if not fox.hitbox.colliderect(self.hitbox):
+            return False
 
-            overlap_x = min(
-                fox.hitbox.right - self.hitbox.left,
-                self.hitbox.right - fox.hitbox.left,
+        self._init_collision_state()
+        overlap_x, overlap_y = self._calculate_overlaps(fox)
+
+        if overlap_x < overlap_y:
+            self._handle_side_collision(fox)
+        else:
+            self._handle_vertical_collision(fox)
+
+        return True
+
+    def _init_collision_state(self):
+        self.is_shaking = True
+        self.shake_start = pygame.time.get_ticks()
+        self.original_pos = self.rect.copy()
+
+    def _calculate_overlaps(self, fox):
+        overlap_x = min(
+            fox.hitbox.right - self.hitbox.left,
+            self.hitbox.right - fox.hitbox.left,
+        )
+        overlap_y = min(
+            fox.hitbox.bottom - self.hitbox.top,
+            self.hitbox.bottom - fox.hitbox.top,
+        )
+        return overlap_x, overlap_y
+
+    def _handle_side_collision(self, fox):
+        if self._is_valid_side_hit(fox):
+            self._apply_side_bounce(fox)
+        else:
+            self._fix_invalid_side_hit(fox)
+
+    def _is_valid_side_hit(self, fox):
+        return (
+                self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx
+        ) or (
+                self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx
+        )
+
+    def _apply_side_bounce(self, fox):
+        vertical_bounce = self._calculate_vertical_bounce(fox)
+
+        if self.player == "player1":
+            fox.velocity.x = abs(fox.velocity.x)
+        else:  # player2
+            fox.velocity.x = -abs(fox.velocity.x)
+        fox.velocity.y = vertical_bounce
+
+        current_speed = fox.velocity.length()
+        fox.velocity.scale_to_length(current_speed)
+
+    def _calculate_vertical_bounce(self, fox):
+        relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (
+                self.hitbox.height / 2
+        )
+        min_vertical_component = 0.3
+        vertical_bounce = relative_hit_point * c.BASE_SPEED
+
+        if abs(vertical_bounce) < min_vertical_component * c.BASE_SPEED:
+            vertical_bounce = (
+                    min_vertical_component
+                    * c.BASE_SPEED
+                    * (1 if vertical_bounce >= 0 else -1)
             )
-            overlap_y = min(
-                fox.hitbox.bottom - self.hitbox.top,
-                self.hitbox.bottom - fox.hitbox.top,
-            )
+        return vertical_bounce
 
-            if overlap_x < overlap_y:
-                valid_side_hit = (
-                    self.player == "player1"
-                    and fox.hitbox.centerx > self.hitbox.centerx
-                ) or (
-                    self.player == "player2"
-                    and fox.hitbox.centerx < self.hitbox.centerx
-                )
+    def _fix_invalid_side_hit(self, fox):
+        if (
+                self.player == "player1"
+                and fox.hitbox.centerx > self.hitbox.centerx
+        ):
+            fox.velocity.x = abs(fox.velocity.x)
+        elif (
+                self.player == "player2"
+                and fox.hitbox.centerx < self.hitbox.centerx
+        ):
+            fox.velocity.x = -abs(fox.velocity.x)
 
-                if valid_side_hit:
-                    relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (
-                        self.hitbox.height / 2
-                    )
-                    min_vertical_component = 0.3
-                    vertical_bounce = relative_hit_point * c.BASE_SPEED
-                    if abs(vertical_bounce) < min_vertical_component * c.BASE_SPEED:
-                        vertical_bounce = (
-                            min_vertical_component
-                            * c.BASE_SPEED
-                            * (1 if vertical_bounce >= 0 else -1)
-                        )
-
-                    if self.player == "player1":
-                        fox.velocity.x = abs(fox.velocity.x)
-                    else:  # player2
-                        fox.velocity.x = -abs(fox.velocity.x)
-                    fox.velocity.y = vertical_bounce
-
-                    current_speed = fox.velocity.length()
-                    fox.velocity.scale_to_length(current_speed)
-                else:
-                    if (
-                        self.player == "player1"
-                        and fox.hitbox.centerx > self.hitbox.centerx
-                    ):
-                        fox.velocity.x = abs(fox.velocity.x)
-                    elif (
-                        self.player == "player2"
-                        and fox.hitbox.centerx < self.hitbox.centerx
-                    ):
-                        fox.velocity.x = -abs(fox.velocity.x)
-            else:
-                if fox.hitbox.centery < self.hitbox.centery:
-                    fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF * 0.75
-                else:
-                    fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
-                fox.velocity.y *= -1
-                self.collision_cooldown = 3
-            return True
-        return False
+    def _handle_vertical_collision(self, fox):
+        if fox.hitbox.centery < self.hitbox.centery:
+            fox.rect.bottom = self.hitbox.top - c.FOX_HITBOX_DIFF * 0.75
+        else:
+            fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
+        fox.velocity.y *= -1
+        self.collision_cooldown = 3
 
     def reset(self):
         self._set_position(self.player)

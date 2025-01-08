@@ -27,6 +27,10 @@ class Renderer:
             "assets/images/button.png"
         ).convert_alpha()
 
+        self.top_scores_image: pygame.Surface = pygame.image.load(
+            "assets/images/top_scores.png"
+        ).convert_alpha()
+
         self.start_button = Button(
             self.button_template.copy(),
             c.START_BUTTON_POS,
@@ -205,30 +209,33 @@ class Renderer:
         self.screen.blit(text, text_rect)
 
     def _current_score(self, game_state: GameState):
-        font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
+        font = pygame.font.SysFont(c.GAME_OVER_CURRENT_SCORE_FONT, c.GAME_OVER_CURRENT_SCORE_FONT_SIZE)
         text = font.render(
-            f"Your score: {game_state.player1_score}",
+            f"Player 1: {game_state.player1_score}",
             True,
-            c.SCORE_TEXT_COLOR,
+            c.GAME_OVER_CURRENT_SCORE_TEXT_COLOR,
         )
-        self.screen.blit(text, c.SCORE_POS_PLAYER1)
+        self.screen.blit(text, c.GAME_OVER_CURRENT_SCORE_P1_POS)
 
         if game_state.multiplayer:
             text = font.render(
-                f"Player 2 score: {game_state.player2_score}",
+                f"Player 2: {game_state.player2_score}",
                 True,
-                c.SCORE_TEXT_COLOR,
+                c.GAME_OVER_CURRENT_SCORE_TEXT_COLOR,
             )
-            self.screen.blit(text, c.SCORE_POS_PLAYER2)
+            self.screen.blit(text, c.GAME_OVER_CURRENT_SCORE_P2_POS)
 
     def _top_scores(self, game_state: GameState):
-        font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
+        image_rect = self.top_scores_image.get_rect(center=c.TOP_SCORES_RECT_POS)
+        self.screen.blit(self.top_scores_image, image_rect)
+
+        font = pygame.font.SysFont(c.TOP_SCORES_FONT, c.TOP_SCORES_FONT_SIZE, bold=True)
         text = font.render(
-            "Top scores",
+            c.TOP_SCORES_TEXT,
             True,
-            c.SCORE_TEXT_COLOR,
+            c.TOP_SCORES_TEXT_COLOR,
         )
-        text_rect = text.get_rect(center=(c.WIDTH // 2, c.HEIGHT // 2 - 50))
+        text_rect = text.get_rect(center=c.TOP_SCORES_POS)
         self.screen.blit(text, text_rect)
 
         top_scores = get_top_five_scores()
@@ -238,7 +245,7 @@ class Renderer:
             text = font.render(
                 score,
                 True,
-                c.SCORE_TEXT_COLOR,
+                c.TOP_SCORES_TEXT_COLOR,
             )
             text_rect = text.get_rect(center=(c.WIDTH // 2, c.HEIGHT // 2 + i * 30))
             self.screen.blit(text, text_rect)

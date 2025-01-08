@@ -88,7 +88,7 @@ CONTROLS_INFO_TEXT = (
 )
 CONTROLS_INFO_FONT = "arial"
 CONTROLS_INFO_TEXT_COLOR = STAR_PARTICLES_COLOR
-CONTROLS_INFO_POS = (WIDTH // 2, HEIGHT - 50)
+CONTROLS_INFO_POS = (WIDTH // 2, HEIGHT - 35)
 
 
 # PLAYING SCREEN ---------------------------------------------------------------

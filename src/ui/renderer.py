@@ -232,9 +232,11 @@ class Renderer:
         self.screen.blit(text, text_rect)
 
         top_scores = get_top_five_scores()
-        for i, score in enumerate(top_scores):
+        top_scores_str = [f"{score.date}: {score.score} points" for score in top_scores]
+
+        for i, score in enumerate(top_scores_str):
             text = font.render(
-                f"{i + 1}: {score}",
+                score,
                 True,
                 c.SCORE_TEXT_COLOR,
             )

@@ -70,11 +70,11 @@ class GameState:
     def _game_difficulty_update(self):
         players_score = sum((self.player1_score, self.player2_score))
         if players_score > 0:
-            new_speed = self.base_speed + (players_score / 3)
+            new_speed = self.base_speed + (players_score / 10)
             self.current_speed = min(new_speed, c.MAX_SPEED)
             self.cloud_player1.speed = self.current_speed * 0.35
             if isinstance(self.cloud_player2, AICloud):
-                self.cloud_player2.speed = self.current_speed * 0.8
+                self.cloud_player2.speed = self.current_speed * 0.6
             else:
                 self.cloud_player2.speed = self.current_speed * 0.35
         else:

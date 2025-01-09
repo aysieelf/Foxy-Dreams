@@ -93,11 +93,11 @@ UI Development:
 
 Testing & Debugging:
 - [x] Create unit tests
-- [ ] Perform gameplay testing
-- [ ] Balance difficulty progression
-- [ ] Optimize performance
-- [ ] Fine-tune sound balance
-- [ ] Test settings persistence
+- [x] Perform gameplay testing
+- [x] Balance difficulty progression
+- [x] Optimize performance
+- [x] Fine-tune sound balance
+- [x] Test settings persistence
 - [ ] Cross-platform testing
 
 Documentation:

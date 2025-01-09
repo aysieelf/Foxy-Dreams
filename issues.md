@@ -87,12 +87,12 @@ UI Development:
 - [x] Create game over screen:
   - [x] Final score display
   - [x] High score update
-- [ ] Implement animations:
-  - [ ] Fox-cloud impact effect
+- [x] Implement animations:
+  - [x] Fox-cloud impact effect
   - [x] Bonus collection animation
 
 Testing & Debugging:
-- [ ] Create unit tests
+- [x] Create unit tests
 - [ ] Perform gameplay testing
 - [ ] Balance difficulty progression
 - [ ] Optimize performance

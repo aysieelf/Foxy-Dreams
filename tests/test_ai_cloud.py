@@ -1,15 +1,13 @@
 import unittest
-from unittest.mock import Mock, patch, PropertyMock
-
-import pygame
+from unittest.mock import Mock, PropertyMock, patch
 
 from src.core.ai_cloud import AICloud
 from src.utils import constants as c
 
 
 class AICloudShould(unittest.TestCase):
-    @patch('pygame.transform.rotozoom')
-    @patch('pygame.image.load')
+    @patch("pygame.transform.rotozoom")
+    @patch("pygame.image.load")
     def setUp(self, mock_load, mock_rotozoom):
         mock_surface = Mock()
         mock_converted_surface = Mock()
@@ -38,9 +36,11 @@ class AICloudShould(unittest.TestCase):
     def test_init_setsDelayCounter(self):
         self.assertEqual(0, self.ai_cloud.delay_counter)
 
-    @patch('src.core.cloud.Cloud.update')
+    @patch("src.core.cloud.Cloud.update")
     def test_update_callsHandleAIMovement(self, mock_super_update):
-        with patch.object(self.ai_cloud, "_handle_ai_movement") as mock_handle_ai_movement:
+        with patch.object(
+            self.ai_cloud, "_handle_ai_movement"
+        ) as mock_handle_ai_movement:
             fox = Mock()
             self.ai_cloud.update(fox)
 
@@ -97,7 +97,9 @@ class AICloudShould(unittest.TestCase):
         mock_hitbox = Mock()
         mock_hitbox.top = 0
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox_property:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox_property:
             mock_hitbox_property.return_value = mock_hitbox
 
             initial_y = self.ai_cloud.rect.y
@@ -112,7 +114,9 @@ class AICloudShould(unittest.TestCase):
         mock_hitbox = Mock()
         mock_hitbox.top = -5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox_property:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox_property:
             mock_hitbox_property.return_value = mock_hitbox
 
             initial_y = self.ai_cloud.rect.y
@@ -126,7 +130,9 @@ class AICloudShould(unittest.TestCase):
         mock_hitbox = Mock()
         mock_hitbox.bottom = c.HEIGHT
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox_property:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox_property:
             mock_hitbox_property.return_value = mock_hitbox
 
             initial_y = self.ai_cloud.rect.y
@@ -137,11 +143,15 @@ class AICloudShould(unittest.TestCase):
             expected_movement = self.ai_cloud.speed * 0.8 * speed_factor
             self.assertEqual(self.ai_cloud.rect.y, initial_y + expected_movement)
 
-    def test_moveWithSpeed_doesNotMoveDown_whenHitBoxBottomIsGreaterThanHeightPlusFour(self):
+    def test_moveWithSpeed_doesNotMoveDown_whenHitBoxBottomIsGreaterThanHeightPlusFour(
+        self,
+    ):
         mock_hitbox = Mock()
         mock_hitbox.bottom = c.HEIGHT + 5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox_property:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox_property:
             mock_hitbox_property.return_value = mock_hitbox
 
             initial_y = self.ai_cloud.rect.y

@@ -1,15 +1,15 @@
 import unittest
-from unittest.mock import patch, Mock, PropertyMock, MagicMock
-
-import pygame
+from unittest.mock import Mock, patch
 
 from src.core.fox import Fox
 from src.utils import constants as c
 
+import pygame
+
 
 class FoxShould(unittest.TestCase):
     def setUp(self):
-        patcher = patch.object(Fox, '_load_image')
+        patcher = patch.object(Fox, "_load_image")
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -42,26 +42,29 @@ class FoxShould(unittest.TestCase):
         self.assertEqual(self.fox.rect.center, hitbox.center)
 
     def test_update_callsRotateImage(self):
-        with (patch.object(self.fox, '_rotate_image') as mock_rotate_image,
-              patch.object(self.fox, '_move_fox'),
-              patch.object(self.fox, '_check_for_collision'),
-              ):
+        with (
+            patch.object(self.fox, "_rotate_image") as mock_rotate_image,
+            patch.object(self.fox, "_move_fox"),
+            patch.object(self.fox, "_check_for_collision"),
+        ):
             self.fox.update(None)
             mock_rotate_image.assert_called_once()
 
     def test_update_callsMoveFox(self):
-        with (patch.object(self.fox, '_rotate_image'),
-              patch.object(self.fox, '_move_fox') as mock_move_fox,
-              patch.object(self.fox, '_check_for_collision'),
-              ):
+        with (
+            patch.object(self.fox, "_rotate_image"),
+            patch.object(self.fox, "_move_fox") as mock_move_fox,
+            patch.object(self.fox, "_check_for_collision"),
+        ):
             self.fox.update(None)
             mock_move_fox.assert_called_once()
 
     def test_update_callsCheckForCollision(self):
-        with (patch.object(self.fox, '_rotate_image'),
-              patch.object(self.fox, '_move_fox'),
-              patch.object(self.fox, '_check_for_collision') as mock_check_for_collision,
-              ):
+        with (
+            patch.object(self.fox, "_rotate_image"),
+            patch.object(self.fox, "_move_fox"),
+            patch.object(self.fox, "_check_for_collision") as mock_check_for_collision,
+        ):
             self.fox.update(None)
             mock_check_for_collision.assert_called_once()
 

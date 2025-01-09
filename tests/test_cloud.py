@@ -1,15 +1,15 @@
 import unittest
-from unittest.mock import Mock, patch, PropertyMock, MagicMock
-
-import pygame
+from unittest.mock import MagicMock, Mock, PropertyMock, patch
 
 from src.core.cloud import Cloud
 from src.utils import constants as c
 
+import pygame
+
 
 class CloudShould(unittest.TestCase):
-    @patch('pygame.transform.rotozoom')
-    @patch('pygame.image.load')
+    @patch("pygame.transform.rotozoom")
+    @patch("pygame.image.load")
     def setUp(self, mock_load, mock_rotozoom):
         mock_surface = Mock()
         mock_converted_surface = Mock()
@@ -73,13 +73,17 @@ class CloudShould(unittest.TestCase):
         mock_rect.copy.assert_called_once()
 
         self.assertEqual(mock_rect.width - c.CLOUD_HITBOX_WIDTH_DIFF, mock_copy.width)
-        self.assertEqual(mock_rect.height + c.CLOUD_HITBOX_HEIGHT_DIFF, mock_copy.height)
+        self.assertEqual(
+            mock_rect.height + c.CLOUD_HITBOX_HEIGHT_DIFF, mock_copy.height
+        )
         self.assertEqual(mock_rect.left, mock_copy.left)
 
     def test_update_callsUpdateShake(self):
-        with (patch.object(self.cloud, 'update_shake') as mock_update_shake,
-              patch('pygame.key.get_pressed'),
-              patch.object(self.cloud, 'move')):
+        with (
+            patch.object(self.cloud, "update_shake") as mock_update_shake,
+            patch("pygame.key.get_pressed"),
+            patch.object(self.cloud, "move"),
+        ):
             self.cloud.update(Mock())
             mock_update_shake.assert_called_once()
 
@@ -90,8 +94,10 @@ class CloudShould(unittest.TestCase):
         keys = [0] * 500
         keys[pygame.K_w] = 1
 
-        with (patch.object(self.cloud, 'update_shake'),
-              patch('pygame.key.get_pressed', return_value=keys)):
+        with (
+            patch.object(self.cloud, "update_shake"),
+            patch("pygame.key.get_pressed", return_value=keys),
+        ):
             self.cloud.update(Mock())
 
         self.cloud.move.assert_called_once_with("up")
@@ -103,8 +109,10 @@ class CloudShould(unittest.TestCase):
         keys = [0] * 500
         keys[pygame.K_s] = 1
 
-        with (patch.object(self.cloud, 'update_shake'),
-              patch('pygame.key.get_pressed', return_value=keys)):
+        with (
+            patch.object(self.cloud, "update_shake"),
+            patch("pygame.key.get_pressed", return_value=keys),
+        ):
             self.cloud.update(Mock())
 
         self.cloud.move.assert_called_once_with("down")
@@ -123,7 +131,9 @@ class CloudShould(unittest.TestCase):
         mock_rect = MagicMock()
         mock_rect.y = 100
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             mock_hitbox.return_value = MagicMock()
             mock_hitbox.return_value.top = 10
             self.cloud.rect = mock_rect
@@ -136,7 +146,9 @@ class CloudShould(unittest.TestCase):
         mock_rect = MagicMock()
         mock_rect.y = 100
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             mock_hitbox.return_value = MagicMock()
             mock_hitbox.return_value.bottom = 200
             self.cloud.rect = mock_rect
@@ -149,7 +161,7 @@ class CloudShould(unittest.TestCase):
         fox = Mock()
         fox.hitbox.colliderect.return_value = False
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock):
+        with patch("src.core.cloud.Cloud.hitbox", new_callable=PropertyMock):
 
             self.assertFalse(self.cloud.handle_fox_collision(fox))
 
@@ -157,24 +169,32 @@ class CloudShould(unittest.TestCase):
         fox = Mock()
         fox.hitbox.colliderect.return_value = True
 
-        with (patch.object(self.cloud, '_init_collision_state') as mock_init_collision_state,
-              patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock),
-              patch.object(self.cloud, '_calculate_overlaps', return_value=(10, 20)),
-              patch.object(self.cloud, '_handle_side_collision'),
-              ):
+        with (
+            patch.object(
+                self.cloud, "_init_collision_state"
+            ) as mock_init_collision_state,
+            patch("src.core.cloud.Cloud.hitbox", new_callable=PropertyMock),
+            patch.object(self.cloud, "_calculate_overlaps", return_value=(10, 20)),
+            patch.object(self.cloud, "_handle_side_collision"),
+        ):
             self.cloud.handle_fox_collision(fox)
 
             mock_init_collision_state.assert_called_once()
 
-    def test_handleFoxCollision_callsHandleSideCollision_whenOverlapXLessThanOverlapY(self):
+    def test_handleFoxCollision_callsHandleSideCollision_whenOverlapXLessThanOverlapY(
+        self,
+    ):
         fox = Mock()
         fox.hitbox.colliderect.return_value = True
 
-        with (patch.object(self.cloud, '_init_collision_state'),
-              patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock),
-              patch.object(self.cloud, '_calculate_overlaps', return_value=(10, 20)),
-              patch.object(self.cloud, '_handle_side_collision') as mock_handle_side_collision,
-              ):
+        with (
+            patch.object(self.cloud, "_init_collision_state"),
+            patch("src.core.cloud.Cloud.hitbox", new_callable=PropertyMock),
+            patch.object(self.cloud, "_calculate_overlaps", return_value=(10, 20)),
+            patch.object(
+                self.cloud, "_handle_side_collision"
+            ) as mock_handle_side_collision,
+        ):
             self.cloud.handle_fox_collision(fox)
 
             mock_handle_side_collision.assert_called_once()
@@ -183,11 +203,14 @@ class CloudShould(unittest.TestCase):
         fox = Mock()
         fox.hitbox.colliderect.return_value = True
 
-        with (patch.object(self.cloud, '_init_collision_state'),
-              patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock),
-              patch.object(self.cloud, '_calculate_overlaps', return_value=(20, 10)),
-              patch.object(self.cloud, '_handle_vertical_collision') as mock_handle_vertical_collision,
-              ):
+        with (
+            patch.object(self.cloud, "_init_collision_state"),
+            patch("src.core.cloud.Cloud.hitbox", new_callable=PropertyMock),
+            patch.object(self.cloud, "_calculate_overlaps", return_value=(20, 10)),
+            patch.object(
+                self.cloud, "_handle_vertical_collision"
+            ) as mock_handle_vertical_collision,
+        ):
             self.cloud.handle_fox_collision(fox)
 
             mock_handle_vertical_collision.assert_called_once()
@@ -196,11 +219,12 @@ class CloudShould(unittest.TestCase):
         fox = Mock()
         fox.hitbox.colliderect.return_value = True
 
-        with (patch.object(self.cloud, '_init_collision_state'),
-              patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock),
-              patch.object(self.cloud, '_calculate_overlaps', return_value=(20, 10)),
-              patch.object(self.cloud, '_handle_vertical_collision'),
-              ):
+        with (
+            patch.object(self.cloud, "_init_collision_state"),
+            patch("src.core.cloud.Cloud.hitbox", new_callable=PropertyMock),
+            patch.object(self.cloud, "_calculate_overlaps", return_value=(20, 10)),
+            patch.object(self.cloud, "_handle_vertical_collision"),
+        ):
             self.assertTrue(self.cloud.handle_fox_collision(fox))
 
     def test_initCollisionState_setsIsShakingToTrue(self):
@@ -230,7 +254,9 @@ class CloudShould(unittest.TestCase):
         fox.hitbox.bottom = 200
         fox.hitbox.top = 150
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             mock_hitbox.return_value = MagicMock()
             mock_hitbox.return_value.left = 75
             mock_hitbox.return_value.right = 125
@@ -247,8 +273,10 @@ class CloudShould(unittest.TestCase):
         fox.velocity = Mock()
         fox.velocity.length.return_value = 10
 
-        with patch.object(self.cloud, '_is_valid_side_hit', return_value=True), \
-                patch.object(self.cloud, '_apply_side_bounce') as mock_apply_side_bounce:
+        with (
+            patch.object(self.cloud, "_is_valid_side_hit", return_value=True),
+            patch.object(self.cloud, "_apply_side_bounce") as mock_apply_side_bounce,
+        ):
             self.cloud._handle_side_collision(fox)
 
             mock_apply_side_bounce.assert_called_once()
@@ -258,8 +286,12 @@ class CloudShould(unittest.TestCase):
         fox.velocity = Mock()
         fox.velocity.length.return_value = 10
 
-        with patch.object(self.cloud, '_is_valid_side_hit', return_value=False), \
-                patch.object(self.cloud, '_fix_invalid_side_hit') as mock_fix_invalid_side_hit:
+        with (
+            patch.object(self.cloud, "_is_valid_side_hit", return_value=False),
+            patch.object(
+                self.cloud, "_fix_invalid_side_hit"
+            ) as mock_fix_invalid_side_hit,
+        ):
             self.cloud._handle_side_collision(fox)
 
             mock_fix_invalid_side_hit.assert_called_once()
@@ -273,7 +305,9 @@ class CloudShould(unittest.TestCase):
         mock_rect.width = 100
         self.cloud.rect = mock_rect
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=50)
 
             result = self.cloud._is_valid_side_hit(fox)
@@ -288,7 +322,9 @@ class CloudShould(unittest.TestCase):
         mock_rect.width = 100
         self.cloud.rect = mock_rect
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=100)
 
             result = self.cloud._is_valid_side_hit(fox)
@@ -303,7 +339,9 @@ class CloudShould(unittest.TestCase):
         mock_rect.width = 100
         self.cloud.rect = mock_rect
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=100)
 
             result = self.cloud._is_valid_side_hit(fox)
@@ -318,7 +356,9 @@ class CloudShould(unittest.TestCase):
         mock_rect.width = 100
         self.cloud.rect = mock_rect
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=50)
 
             result = self.cloud._is_valid_side_hit(fox)
@@ -330,7 +370,7 @@ class CloudShould(unittest.TestCase):
         fox.velocity.x = -5
         fox.velocity.length.return_value = 10
 
-        with patch.object(self.cloud, '_calculate_vertical_bounce', return_value=3):
+        with patch.object(self.cloud, "_calculate_vertical_bounce", return_value=3):
             # Act
             self.cloud._apply_side_bounce(fox)
 
@@ -344,7 +384,7 @@ class CloudShould(unittest.TestCase):
         fox.velocity.x = 5
         fox.velocity.length.return_value = 10
 
-        with patch.object(self.cloud, '_calculate_vertical_bounce', return_value=3):
+        with patch.object(self.cloud, "_calculate_vertical_bounce", return_value=3):
             self.cloud._apply_side_bounce(fox)
 
             self.assertEqual(-5, fox.velocity.x)
@@ -357,7 +397,7 @@ class CloudShould(unittest.TestCase):
         fox.velocity.x = 3
         fox.velocity.length.return_value = 5
 
-        with patch.object(self.cloud, '_calculate_vertical_bounce', return_value=4):
+        with patch.object(self.cloud, "_calculate_vertical_bounce", return_value=4):
             self.cloud._apply_side_bounce(fox)
 
             fox.velocity.length.assert_called_once()
@@ -368,7 +408,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         expected_bounce = 2.5
 
-        with patch.object(self.cloud, '_calculate_vertical_bounce', return_value=expected_bounce) as mock_calc:
+        with patch.object(
+            self.cloud, "_calculate_vertical_bounce", return_value=expected_bounce
+        ) as mock_calc:
             self.cloud._apply_side_bounce(fox)
 
             mock_calc.assert_called_once_with(fox)
@@ -379,7 +421,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         fox.hitbox.centery = 150
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).height = PropertyMock(return_value=40)
 
@@ -392,7 +436,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         fox.hitbox.centery = 105
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).height = PropertyMock(return_value=40)
 
@@ -401,12 +447,16 @@ class CloudShould(unittest.TestCase):
             expected_bounce = 0.3 * c.BASE_SPEED
             self.assertEqual(expected_bounce, result)
 
-    def test_calculateVerticalBounce_returnsNegativeMinimum_whenBelowMinimumAndNegative(self):
+    def test_calculateVerticalBounce_returnsNegativeMinimum_whenBelowMinimumAndNegative(
+        self,
+    ):
         # Arrange
         fox = MagicMock()
         fox.hitbox.centery = 95
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).height = PropertyMock(return_value=40)
 
@@ -419,7 +469,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         fox.hitbox.centery = 50
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).height = PropertyMock(return_value=40)
 
@@ -433,7 +485,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         fox.velocity.x = -5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=50)
             fox.hitbox.centerx = 100
 
@@ -446,7 +500,9 @@ class CloudShould(unittest.TestCase):
         fox = MagicMock()
         fox.velocity.x = 5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centerx = PropertyMock(return_value=100)
             fox.hitbox.centerx = 50
 
@@ -459,7 +515,9 @@ class CloudShould(unittest.TestCase):
         fox.hitbox.centery = 50
         fox.velocity.y = 5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).top = PropertyMock(return_value=80)
 
@@ -475,7 +533,9 @@ class CloudShould(unittest.TestCase):
         fox.hitbox.centery = 150
         fox.velocity.y = -5
 
-        with patch('src.core.cloud.Cloud.hitbox', new_callable=PropertyMock) as mock_hitbox:
+        with patch(
+            "src.core.cloud.Cloud.hitbox", new_callable=PropertyMock
+        ) as mock_hitbox:
             type(mock_hitbox.return_value).centery = PropertyMock(return_value=100)
             type(mock_hitbox.return_value).bottom = PropertyMock(return_value=120)
 
@@ -507,7 +567,7 @@ class CloudShould(unittest.TestCase):
         self.assertFalse(self.cloud.is_shaking)
         self.assertEqual(self.cloud.original_pos.center, self.cloud.rect.center)
 
-    @patch('random.randint')
+    @patch("random.randint")
     def test_updateShake_appliesRandomOffset(self, mock_randint):
         self.cloud.is_shaking = True
         self.cloud.shake_start = pygame.time.get_ticks()

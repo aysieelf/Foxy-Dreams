@@ -1,16 +1,13 @@
 import unittest
-from unittest.mock import Mock, patch, PropertyMock
+from unittest.mock import Mock, PropertyMock, patch
 
-import pygame
-
-from src.core.ai_cloud import AICloud
 from src.core.bonus_star import BonusStar
 from src.utils import constants as c
 
 
 class BonusStarShould(unittest.TestCase):
-    @patch('pygame.transform.rotozoom')
-    @patch('pygame.image.load')
+    @patch("pygame.transform.rotozoom")
+    @patch("pygame.image.load")
     def setUp(self, mock_load, mock_rotozoom):
         mock_surface = Mock()
         mock_converted_surface = Mock()
@@ -66,8 +63,7 @@ class BonusStarShould(unittest.TestCase):
         self.assertFalse(self.bonus_star.sprite_group.add.called)
 
     def test_spawn_setsActiveToTrue(self):
-        with (patch.object(self.bonus_star, '_set_pos'),
-              patch('pygame.time.set_timer')):
+        with patch.object(self.bonus_star, "_set_pos"), patch("pygame.time.set_timer"):
 
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
@@ -76,8 +72,10 @@ class BonusStarShould(unittest.TestCase):
             self.assertTrue(self.bonus_star._active)
 
     def test_spawn_setsPosition(self):
-        with (patch.object(self.bonus_star, '_set_pos') as mock_set_pos,
-              patch('pygame.time.set_timer')):
+        with (
+            patch.object(self.bonus_star, "_set_pos") as mock_set_pos,
+            patch("pygame.time.set_timer"),
+        ):
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.spawn()
@@ -85,8 +83,7 @@ class BonusStarShould(unittest.TestCase):
             mock_set_pos.assert_called_once()
 
     def test_spawn_addsToSpriteGroup(self):
-        with (patch.object(self.bonus_star, '_set_pos'),
-              patch('pygame.time.set_timer')):
+        with patch.object(self.bonus_star, "_set_pos"), patch("pygame.time.set_timer"):
 
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
@@ -95,14 +92,18 @@ class BonusStarShould(unittest.TestCase):
             self.assertTrue(self.bonus_star.sprite_group.add.called)
 
     def test_spawn_setsTimer(self):
-        with (patch.object(self.bonus_star, '_set_pos'),
-              patch('pygame.time.set_timer') as mock_set_timer):
+        with (
+            patch.object(self.bonus_star, "_set_pos"),
+            patch("pygame.time.set_timer") as mock_set_timer,
+        ):
 
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.spawn()
 
-            mock_set_timer.assert_called_once_with(c.BONUS_DE_SPAWN_EVENT, c.BONUS_LIFETIME)
+            mock_set_timer.assert_called_once_with(
+                c.BONUS_DE_SPAWN_EVENT, c.BONUS_LIFETIME
+            )
 
     def test_despawn_doesNotRemoveFromSpriteGroupWhenGameStateIsNotPlaying(self):
         self.bonus_star.game_state.current_state = c.GameStates.START
@@ -112,7 +113,7 @@ class BonusStarShould(unittest.TestCase):
         self.assertFalse(self.bonus_star.sprite_group.remove.called)
 
     def test_despawn_setsActiveToFalse(self):
-        with patch('pygame.time.set_timer'):
+        with patch("pygame.time.set_timer"):
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.despawn()
@@ -120,7 +121,7 @@ class BonusStarShould(unittest.TestCase):
             self.assertFalse(self.bonus_star._active)
 
     def test_despawn_removesFromSpriteGroup(self):
-        with patch('pygame.time.set_timer'):
+        with patch("pygame.time.set_timer"):
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.despawn()
@@ -128,7 +129,7 @@ class BonusStarShould(unittest.TestCase):
             self.assertTrue(self.bonus_star.sprite_group.remove.called)
 
     def test_despawn_resetsCollisionCooldown(self):
-        with patch('pygame.time.set_timer'):
+        with patch("pygame.time.set_timer"):
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.despawn()
@@ -136,7 +137,7 @@ class BonusStarShould(unittest.TestCase):
             self.assertEqual(0, self.bonus_star.collision_cooldown)
 
     def test_despawn_setsTimer(self):
-        with patch('pygame.time.set_timer') as mock_set_timer:
+        with patch("pygame.time.set_timer") as mock_set_timer:
             self.bonus_star.game_state.current_state = c.GameStates.PLAYING
 
             self.bonus_star.despawn()
@@ -144,12 +145,16 @@ class BonusStarShould(unittest.TestCase):
             mock_set_timer.assert_called_once_with(c.BONUS_DE_SPAWN_EVENT, 0)
 
     def test_setPos_setsRectCenterToRandomPosition(self):
-        with patch('src.core.bonus_star.get_random_position') as mock_get_random_position:
+        with patch(
+            "src.core.bonus_star.get_random_position"
+        ) as mock_get_random_position:
             self.bonus_star._set_pos()
 
             mock_get_random_position.assert_called_once()
 
-            self.assertEqual(mock_get_random_position.return_value, self.bonus_star.rect.center)
+            self.assertEqual(
+                mock_get_random_position.return_value, self.bonus_star.rect.center
+            )
 
     def test_handleFoxCollision_returnsZeroWhenNotActive(self):
         self.bonus_star._active = False
@@ -177,9 +182,11 @@ class BonusStarShould(unittest.TestCase):
         mock_rect.center = (100, 100)
         self.bonus_star.rect = mock_rect
 
-        with (patch.object(BonusStar, 'hitbox', new_callable=PropertyMock),
-              patch.object(self.bonus_star, 'particle_system'),
-              patch.object(self.bonus_star, 'despawn')):
+        with (
+            patch.object(BonusStar, "hitbox", new_callable=PropertyMock),
+            patch.object(self.bonus_star, "particle_system"),
+            patch.object(self.bonus_star, "despawn"),
+        ):
 
             result = self.bonus_star.handle_fox_collision(fox)
 
@@ -197,9 +204,11 @@ class BonusStarShould(unittest.TestCase):
         mock_rect.center = (100, 100)
         self.bonus_star.rect = mock_rect
 
-        with (patch.object(BonusStar, 'hitbox', new_callable=PropertyMock),
-              patch.object(self.bonus_star, 'particle_system'),
-              patch.object(self.bonus_star, 'despawn')):
+        with (
+            patch.object(BonusStar, "hitbox", new_callable=PropertyMock),
+            patch.object(self.bonus_star, "particle_system"),
+            patch.object(self.bonus_star, "despawn"),
+        ):
 
             result = self.bonus_star.handle_fox_collision(fox)
 

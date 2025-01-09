@@ -1,22 +1,17 @@
-import unittest
 from math import floor
-from unittest.mock import Mock
+import unittest
+from unittest.mock import Mock, patch
 
-from src.core.ai_cloud import AICloud
-from src.core.cloud import Cloud
-from src.core.fox import Fox
 from src.core.game_state import GameState
 from src.utils import constants as c
 
-from unittest.mock import Mock, patch
-import unittest
 import pygame
 
 
 class GameStateShould(unittest.TestCase):
     def setUp(self):
-        self.pygame_init_patch = patch('pygame.init').start()
-        self.mixer_init_patch = patch('pygame.mixer.init').start()
+        self.pygame_init_patch = patch("pygame.init").start()
+        self.mixer_init_patch = patch("pygame.mixer.init").start()
 
         self.rect_mock = Mock()
         self.rect_mock.width = 64
@@ -28,11 +23,11 @@ class GameStateShould(unittest.TestCase):
         self.image_mock.get_rect = Mock(return_value=self.rect_mock)
 
         self.patches = [
-            patch('pygame.image.load', return_value=self.image_mock),
-            patch('pygame.transform.rotozoom', return_value=self.image_mock),
-            patch('pygame.sprite.Group', return_value=Mock()),
-            patch('pygame.mixer.Sound', return_value=Mock()),
-            patch('pygame.mixer.music', return_value=Mock())
+            patch("pygame.image.load", return_value=self.image_mock),
+            patch("pygame.transform.rotozoom", return_value=self.image_mock),
+            patch("pygame.sprite.Group", return_value=Mock()),
+            patch("pygame.mixer.Sound", return_value=Mock()),
+            patch("pygame.mixer.music", return_value=Mock()),
         ]
 
         for p in self.patches:
@@ -41,19 +36,19 @@ class GameStateShould(unittest.TestCase):
         pygame.init()
         pygame.mixer.init()
 
-        self.fox_mock = patch('src.core.game_state.Fox').start()
+        self.fox_mock = patch("src.core.game_state.Fox").start()
         self.fox_mock.return_value = Mock()
 
-        self.cloud_mock = patch('src.core.game_state.Cloud').start()
+        self.cloud_mock = patch("src.core.game_state.Cloud").start()
         self.cloud_mock.return_value = Mock()
 
-        self.ai_cloud_mock = patch('src.core.game_state.AICloud').start()
+        self.ai_cloud_mock = patch("src.core.game_state.AICloud").start()
         self.ai_cloud_mock.return_value = Mock()
 
-        self.bonus_star_mock = patch('src.core.game_state.BonusStar').start()
+        self.bonus_star_mock = patch("src.core.game_state.BonusStar").start()
         self.bonus_star_mock.return_value = Mock()
 
-        self.sound_manager_mock = patch('src.core.game_state.SoundManager').start()
+        self.sound_manager_mock = patch("src.core.game_state.SoundManager").start()
         self.sound_manager_instance = Mock()
         self.sound_manager_instance.sound_muted = False
         self.sound_manager_instance.music_muted = False
@@ -101,11 +96,15 @@ class GameStateShould(unittest.TestCase):
         self.cloud_mock.update.return_value = None
         self.ai_cloud_mock.update.return_value = None
 
-        with (patch.object(game_state, '_check_for_winner') as mock_check_for_winner,
-              patch.object(game_state, '_check_for_fox_cloud_collision') as mock_check_for_fox_cloud_collision,
-              patch.object(game_state, '_check_for_bonus_star_fox_collision')
-              as mock_check_for_bonus_star_fox_collision,
-              ):
+        with (
+            patch.object(game_state, "_check_for_winner") as mock_check_for_winner,
+            patch.object(
+                game_state, "_check_for_fox_cloud_collision"
+            ) as mock_check_for_fox_cloud_collision,
+            patch.object(
+                game_state, "_check_for_bonus_star_fox_collision"
+            ) as mock_check_for_bonus_star_fox_collision,
+        ):
             game_state.update()
 
             mock_check_for_winner.assert_called_once()
@@ -122,9 +121,10 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_increasesPlayer1Score_whenWinnerIsPlayer1(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update'),
-              patch.object(game_state, '_play_again'),
-              ):
+        with (
+            patch.object(game_state, "_game_difficulty_update"),
+            patch.object(game_state, "_play_again"),
+        ):
 
             game_state._check_for_winner("player1")
 
@@ -133,9 +133,12 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_callsGameDifficultyUpdate_whenWinnerIsPlayer1(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update') as mock_game_difficulty_update,
-              patch.object(game_state, '_play_again'),
-              ):
+        with (
+            patch.object(
+                game_state, "_game_difficulty_update"
+            ) as mock_game_difficulty_update,
+            patch.object(game_state, "_play_again"),
+        ):
 
             game_state._check_for_winner("player1")
 
@@ -144,9 +147,10 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_callsPlayAgain_whenWinnerIsPlayer1(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update'),
-              patch.object(game_state, '_play_again') as mock_play_again,
-              ):
+        with (
+            patch.object(game_state, "_game_difficulty_update"),
+            patch.object(game_state, "_play_again") as mock_play_again,
+        ):
 
             game_state._check_for_winner("player1")
 
@@ -155,9 +159,10 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_increasesPlayer2Score_whenWinnerIsPlayer2(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update'),
-              patch.object(game_state, '_play_again'),
-              ):
+        with (
+            patch.object(game_state, "_game_difficulty_update"),
+            patch.object(game_state, "_play_again"),
+        ):
 
             game_state._check_for_winner("player2")
 
@@ -166,9 +171,12 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_callsGameDifficultyUpdate_whenWinnerIsPlayer2(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update') as mock_game_difficulty_update,
-              patch.object(game_state, '_play_again'),
-              ):
+        with (
+            patch.object(
+                game_state, "_game_difficulty_update"
+            ) as mock_game_difficulty_update,
+            patch.object(game_state, "_play_again"),
+        ):
 
             game_state._check_for_winner("player2")
 
@@ -177,9 +185,10 @@ class GameStateShould(unittest.TestCase):
     def test_checkForWinner_callsPlayAgain_whenWinnerIsPlayer2(self):
         game_state = GameState()
 
-        with (patch.object(game_state, '_game_difficulty_update'),
-              patch.object(game_state, '_play_again') as mock_play_again,
-              ):
+        with (
+            patch.object(game_state, "_game_difficulty_update"),
+            patch.object(game_state, "_play_again") as mock_play_again,
+        ):
 
             game_state._check_for_winner("player2")
 
@@ -210,7 +219,9 @@ class GameStateShould(unittest.TestCase):
         self.assertEqual(game_state._last_player, game_state.player1_score)
         game_state.sound_manager.play_sound.assert_called_once_with("fox-bounce")
         self.assertTrue(game_state.is_first_throw)
-        game_state.fox.velocity.scale_to_length.assert_called_once_with(game_state.current_speed)
+        game_state.fox.velocity.scale_to_length.assert_called_once_with(
+            game_state.current_speed
+        )
 
     def test_checkForFoxCloudCollision_handlesPlayer2Collision(self):
         game_state = GameState()
@@ -223,9 +234,13 @@ class GameStateShould(unittest.TestCase):
         self.assertEqual(game_state._last_player, game_state.player2_score)
         game_state.sound_manager.play_sound.assert_called_once_with("fox-bounce")
         self.assertTrue(game_state.is_first_throw)
-        game_state.fox.velocity.scale_to_length.assert_called_once_with(game_state.current_speed)
+        game_state.fox.velocity.scale_to_length.assert_called_once_with(
+            game_state.current_speed
+        )
 
-    def test_checkForBonusStarFoxCollision_addsPointsToPlayer1_whenLastPlayerIsPlayer1(self):
+    def test_checkForBonusStarFoxCollision_addsPointsToPlayer1_whenLastPlayerIsPlayer1(
+        self,
+    ):
         game_state = GameState()
         game_state.bonus_star.handle_fox_collision.return_value = 2
         game_state._last_player = game_state.player1_score
@@ -239,7 +254,7 @@ class GameStateShould(unittest.TestCase):
     def test_playAgain_resetsPositionAndDespawnsStar(self):
         game_state = GameState()
 
-        with patch.object(game_state, '_reset_fox_position') as mock_reset_position:
+        with patch.object(game_state, "_reset_fox_position") as mock_reset_position:
             game_state._play_again()
 
             mock_reset_position.assert_called_once()
@@ -252,7 +267,7 @@ class GameStateShould(unittest.TestCase):
         game_state.level = 4
         game_state.current_speed = 10
 
-        with patch.object(game_state, '_reset_fox_position') as mock_reset_position:
+        with patch.object(game_state, "_reset_fox_position") as mock_reset_position:
             game_state.reset()
 
             self.assertEqual(game_state.player1_score, 0)

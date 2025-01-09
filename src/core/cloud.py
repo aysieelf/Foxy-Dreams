@@ -137,10 +137,8 @@ class Cloud(pygame.sprite.Sprite):
 
     def _is_valid_side_hit(self, fox):
         return (
-                self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx
-        ) or (
-                self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx
-        )
+            self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx
+        ) or (self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx)
 
     def _apply_side_bounce(self, fox):
         vertical_bounce = self._calculate_vertical_bounce(fox)
@@ -156,29 +154,23 @@ class Cloud(pygame.sprite.Sprite):
 
     def _calculate_vertical_bounce(self, fox):
         relative_hit_point = (fox.hitbox.centery - self.hitbox.centery) / (
-                self.hitbox.height / 2
+            self.hitbox.height / 2
         )
         min_vertical_component = 0.3
         vertical_bounce = relative_hit_point * c.BASE_SPEED
 
         if abs(vertical_bounce) < min_vertical_component * c.BASE_SPEED:
             vertical_bounce = (
-                    min_vertical_component
-                    * c.BASE_SPEED
-                    * (1 if vertical_bounce >= 0 else -1)
+                min_vertical_component
+                * c.BASE_SPEED
+                * (1 if vertical_bounce >= 0 else -1)
             )
         return vertical_bounce
 
     def _fix_invalid_side_hit(self, fox):
-        if (
-                self.player == "player1"
-                and fox.hitbox.centerx > self.hitbox.centerx
-        ):
+        if self.player == "player1" and fox.hitbox.centerx > self.hitbox.centerx:
             fox.velocity.x = abs(fox.velocity.x)
-        elif (
-                self.player == "player2"
-                and fox.hitbox.centerx < self.hitbox.centerx
-        ):
+        elif self.player == "player2" and fox.hitbox.centerx < self.hitbox.centerx:
             fox.velocity.x = -abs(fox.velocity.x)
 
     def _handle_vertical_collision(self, fox):

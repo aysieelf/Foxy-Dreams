@@ -101,7 +101,7 @@ Testing & Debugging:
 - [ ] Cross-platform testing
 
 Documentation:
-- [ ] Write installation instructions
+- [x] Write installation instructions
 - [ ] Write user guide:
   - [ ] Controls documentation for both modes
   - [ ] Game modes explanation

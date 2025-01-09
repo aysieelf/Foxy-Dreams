@@ -193,6 +193,11 @@ class Cloud(pygame.sprite.Sprite):
         self._set_position(self.player)
         self.collision_cooldown = 0
         self.speed = c.BASE_SPEED * 0.35
+        self.shake_duration = 20
+        self.shake_intensity = 1
+        self.is_shaking = False
+        self.shake_start = 0
+        self.original_pos = None
 
     def update_shake(self):
         if not self.is_shaking:

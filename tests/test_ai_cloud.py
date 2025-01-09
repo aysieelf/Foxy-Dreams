@@ -53,8 +53,8 @@ class AICloudShould(unittest.TestCase):
         self.ai_cloud._handle_ai_movement(None)
         self.assertEqual(1, self.ai_cloud.delay_counter)
 
-    def test_handleAiMovement_setsDelayCounterToZero_whenDelayCounterIsEqualToReactionDelay(self):
-        with patch.object(self.ai_cloud, "_move_with_speed") as mock_move_with_speed:
+    def test_handleAiMovement_setsDelayCounterToZero_whenCounterIsEqualToReaction(self):
+        with patch.object(self.ai_cloud, "_move_with_speed"):
             fox = Mock()
             fox.rect.centery = 9
             self.ai_cloud.rect.centery = 0

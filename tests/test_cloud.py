@@ -179,7 +179,7 @@ class CloudShould(unittest.TestCase):
 
             mock_handle_side_collision.assert_called_once()
 
-    def test_handleFoxCollision_callsHandleVerticalCollision_whenOverlapXGreaterThanOverlapY(self):
+    def test_handleFoxCollision_callsHandleVerticalCollision(self):
         fox = Mock()
         fox.hitbox.colliderect.return_value = True
 
@@ -415,7 +415,7 @@ class CloudShould(unittest.TestCase):
             expected_bounce = -0.3 * c.BASE_SPEED
             self.assertEqual(expected_bounce, result)
 
-    def test_calculateVerticalBounce_calculatesCorrectBounce_whenNegativeAndAboveMinimum(self):
+    def test_calculateVerticalBounce_calculatesCorrectBounce(self):
         fox = MagicMock()
         fox.hitbox.centery = 50
 

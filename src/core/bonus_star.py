@@ -1,3 +1,4 @@
+from src.core.fox import Fox
 from src.effects.particle_system import ParticleSystem
 from src.utils import constants as c
 from src.utils.helpers import get_random_position
@@ -6,7 +7,10 @@ import pygame.sprite
 
 
 class BonusStar(pygame.sprite.Sprite):
-    def __init__(self, sprite_group, game_state) -> None:
+    """
+    Class to represent a bonus star in the game
+    """
+    def __init__(self, sprite_group: pygame.sprite.Group, game_state: "GameState") -> None:
         super().__init__()
         self.game_state = game_state
         self._active = False
@@ -18,14 +22,23 @@ class BonusStar(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     @property
-    def hitbox(self):
+    def hitbox(self) -> pygame.Rect:
+        """
+        Get the hitbox of the bonus star
+
+        Returns:
+            pygame.Rect: The hitbox of the bonus star
+        """
         box = self.rect.copy()
         box.width = self.rect.width - c.BONUS_HITBOX_DIFF
         box.height = self.rect.height - c.BONUS_HITBOX_DIFF
         box.center = self.rect.center
         return box
 
-    def spawn(self):
+    def spawn(self) -> None:
+        """
+        Spawn the bonus star. Set the position and add it to the sprite group.
+        """
         if self.game_state.current_state != c.GameStates.PLAYING:
             return
 
@@ -34,7 +47,10 @@ class BonusStar(pygame.sprite.Sprite):
         self.sprite_group.add(self)
         pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, c.BONUS_LIFETIME)
 
-    def despawn(self):
+    def despawn(self) -> None:
+        """
+        Despawn the bonus star. Remove it from the sprite group.
+        """
         if self.game_state.current_state != c.GameStates.PLAYING:
             return
 
@@ -43,11 +59,26 @@ class BonusStar(pygame.sprite.Sprite):
         self.collision_cooldown = 0
         pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, 0)
 
-    def _set_pos(self):
+    def _set_pos(self) -> pygame.Rect:
+        """
+        Set the position of the bonus star to a random position on the screen.
+
+        Returns:
+            pygame.Rect: The rectangle of the bonus star
+        """
         self.rect.center = get_random_position()
         return self.rect
 
-    def handle_fox_collision(self, fox):
+    def handle_fox_collision(self, fox: Fox) -> int:
+        """
+        Handle the collision between the fox and the bonus star.
+
+        Args:
+            fox (Fox): The fox object to check collision with
+
+        Returns:
+            int: The number of bonus points to add to the score
+        """
         if not self._active or self.collision_cooldown > 0:
             return 0
 

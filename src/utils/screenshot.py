@@ -15,7 +15,7 @@ class ScreenshotManager:
         if not os.path.exists(self.base_path):
             os.makedirs(self.base_path)
 
-    def capture(self, screen: pygame.Surface, name: str):
+    def _capture(self, screen: pygame.Surface, name: str):
         """
         Capture a screenshot of the current game state.
 
@@ -39,9 +39,9 @@ class ScreenshotManager:
             game_state: Current GameState instance
         """
         if game_state.start_screen:
-            self.capture(screen, "start_screen")
+            self._capture(screen, "start_screen")
         elif game_state.game_over:
-            self.capture(screen, f"game_over_score_{game_state.score}")
+            self._capture(screen, f"game_over_score_{game_state.score}")
 
         else:
-            self.capture(screen, f"game_in_progress_score_{game_state.score}")
+            self._capture(screen, f"game_in_progress_score_{game_state.score}")

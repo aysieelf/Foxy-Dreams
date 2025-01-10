@@ -86,6 +86,12 @@ class Renderer:
         pygame.display.flip()
 
     def _render_start_screen(self, game_state: GameState) -> None:
+        """
+        Render the start screen
+
+        Args:
+            game_state (GameState): The current game state
+        """
         self.screen.blit(self.start_screen_image, (0, 0))
         self._render_start_button()
         self._render_multiplayer_toggle_button(game_state)
@@ -94,9 +100,16 @@ class Renderer:
         self._render_controls_info()
 
     def _render_start_button(self) -> None:
+        """ Render the start button """
         self.start_button.draw(self.screen)
 
     def _render_multiplayer_toggle_button(self, game_state: GameState) -> None:
+        """
+        Render the multiplayer toggle button
+
+        Args:
+            game_state (GameState): The current game state
+        """
         text = (
             c.MULTIPLAYER_TOGGLE_BUTTON_TEXT_ON
             if game_state.multiplayer
@@ -106,6 +119,13 @@ class Renderer:
         self.multiplayer_button.draw(self.screen)
 
     def _render_sound_toggle_button(self, game_state: GameState, new_pos=None) -> None:
+        """
+        Render the sound toggle button
+
+        Args:
+            game_state (GameState): The current game state
+            new_pos (tuple, optional): The new position of the button. Defaults to None.
+        """
         if new_pos:
             self.sound_button.set_position(new_pos)
 
@@ -118,6 +138,13 @@ class Renderer:
         self.sound_button.draw(self.screen)
 
     def _render_music_toggle_button(self, game_state: GameState, new_pos=None) -> None:
+        """
+        Render the music toggle button
+
+        Args:
+            game_state (GameState): The current game state
+            new_pos (tuple, optional): The new position of the button. Defaults to None.
+        """
         if new_pos:
             self.music_button.set_position(new_pos)
 
@@ -130,6 +157,7 @@ class Renderer:
         self.music_button.draw(self.screen)
 
     def _render_controls_info(self) -> None:
+        """ Render the controls information """
         font = pygame.font.SysFont(c.CONTROLS_INFO_FONT, c.CONTROLS_INFO_FONT_SIZE)
 
         instruction_surface = font.render(
@@ -139,6 +167,12 @@ class Renderer:
         self.screen.blit(instruction_surface, instruction_rect)
 
     def _render_playing_screen(self, game_state: GameState) -> None:
+        """
+        Render the playing screen
+
+        Args:
+            game_state (GameState): The current game state
+        """
         self.screen.blit(self.background_image, (0, 0))
         self._render_score_board(game_state)
         self._render_current_level(game_state)
@@ -147,6 +181,12 @@ class Renderer:
         game_state.bonus_star.particle_system.draw(self.screen)
 
     def _render_score_board(self, game_state: GameState) -> None:
+        """
+        Render the score board
+
+        Args:
+            game_state (GameState): The current game state
+        """
         font = pygame.font.SysFont(c.SCORE_FONT, c.SCORE_FONT_SIZE)
         text = font.render(
             f"PLAYER 1: {game_state.player1_score}",
@@ -163,6 +203,12 @@ class Renderer:
         self.screen.blit(text, c.SCORE_POS_PLAYER2)
 
     def _render_current_level(self, game_state: GameState) -> None:
+        """
+        Render the current level
+
+        Args:
+            game_state (GameState): The current game state
+        """
         font = pygame.font.SysFont(c.LEVEL_FONT, c.LEVEL_FONT_SIZE)
         text = font.render(
             f"{c.LEVEL_TEXT} {game_state.level}",
@@ -171,32 +217,47 @@ class Renderer:
         )
         self.screen.blit(text, c.LEVEL_POS)
 
-    def _render_pause_screen(self, game_state) -> None:
+    def _render_pause_screen(self, game_state: GameState) -> None:
+        """
+        Render the pause screen
+
+        Args:
+            game_state (GameState): The current game state
+        """
         self.screen.blit(self.background_image, (0, 0))
         self._render_sound_toggle_button(game_state, c.PAUSE_SOUND_TOGGLE_BUTTON_POS)
         self._render_music_toggle_button(game_state, c.PAUSE_MUSIC_TOGGLE_BUTTON_POS)
         self._render_pause_title()
         self._render_pause_info()
 
-    def _render_pause_title(self):
+    def _render_pause_title(self) -> None:
+        """ Render the pause title """
         font = pygame.font.SysFont(c.PAUSE_FONT, c.PAUSE_FONT_SIZE)
         text = font.render(c.PAUSE_TEXT, True, c.PAUSE_TEXT_COLOR)
         text_rect = text.get_rect(center=c.PAUSE_TEXT_POS)
         self.screen.blit(text, text_rect)
 
-    def _render_pause_info(self):
+    def _render_pause_info(self) -> None:
+        """ Render the pause information """
         font = pygame.font.SysFont(c.PAUSE_SUBTEXT_FONT, c.PAUSE_SUBTEXT_FONT_SIZE)
         text = font.render(c.PAUSE_SUBTEXT, True, c.PAUSE_SUBTEXT_COLOR)
         text_rect = text.get_rect(center=c.PAUSE_SUBTEXT_POS)
         self.screen.blit(text, text_rect)
 
     def _render_game_over_leaderboard_screen(self, game_state: GameState) -> None:
+        """
+        Render the game over leaderboard screen
+
+        Args:
+            game_state (GameState): The current game state
+        """
         self.screen.blit(self.background_image, (0, 0))
         self._render_text()
         self._current_score(game_state)
-        self._top_scores(game_state)
+        self._top_scores()
 
-    def _render_text(self):
+    def _render_text(self) -> None:
+        """ Render the game over text """
         font = pygame.font.SysFont(c.GAME_OVER_FONT, c.GAME_OVER_FONT_SIZE)
         text = font.render(c.GAME_OVER_TITLE, True, c.GAME_OVER_TEXT_COLOR)
         text_rect = text.get_rect(center=c.GAME_OVER_POS)
@@ -209,7 +270,13 @@ class Renderer:
         text_rect = text.get_rect(center=c.GAME_OVER_SUBTEXT_POS)
         self.screen.blit(text, text_rect)
 
-    def _current_score(self, game_state: GameState):
+    def _current_score(self, game_state: GameState) -> None:
+        """
+        Render the current score
+
+        Args:
+            game_state (GameState): The current game state
+        """
         font = pygame.font.SysFont(
             c.GAME_OVER_CURRENT_SCORE_FONT, c.GAME_OVER_CURRENT_SCORE_FONT_SIZE
         )
@@ -228,7 +295,8 @@ class Renderer:
             )
             self.screen.blit(text, c.GAME_OVER_CURRENT_SCORE_P2_POS)
 
-    def _top_scores(self, game_state: GameState):
+    def _top_scores(self) -> None:
+        """ Render the top scores """
         image_rect = self.top_scores_image.get_rect(center=c.TOP_SCORES_RECT_POS)
         self.screen.blit(self.top_scores_image, image_rect)
 

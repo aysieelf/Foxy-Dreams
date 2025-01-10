@@ -34,7 +34,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 ## 🎮 Quick Start (Just Play)
 Download the game:
 - **macOS**: Download `SleepyFox.zip` from [Releases]()
-  - After downloading, locate Snake.app in Finder. 
+  - After downloading, locate SleepyFox.app in Finder. 
   - When opening for the first time:
     - Right-click (or Control-click) on the app and select Open. 
     - In the pop-up dialog, confirm by clicking Open. 
@@ -67,8 +67,8 @@ pip --version
 ### Step-by-Step Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/aysieelf/Snake.git
-   cd Snake
+   git clone https://github.com/aysieelf/Sleepy-Fox.git
+   cd Sleepy-Fox
    ```
 
 2. Create and activate a virtual environment (recommended):

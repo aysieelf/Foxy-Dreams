@@ -102,10 +102,10 @@ Testing & Debugging:
 
 Documentation:
 - [x] Write installation instructions
-- [ ] Write user guide:
-  - [ ] Controls documentation for both modes
-  - [ ] Game modes explanation
-  - [ ] Detailed control schemes
+- [x] Write user guide:
+  - [x] Controls documentation for both modes
+  - [x] Game modes explanation
+  - [x] Detailed control schemes
 - [ ] Document code
 - [ ] Add gameplay screenshots
 - [ ] Create demo gif/video

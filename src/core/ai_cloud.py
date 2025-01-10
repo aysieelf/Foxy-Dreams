@@ -1,20 +1,36 @@
 from src.core.cloud import Cloud
+from src.core.fox import Fox
 from src.utils import constants as c
 
 
 class AICloud(Cloud):
-    def __init__(self):
+    """
+    A class to represent an AI cloud.
+    """
+    def __init__(self) -> None:
         super().__init__("player2")
         self.speed = c.BASE_SPEED * 0.8
         self.dead_zone = 10
         self.reaction_delay = 2
         self.delay_counter = 0
 
-    def update(self, fox):
+    def update(self, fox: Fox) -> None:
+        """
+        Update the AI cloud's position based on the fox's position.
+
+        Args:
+            fox (Fox): The fox object to track.
+        """
         super().update(fox)
         self._handle_ai_movement(fox)
 
-    def _handle_ai_movement(self, fox):
+    def _handle_ai_movement(self, fox: Fox) -> None:
+        """
+        Handle the AI cloud's movement based on the fox's position.
+
+        Args:
+            fox (Fox): The fox object to track.
+        """
         self.delay_counter += 1
 
         if self.delay_counter >= self.reaction_delay:
@@ -27,7 +43,14 @@ class AICloud(Cloud):
                 speed_factor = min(abs(distance) / 100, 1.0)
                 self._move_with_speed(direction, speed_factor)
 
-    def _move_with_speed(self, direction, speed_factor):
+    def _move_with_speed(self, direction: str, speed_factor: float) -> None:
+        """
+        Move the AI cloud in the specified direction with the given speed factor.
+
+        Args:
+            direction (str): The direction to move the AI cloud.
+            speed_factor (float): The speed factor to apply to the AI cloud's movement.
+        """
         adjusted_speed_factor = min(speed_factor * 0.8, 0.8)
 
         if direction == "up" and self.hitbox.top > 0 - 4:

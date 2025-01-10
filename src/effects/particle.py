@@ -16,6 +16,22 @@ class Particle:
         self._color = color
         self._size = 2
 
+    @property
+    def x(self) -> int:
+        return self._x
+
+    @property
+    def y(self) -> int:
+        return self._y
+
+    @property
+    def color(self) -> tuple:
+        return self._color
+
+    @property
+    def size(self) -> int:
+        return self._size
+
     def update(self) -> bool:
         """
         Update the particle's position and lifetime.

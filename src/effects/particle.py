@@ -7,14 +7,14 @@ class Particle:
     """
 
     def __init__(self, x: int, y: int, color: tuple):
-        self.x = x
-        self.y = y
-        self.velocity_x = uniform(-2, 2)
-        self.velocity_y = uniform(-2, 2)
-        self.lifetime = randint(30, 60)
-        self.initial_lifetime = self.lifetime
-        self.color = color
-        self.size = 2
+        self._x = x
+        self._y = y
+        self._velocity_x = uniform(-2, 2)
+        self._velocity_y = uniform(-2, 2)
+        self._lifetime = randint(30, 60)
+        self._initial_lifetime = self._lifetime
+        self._color = color
+        self._size = 2
 
     def update(self) -> bool:
         """
@@ -23,12 +23,12 @@ class Particle:
         Returns:
             bool: True if the particle is still alive, False otherwise.
         """
-        self.x += self.velocity_x
-        self.y += self.velocity_y
+        self._x += self._velocity_x
+        self._y += self._velocity_y
 
-        self.lifetime -= 1
+        self._lifetime -= 1
 
-        alpha = int((self.lifetime / self.initial_lifetime) * 255)
-        self.color = (*self.color[:3], alpha)
+        alpha = int((self._lifetime / self._initial_lifetime) * 255)
+        self._color = (*self._color[:3], alpha)
 
-        return self.lifetime > 0
+        return self._lifetime > 0

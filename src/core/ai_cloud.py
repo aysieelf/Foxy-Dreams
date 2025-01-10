@@ -9,10 +9,30 @@ class AICloud(Cloud):
     """
     def __init__(self) -> None:
         super().__init__("player2", is_multiplayer=False)
-        self.speed = c.BASE_SPEED * 0.8
-        self.dead_zone = 10
-        self.reaction_delay = 2
-        self.delay_counter = 0
+        self._speed = c.BASE_SPEED * 0.8
+        self._dead_zone = 10
+        self._reaction_delay = 2
+        self._delay_counter = 0
+
+    @property
+    def speed(self) -> float:
+        return self._speed
+
+    @speed.setter
+    def speed(self, value: float) -> None:
+        self._speed = value
+
+    @property
+    def dead_zone(self) -> int:
+        return self._dead_zone
+
+    @property
+    def reaction_delay(self) -> int:
+        return self._reaction_delay
+
+    @property
+    def delay_counter(self) -> int:
+        return self._delay_counter
 
     def update(self, fox: Fox) -> None:
         """
@@ -31,10 +51,10 @@ class AICloud(Cloud):
         Args:
             fox (Fox): The fox object to track.
         """
-        self.delay_counter += 1
+        self._delay_counter += 1
 
         if self.delay_counter >= self.reaction_delay:
-            self.delay_counter = 0
+            self._delay_counter = 0
             distance = fox.rect.centery - self.rect.centery
 
             if abs(distance) > self.dead_zone:

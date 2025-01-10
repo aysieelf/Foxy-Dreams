@@ -10,7 +10,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 - [x] Core gameplay (deadline: 9.01.2025) - _completed on 3.01.2024_
 - [x] Game logic (deadline: 16.01.2025) - _completed on 6.01.2025_
 - [x] User interface development (deadline: 21.01.2025) - _completed on 8.01.2025_
-- [ ] Testing and debugging (deadline: 25.01.2025)
+- [x] Testing and debugging (deadline: 25.01.2025) - _completed on 10.01.2025_
 - [ ] Documentation (deadline: 27.01.2025)
 - [ ] Release (deadline: 29.01.2025)
 
@@ -115,7 +115,16 @@ python main.py
 - Implement a settings screen
 
 ## 🚀 Features
-...coming soon
+- Single-player and two-player modes
+- AI opponent for single-player mode
+- Customizable game settings for sound and music
+- Main menu screen
+- Pause screen
+- Game over screen with leaderboard
+- Background music and sound effects
+- Scoring system
+- Level progression
+- Bonus stars for extra points
 
 ## 📚 Documentation
 - [User Guide](docs/user-guide.md) - Detailed instructions on how to play the game
@@ -154,7 +163,12 @@ python main.py
 - First time using sound manager system
 
 ## 📸 Screenshots
-...coming soon
+![Start_screen](assets/screenshots/start_screen_20250110_175016.png)
+![Gameplay](assets/screenshots/game_in_progress_20250110_174948.png)
+![Bonus Collection 1](assets/screenshots/game_in_progress_20250110_175036.png)
+![Bonus Collection 2](assets/screenshots/game_in_progress_20250110_175038.png)
+![Paused screen](assets/screenshots/paused_20250110_175122.png)
+![Game over screen](assets/screenshots/game_over_20250110_175125.png)
 
 ## 🎥 Demo
 ...coming soon

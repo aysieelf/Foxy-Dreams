@@ -95,27 +95,37 @@ class EventHandler:
             event (pygame.event.Event): The keydown event
         """
         if event.key == pygame.K_ESCAPE:
-            if self.game_state.current_state == c.GameStates.START:
-                return False
-            elif self.game_state.current_state == c.GameStates.PLAYING:
-                self.game_state.set_state(c.GameStates.PAUSED)
-            elif self.game_state.current_state == c.GameStates.PAUSED:
-                self.game_state.set_state(c.GameStates.GAME_OVER_LEADERBOARD)
-                scores = [self.game_state.player1_score]
-                if self.game_state.multiplayer:
-                    scores.append(self.game_state.player2_score)
-                save_current_score(scores)
-            elif self.game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
-                self.game_state.set_state(c.GameStates.START)
-                self.game_state.reset()
+            return self._handle_escape_key()
 
         elif event.key == pygame.K_SPACE:
-            if self.game_state.current_state == c.GameStates.PLAYING:
-                self.game_state.set_state(c.GameStates.PAUSED)
-            elif self.game_state.current_state == c.GameStates.PAUSED:
-                self.game_state.set_state(c.GameStates.PLAYING)
+            return self._handle_space_key()
 
         elif event.key == pygame.K_c:
             self.screenshot_manager.capture_game_state(self.renderer.screen, self.game_state)
+
+        return True
+
+    def _handle_escape_key(self) -> bool:
+        if self.game_state.current_state == c.GameStates.START:
+            return False
+        elif self.game_state.current_state == c.GameStates.PLAYING:
+            self.game_state.set_state(c.GameStates.PAUSED)
+        elif self.game_state.current_state == c.GameStates.PAUSED:
+            self.game_state.set_state(c.GameStates.GAME_OVER_LEADERBOARD)
+            scores = [self.game_state.player1_score]
+            if self.game_state.multiplayer:
+                scores.append(self.game_state.player2_score)
+            save_current_score(scores)
+        elif self.game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
+            self.game_state.set_state(c.GameStates.START)
+            self.game_state.reset()
+
+        return True
+
+    def _handle_space_key(self) -> bool:
+        if self.game_state.current_state == c.GameStates.PLAYING:
+            self.game_state.set_state(c.GameStates.PAUSED)
+        elif self.game_state.current_state == c.GameStates.PAUSED:
+            self.game_state.set_state(c.GameStates.PLAYING)
 
         return True

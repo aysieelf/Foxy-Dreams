@@ -1,4 +1,5 @@
 from src.core.fox import Fox
+from src.core.game_state import GameState
 from src.effects.particle_system import ParticleSystem
 from src.utils import constants as c
 from src.utils.helpers import get_random_position
@@ -10,7 +11,7 @@ class BonusStar(pygame.sprite.Sprite):
     """
     Class to represent a bonus star in the game
     """
-    def __init__(self, sprite_group: pygame.sprite.Group, game_state: "GameState") -> None:
+    def __init__(self, sprite_group: pygame.sprite.Group, game_state) -> None:
         super().__init__()
         self.game_state = game_state
         self._active = False

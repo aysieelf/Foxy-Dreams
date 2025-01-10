@@ -45,6 +45,9 @@ def get_top_five_scores() -> list[Score]:
 def save_current_score(scores: list):
     """
     Save the current score to the scores file
+
+    Args:
+        scores (list): A list of scores to save
     """
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     new_score_objects = [Score(date=timestamp, score=score) for score in scores]

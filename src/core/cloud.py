@@ -13,10 +13,10 @@ class Cloud(pygame.sprite.Sprite):
 
     def __init__(self, player: str, is_multiplayer: bool) -> None:
         super().__init__()
-        self.player = player
-        self.is_multiplayer = is_multiplayer
-        self.speed = c.BASE_SPEED * 0.35
-        self.collision_cooldown = 0
+        self._player = player
+        self._is_multiplayer = is_multiplayer
+        self._speed = c.BASE_SPEED * 0.35
+        self._collision_cooldown = 0
         self.image: pygame.Surface = pygame.image.load(
             "assets/images/cloud.png"
         ).convert_alpha()
@@ -32,12 +32,52 @@ class Cloud(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
-        self.shake_duration = 30
-        self.shake_intensity = 1
-        self.is_shaking = False
-        self.shake_start = 0
-        self.original_pos = None
+        self._shake_duration = 30
+        self._shake_intensity = 1
+        self._is_shaking = False
+        self._shake_start = 0
+        self._original_pos = None
         self._set_position(player)
+
+    @property
+    def player(self):
+        return self._player
+
+    @property
+    def is_multiplayer(self):
+        return self._is_multiplayer
+
+    @property
+    def speed(self) -> float:
+        return self._speed
+
+    @speed.setter
+    def speed(self, value: float) -> None:
+        self._speed = value
+
+    @property
+    def collision_cooldown(self) -> int:
+        return self._collision_cooldown
+
+    @property
+    def shake_duration(self) -> int:
+        return self._shake_duration
+
+    @property
+    def shake_intensity(self) -> int:
+        return self._shake_intensity
+
+    @property
+    def is_shaking(self) -> bool:
+        return self._is_shaking
+
+    @property
+    def shake_start(self) -> int:
+        return self._shake_start
+
+    @property
+    def original_pos(self) -> pygame.Rect:
+        return self._original_pos
 
     @property
     def hitbox(self) -> pygame.Rect:
@@ -99,7 +139,7 @@ class Cloud(pygame.sprite.Sprite):
         current_speed = self.speed
         if self.collision_cooldown > 0:
             current_speed *= 0.5
-            self.collision_cooldown -= 1
+            self._collision_cooldown -= 1
 
         if direction == "up" and self.hitbox.top > 0 - 4:
             self.rect.y -= self.speed
@@ -133,9 +173,9 @@ class Cloud(pygame.sprite.Sprite):
         """
         Initialize the state of the cloud when a collision occurs
         """
-        self.is_shaking = True
-        self.shake_start = pygame.time.get_ticks()
-        self.original_pos = self.rect.copy()
+        self._is_shaking = True
+        self._shake_start = pygame.time.get_ticks()
+        self._original_pos = self.rect.copy()
 
     def _calculate_overlaps(self, fox: Fox) -> tuple:
         """
@@ -246,7 +286,7 @@ class Cloud(pygame.sprite.Sprite):
         else:
             fox.rect.top = self.hitbox.bottom + c.FOX_HITBOX_DIFF * 0.75
         fox.velocity.y *= -1
-        self.collision_cooldown = 3
+        self._collision_cooldown = 3
 
     def update_shake(self) -> None:
         """
@@ -259,7 +299,7 @@ class Cloud(pygame.sprite.Sprite):
         elapsed = current_time - self.shake_start
 
         if elapsed > self.shake_duration:
-            self.is_shaking = False
+            self._is_shaking = False
             self.rect.center = self.original_pos.center
             return
 
@@ -274,12 +314,12 @@ class Cloud(pygame.sprite.Sprite):
         Reset the cloud to its initial state
         """
         self._set_position(self.player)
-        self.collision_cooldown = 0
+        self._collision_cooldown = 0
         self.speed = c.BASE_SPEED * 0.35
-        self.shake_duration = 20
-        self.shake_intensity = 1
-        self.is_shaking = False
-        self.shake_start = 0
-        self.original_pos = None
+        self._shake_duration = 20
+        self._shake_intensity = 1
+        self._is_shaking = False
+        self._shake_start = 0
+        self._original_pos = None
 
 

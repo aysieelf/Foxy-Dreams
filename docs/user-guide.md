@@ -8,25 +8,52 @@ Players control paddles on opposite sides of the screen, hitting a ball back and
 The goal is to score points by making the ball pass the opponent's paddle.
 
 ## Getting Started
-1. Launch the game by running `python main.py`
-2. Click the "start game" button on the welcome screen to begin
+1. Launch the game by running `python main.py` or double-clicking the `SleepyFox` executable
+2. Chose the game mode you want to play (Single Player or Multiplayer)
+3. You can toggle sound and music on/off in the start screen
+4. Click the "start game" button on the welcome screen to begin
 
 ## Game Interface
-- **Welcome Screen**: The initial screen with the game title and start button
-...
-
+- **Start Screen**: The initial screen with the game title, start button, and settings buttons (game modes, sound on/off, music on/off)
+- **Playing Screen**: The main game screen where the action takes place with score board and level indicator
+- **Pause Screen**: The screen that appears when the game is paused, with options to resume or return to the main menu and settings buttons (sound on/off, music on/off)
+- **Game Over Screen**: The screen that appears when the game ends, showing the final score and the leaderboard (date, score)
 
 ## How to Play
-...
+- Your goal is to prevent the fox from passing your cloud
+- Use the arrow keys or WASD to move your cloud up and down
+- The velocity of the fox is affected depending on the angle it hits the cloud - use this to your advantage
+- Collect bonus stars for extra points and speed boosts
+- With each level, the game gets faster and more challenging
+- The game ends when you choose to quit
 
 ## Controls
-...
+- Single Player Mode:
+  - Player 1 (Cloud): `W` (up) `S` (down)
+  - Pause/Resume: `Space`
+  - Return to Menu: `Esc`
+- Multiplayer Mode:
+  - Player 1 (Left Cloud): `W` (up) `S` (down)
+  - Player 2 (Right Cloud): `↑` (up) `↓` (down)
+  - Pause/Resume: `Space`
+  - Return to Menu: `Esc`
 
 ## Game Features
-...
+- Single Player Mode
+- Multiplayer Mode
+- Sound Effects
+- Background Music
+- Pause/Resume Functionality
+- Level Progression
+- Bonus Star Collection
+- Leaderboard
+- Settings Menu
+- Main Menu Navigation
 
 ## Tips for Playing
-...
+- Keep an eye on the fox's velocity to predict its movement
+- Use the walls to your advantage to bounce the fox back
+- Collect bonus stars for extra points
 
 ## Troubleshooting
 **Game does not start:**
@@ -34,9 +61,9 @@ The goal is to score points by making the ball pass the opponent's paddle.
 - Check if PyGame is properly installed
 - Verify all game files are present
 
-**Can't control the snake:**
+**Can't control the cloud:**
 - Make sure the game window is active
-- Check if the arrow keys or WASD are functioning correctly
+- Check if the arrow keys or W/S/UP/DOWN are functioning correctly
 - Restart the game if the issue persists
 
 **Game seems frozen:**

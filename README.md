@@ -3,7 +3,7 @@
 Sleepy Fox is my interpretation of the classic Pong game. This is my third game ever.
 
 ## Current Progress
-[▓▓▓▓▓▓▓░░░] 75%
+[▓▓▓▓▓▓▓▓░░] 88%
 
 - [x] Project setup (deadline: 29.12.2024) - _completed on 29.12.2024_
 - [x] Asset creation (deadline: 2.01.2025) - _completed on 29.12.2024_
@@ -171,7 +171,10 @@ python main.py
 ![Game over screen](assets/screenshots/game_over_20250110_175125.png)
 
 ## 🎥 Demo
-...coming soon
+![Start_screen](assets/demo/start_screen.gif)
+![Gameplay](assets/demo/gameplay.gif)
+![Paused screen](assets/demo/pause_screen.gif)
+![Game over screen](assets/demo/game_over.gif)
 
 ## 🛠️ Technical Details
 - Python version: 3.12

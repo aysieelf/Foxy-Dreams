@@ -64,7 +64,7 @@ class BonusStar(pygame.sprite.Sprite):
 
         self._active = False
         self.sprite_group.remove(self)
-        self.collision_cooldown = 0
+        self._collision_cooldown = 0
         pygame.time.set_timer(c.BONUS_DE_SPAWN_EVENT, 0)
 
     def _set_pos(self) -> pygame.Rect:
@@ -94,7 +94,7 @@ class BonusStar(pygame.sprite.Sprite):
             self.particle_system.spawn_particles(
                 *self.rect.center, c.STAR_PARTICLES_COLOR
             )
-            self.collision_cooldown = 5
+            self._collision_cooldown = 5
             self.despawn()
             return c.BONUS_POINTS
 

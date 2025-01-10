@@ -15,11 +15,19 @@ class BonusStar(pygame.sprite.Sprite):
         self.game_state = game_state
         self._active = False
         self.sprite_group = sprite_group
-        self.collision_cooldown = 0
+        self._collision_cooldown = 0
         self.particle_system = ParticleSystem()
 
         self.image = pygame.image.load("assets/images/star-bonus.png").convert_alpha()
         self.rect = self.image.get_rect()
+
+    @property
+    def active(self) -> bool:
+        return self._active
+
+    @property
+    def collision_cooldown(self) -> int:
+        return self._collision_cooldown
 
     @property
     def hitbox(self) -> pygame.Rect:

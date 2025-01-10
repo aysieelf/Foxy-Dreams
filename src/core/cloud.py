@@ -321,5 +321,3 @@ class Cloud(pygame.sprite.Sprite):
         self._is_shaking = False
         self._shake_start = 0
         self._original_pos = None
-
-

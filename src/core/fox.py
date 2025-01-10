@@ -6,6 +6,7 @@ import pygame.sprite
 
 class Fox(pygame.sprite.Sprite):
     """Fox class that represents the fox in the game."""
+
     def __init__(self, initial_speed: float) -> None:
         super().__init__()
         self._load_image()
@@ -51,12 +52,12 @@ class Fox(pygame.sprite.Sprite):
         return self._check_for_collision(sound_manager)
 
     def _move_fox(self) -> None:
-        """ Move the fox. """
+        """Move the fox."""
         self.rect.x += self.velocity.x
         self.rect.y += self.velocity.y
 
     def _rotate_image(self) -> None:
-        """ Rotate the image of the fox. """
+        """Rotate the image of the fox."""
         self.angle += 0.1
         self.image = pygame.transform.rotozoom(self.original_image, self.angle, 1)
         old_center = self.rect.center

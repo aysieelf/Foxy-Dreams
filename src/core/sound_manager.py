@@ -5,6 +5,7 @@ class SoundManager:
     """
     The sound manager class.
     """
+
     def __init__(self):
         self._sounds = {}
         self._sound_volume = 0.3
@@ -93,11 +94,11 @@ class SoundManager:
         self._sound_cooldowns[sound_name] = current_time
 
     def start_music(self) -> None:
-        """ Start the background music. """
+        """Start the background music."""
         pygame.mixer.music.play(-1)
 
     def stop_music(self) -> None:
-        """ Stop the background music. """
+        """Stop the background music."""
         pygame.mixer.music.stop()
 
     def set_sound_volume(self, volume: float) -> None:

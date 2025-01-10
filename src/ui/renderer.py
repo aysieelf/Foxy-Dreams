@@ -100,7 +100,7 @@ class Renderer:
         self._render_controls_info()
 
     def _render_start_button(self) -> None:
-        """ Render the start button """
+        """Render the start button"""
         self.start_button.draw(self.screen)
 
     def _render_multiplayer_toggle_button(self, game_state: GameState) -> None:
@@ -157,7 +157,7 @@ class Renderer:
         self.music_button.draw(self.screen)
 
     def _render_controls_info(self) -> None:
-        """ Render the controls information """
+        """Render the controls information"""
         font = pygame.font.SysFont(c.CONTROLS_INFO_FONT, c.CONTROLS_INFO_FONT_SIZE)
 
         instruction_surface = font.render(
@@ -231,14 +231,14 @@ class Renderer:
         self._render_pause_info()
 
     def _render_pause_title(self) -> None:
-        """ Render the pause title """
+        """Render the pause title"""
         font = pygame.font.SysFont(c.PAUSE_FONT, c.PAUSE_FONT_SIZE)
         text = font.render(c.PAUSE_TEXT, True, c.PAUSE_TEXT_COLOR)
         text_rect = text.get_rect(center=c.PAUSE_TEXT_POS)
         self.screen.blit(text, text_rect)
 
     def _render_pause_info(self) -> None:
-        """ Render the pause information """
+        """Render the pause information"""
         font = pygame.font.SysFont(c.PAUSE_SUBTEXT_FONT, c.PAUSE_SUBTEXT_FONT_SIZE)
         text = font.render(c.PAUSE_SUBTEXT, True, c.PAUSE_SUBTEXT_COLOR)
         text_rect = text.get_rect(center=c.PAUSE_SUBTEXT_POS)
@@ -257,7 +257,7 @@ class Renderer:
         self._top_scores()
 
     def _render_text(self) -> None:
-        """ Render the game over text """
+        """Render the game over text"""
         font = pygame.font.SysFont(c.GAME_OVER_FONT, c.GAME_OVER_FONT_SIZE)
         text = font.render(c.GAME_OVER_TITLE, True, c.GAME_OVER_TEXT_COLOR)
         text_rect = text.get_rect(center=c.GAME_OVER_POS)
@@ -296,7 +296,7 @@ class Renderer:
             self.screen.blit(text, c.GAME_OVER_CURRENT_SCORE_P2_POS)
 
     def _top_scores(self) -> None:
-        """ Render the top scores """
+        """Render the top scores"""
         image_rect = self.top_scores_image.get_rect(center=c.TOP_SCORES_RECT_POS)
         self.screen.blit(self.top_scores_image, image_rect)
 

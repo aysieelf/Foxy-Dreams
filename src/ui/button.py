@@ -2,7 +2,8 @@ import pygame
 
 
 class Button:
-    """ A class to represent a button """
+    """A class to represent a button"""
+
     def __init__(self, image, position, text, font_name, font_size, text_color):
         self.image = image
         self.rect = self.image.get_rect(center=position)

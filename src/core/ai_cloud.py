@@ -7,6 +7,7 @@ class AICloud(Cloud):
     """
     A class to represent an AI cloud.
     """
+
     def __init__(self) -> None:
         super().__init__("player2", is_multiplayer=False)
         self._speed = c.BASE_SPEED * 0.8

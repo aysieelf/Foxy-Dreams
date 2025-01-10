@@ -1,8 +1,9 @@
 from datetime import datetime
 import os
 
-import pygame
 from src.utils import constants as c
+
+import pygame
 
 
 class ScreenshotManager:
@@ -42,9 +43,9 @@ class ScreenshotManager:
         if game_state.current_state == c.GameStates.START:
             self._capture(screen, "start_screen")
         elif game_state.current_state == c.GameStates.GAME_OVER_LEADERBOARD:
-            self._capture(screen, f"game_over")
+            self._capture(screen, "game_over")
         elif game_state.current_state == c.GameStates.PAUSED:
-            self._capture(screen, f"paused")
+            self._capture(screen, "paused")
 
         else:
-            self._capture(screen, f"game_in_progress")
+            self._capture(screen, "game_in_progress")

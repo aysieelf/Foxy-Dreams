@@ -101,7 +101,9 @@ class EventHandler:
             return self._handle_space_key()
 
         elif event.key == pygame.K_c:
-            self.screenshot_manager.capture_game_state(self.renderer.screen, self.game_state)
+            self.screenshot_manager.capture_game_state(
+                self.renderer.screen, self.game_state
+            )
 
         return True
 

@@ -16,6 +16,7 @@ class GameState:
     """
     Class to hold the game state
     """
+
     def __init__(self) -> None:
         self._current_state = GameStates.START
         self.is_first_throw = True
@@ -30,7 +31,9 @@ class GameState:
         self.all_sprites = pygame.sprite.Group()
         self.fox = Fox(self.base_speed)
         self.cloud_player1 = Cloud("player1", self.multiplayer)
-        self.cloud_player2 = Cloud("player2", self.multiplayer) if self.multiplayer else AICloud()
+        self.cloud_player2 = (
+            Cloud("player2", self.multiplayer) if self.multiplayer else AICloud()
+        )
         self.bonus_star = BonusStar(self.all_sprites, self)
         self.all_sprites.add(self.fox, self.cloud_player1, self.cloud_player2)
 
@@ -122,7 +125,9 @@ class GameState:
         self.multiplayer = not self.multiplayer
         if hasattr(self, "cloud_player2"):
             self.all_sprites.remove(self.cloud_player2)
-            self.cloud_player2 = Cloud("player2", self.multiplayer) if self.multiplayer else AICloud()
+            self.cloud_player2 = (
+                Cloud("player2", self.multiplayer) if self.multiplayer else AICloud()
+            )
             self.all_sprites.add(self.cloud_player2)
 
     def reset(self):

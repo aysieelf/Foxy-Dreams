@@ -18,7 +18,6 @@ class EventHandler:
         game_state (GameState): The current game state
         screenshot_manager (ScreenshotManager): The screenshot manager
                 to take screenshots
-
     """
 
     def __init__(self, game_state: GameState, renderer: Renderer) -> None:
@@ -50,7 +49,13 @@ class EventHandler:
                 return self._handle_keydown(event)
         return True
 
-    def _handle_start_screen_click(self, mouse_pos):
+    def _handle_start_screen_click(self, mouse_pos: tuple[int, int]) -> None:
+        """
+        Handle the click events on the start screen
+
+        Args:
+            mouse_pos (tuple[int, int]): The position of the mouse click
+        """
         if self.renderer.start_button.is_clicked(mouse_pos):
             self.game_state.set_state(c.GameStates.PLAYING)
             self.game_state.sound_manager.play_sound("mouse-click")
@@ -67,7 +72,13 @@ class EventHandler:
             self.game_state.sound_manager.toggle_music()
             self.game_state.sound_manager.play_sound("mouse-click")
 
-    def _handle_paused_screen_click(self, mouse_pos):
+    def _handle_paused_screen_click(self, mouse_pos: tuple[int, int]) -> None:
+        """
+        Handle the click events on the paused screen
+
+        Args:
+            mouse_pos (tuple[int, int]): The position of the mouse click
+        """
         if self.renderer.sound_button.is_clicked(mouse_pos):
             self.game_state.sound_manager.toggle_sound()
             self.game_state.sound_manager.play_sound("mouse-click")
@@ -77,6 +88,12 @@ class EventHandler:
             self.game_state.sound_manager.play_sound("mouse-click")
 
     def _handle_keydown(self, event: pygame.event.Event) -> bool:
+        """
+        Handle the keydown events
+
+        Args:
+            event (pygame.event.Event): The keydown event
+        """
         if event.key == pygame.K_ESCAPE:
             if self.game_state.current_state == c.GameStates.START:
                 return False
@@ -97,5 +114,8 @@ class EventHandler:
                 self.game_state.set_state(c.GameStates.PAUSED)
             elif self.game_state.current_state == c.GameStates.PAUSED:
                 self.game_state.set_state(c.GameStates.PLAYING)
+
+        elif event.key == pygame.K_c:
+            self.screenshot_manager.capture_game_state(self.renderer.screen, self.game_state)
 
         return True

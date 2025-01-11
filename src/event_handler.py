@@ -108,8 +108,15 @@ class EventHandler:
         return True
 
     def _handle_escape_key(self) -> bool:
+        """
+        Handle the escape key press
+
+        Returns:
+            bool: True if the game should continue, False if the game should end
+        """
         if self.game_state.current_state == c.GameStates.START:
-            return False
+            pygame.event.post(pygame.event.Event(pygame.QUIT))
+            return True
         elif self.game_state.current_state == c.GameStates.PLAYING:
             self.game_state.set_state(c.GameStates.PAUSED)
         elif self.game_state.current_state == c.GameStates.PAUSED:
@@ -125,6 +132,12 @@ class EventHandler:
         return True
 
     def _handle_space_key(self) -> bool:
+        """
+        Handle the space key press
+
+        Returns:
+            bool: True if the game should continue, False if the game should
+        """
         if self.game_state.current_state == c.GameStates.PLAYING:
             self.game_state.set_state(c.GameStates.PAUSED)
         elif self.game_state.current_state == c.GameStates.PAUSED:

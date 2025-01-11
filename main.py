@@ -19,7 +19,7 @@ def get_resource_path() -> str:
     Works both for development and for PyInstaller bundles.
     """
     if getattr(sys, "frozen", False):
-        if hasattr(sys, '_MEIPASS'):
+        if hasattr(sys, "_MEIPASS"):
             base_path = sys._MEIPASS
         else:
             base_path = os.path.dirname(sys.executable)
@@ -47,19 +47,22 @@ def main() -> None:
         game_state = GameState()
         game_loop(screen, game_state, clock)
     except Exception as e:
-        error_path = os.path.join(os.path.expanduser('~'), 'sleepyfox_error.txt')
-        with open(error_path, 'w') as f:
+        error_path = os.path.join(os.path.expanduser("~"), "sleepyfox_error.txt")
+        with open(error_path, "w") as f:
             f.write(f"Error occurred at {datetime.datetime.now()}\n")
             f.write(f"Error: {str(e)}\n")
             f.write(f"Base path: {base_path}\n")
             f.write(f"Current working directory: {os.getcwd()}\n")
             import traceback
+
             f.write(traceback.format_exc())
         print(f"An error occurred. Check {error_path} for details.", file=sys.stderr)
         import time
+
         time.sleep(5)
     finally:
         pygame.quit()
+
 
 if __name__ == "__main__":
     main()

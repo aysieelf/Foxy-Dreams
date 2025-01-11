@@ -55,12 +55,11 @@ Core Gameplay (640x480 window):
   - [x] Volume control functionality
 
 TODO:
-- [ ] smaller difference in speed change in one level depending on velocity
 - [x] bonus star should be despawned when "play again" function is called
 
 Game Logic:
 - [x] Implement score system
-- [ ] Create game state manager:
+- [x] Create game state manager:
   - [x] Start state
   - [x] Playing state
   - [x] Paused state
@@ -98,7 +97,7 @@ Testing & Debugging:
 - [x] Optimize performance
 - [x] Fine-tune sound balance
 - [x] Test settings persistence
-- [ ] Cross-platform testing
+- [x] Cross-platform testing
 
 Documentation:
 - [x] Write installation instructions
@@ -106,14 +105,13 @@ Documentation:
   - [x] Controls documentation for both modes
   - [x] Game modes explanation
   - [x] Detailed control schemes
-- [ ] Document code
-- [ ] Add gameplay screenshots
-- [ ] Create demo gif/video
-- [ ] Write release notes
+- [x] Document code
+- [x] Add gameplay screenshots
+- [x] Create demo gif/video
+- [x] Write release notes
 
 Release:
-- [ ] Perform final testing
-- [ ] Package game for distribution
-- [ ] Create v1.0.0 release for MacOS
+- [x] Perform final testing
+- [x] Create v1.0.0 release for MacOS
 - [ ] Create v1.0.0 release for Windows
 - [ ] Update repository documentation

@@ -1,6 +1,6 @@
+from enum import Enum
 import os
 import sys
-from enum import Enum
 
 import pygame
 
@@ -162,9 +162,9 @@ TOP_SCORES_RECT_POS = (WIDTH // 2, HEIGHT // 2 + 40)
 # PATHS -----------------------------------------------------------------------
 # В constants.py
 if getattr(sys, "frozen", False):
-    home = os.path.expanduser('~')
-    scores_dir = os.path.join(home, '.sleepyfox')
+    home = os.path.expanduser("~")
+    scores_dir = os.path.join(home, ".sleepyfox")
     os.makedirs(scores_dir, exist_ok=True)
-    SCORES_FILE = os.path.join(scores_dir, 'scores.pkl')
+    SCORES_FILE = os.path.join(scores_dir, "scores.pkl")
 else:
     SCORES_FILE = "assets/scores/scores.pkl"

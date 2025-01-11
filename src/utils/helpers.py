@@ -46,17 +46,21 @@ def get_top_five_scores() -> list[Score]:
 
 
 def save_current_score(scores: list):
+    """
+    Save the current score to the scores file
+    """
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     new_score_objects = [Score(date=timestamp, score=score) for score in scores]
+
+    scores_dir = os.path.dirname(c.SCORES_FILE)
+    os.makedirs(scores_dir, exist_ok=True)
+
     existing_scores = []
-
-    os.makedirs(os.path.dirname(c.SCORES_FILE), exist_ok=True)
-
     try:
         if os.path.isfile(c.SCORES_FILE):
             with open(c.SCORES_FILE, "rb") as file:
                 existing_scores = pickle.load(file)
-    except EOFError:
+    except (EOFError, pickle.UnpicklingError):
         existing_scores = []
 
     all_scores = existing_scores + new_score_objects

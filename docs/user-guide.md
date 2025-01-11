@@ -50,6 +50,21 @@ The goal is to score points by making the ball pass the opponent's paddle.
 - Settings Menu
 - Main Menu Navigation
 
+## High Scores
+
+The game automatically saves your high scores after each game. Scores are stored in:
+* **macOS**: `~/Documents/SleepyFox/scores.pkl`
+* **Windows**: `Documents\SleepyFox\scores.pkl`
+
+The game keeps track of your top 5 scores, showing:
+* The date and time when the score was achieved
+* The number of points scored
+* Scores from both single player and multiplayer games
+
+If you want to back up your scores or transfer them to another computer, you can:
+1. Copy the `scores.pkl` file from the above location
+2. Place it in the same location on the new computer
+
 ## Tips for Playing
 - Keep an eye on the fox's velocity to predict its movement
 - Use the walls to your advantage to bounce the fox back

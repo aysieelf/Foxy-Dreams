@@ -11,7 +11,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 - [x] Game logic (deadline: 16.01.2025) - _completed on 6.01.2025_
 - [x] User interface development (deadline: 21.01.2025) - _completed on 8.01.2025_
 - [x] Testing and debugging (deadline: 25.01.2025) - _completed on 10.01.2025_
-- [ ] Documentation (deadline: 27.01.2025)
+- [x] Documentation (deadline: 27.01.2025) - _completed on 10.01.2025_
 - [ ] Release (deadline: 29.01.2025)
 
 
@@ -32,8 +32,7 @@ Sleepy Fox is my interpretation of the classic Pong game. This is my third game 
 - [Technical Details](#-technical-details)
 
 ## 🎮 Quick Start (Just Play)
-Download the game:
-- **macOS**: Download `SleepyFox.zip` from [Releases]()
+- **macOS**: Download `SleepyFox.zip` from [Releases](https://github.com/aysieelf/Sleepy-Fox/releases/tag/macos-1.0.0)
   - After downloading, locate SleepyFox.app in Finder. 
   - When opening for the first time:
     - Right-click (or Control-click) on the app and select Open. 
@@ -41,7 +40,7 @@ Download the game:
     - This step is necessary because the app is not notarized by Apple. (_and I'm too poor to pay for it_ 😅)
     - Note: First launch might take a few seconds.
   - Afterward, you can open the app normally by double-clicking.
-- **Windows**: Download `SleepyFox.zip` from [Releases]()
+- **Windows**: Download `SleepyFox.zip` from [Releases]() (_coming soon_)
   - After downloading, extract the contents of the zip file.
   - Locate and run `SleepyFox.exe`.
   - When downloading the game, your antivirus might flag it as suspicious. This is a "false positive" - the game is completely safe! This happens because the game is packaged with PyInstaller, which bundles Python and all dependencies into a single executable file.
